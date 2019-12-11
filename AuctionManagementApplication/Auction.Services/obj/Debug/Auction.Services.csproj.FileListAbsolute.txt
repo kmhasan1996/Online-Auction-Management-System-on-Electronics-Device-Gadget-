@@ -1,0 +1,17 @@
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.dll.config
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.pdb
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Entities.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.pdb
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.dll.config
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Entities.pdb
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.xml
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.xml
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csprojAssemblyReference.cache
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CoreCompileInputs.cache
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CopyComplete
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.pdb

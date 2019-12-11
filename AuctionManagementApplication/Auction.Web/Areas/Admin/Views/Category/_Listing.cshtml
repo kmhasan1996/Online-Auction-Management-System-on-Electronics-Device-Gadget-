@@ -1,0 +1,162 @@
+﻿@model List<Auction.Entities.Category>
+
+<link href="~/Contents/DataTables/DataTables-1.10.18/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Contents/DataTables/DataTables-1.10.18/js/jquery.dataTables.js"></script>
+<script src="~/Contents/DataTables/DataTables-1.10.18/js/Bootstrap-3-Typeahead.js"></script>
+
+
+@if (Model != null && Model.Count>0)
+{
+    <div class="table-responsive">
+        <table id="categoryTable" class=" table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">IsActive</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                var i = 0;
+                foreach (var category in Model)
+                {
+                    i++;
+
+                    <tr>
+                        <td>@i</td>
+                        <td>@category.Name</td>
+                        @{
+                            String show = category.IsActive == true ? "Yes" : "No";
+                        }
+                        <td>@show</td>
+                        <td>
+                            <img src="@category.ImageUrl" height="50" width="75" alt=""/></td>
+                        <td>
+                            <button  type="button" class="editButton btn btn-primary" data-id="@category.Id" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen mr-2"></i>Edit</button>
+                            <button  type="button" class="deleteButton btn btn-danger" data-id="@category.Id"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
+                        </td>
+
+                    </tr>
+                }
+
+            }
+
+            </tbody>
+        </table>
+    </div>
+  
+}
+else
+{
+    <hr/>
+    <div class="alert alert-warning" role="alert">
+        Sorry! No record found.
+    </div>
+}
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+    </div>
+</div>
+
+<script>
+
+
+    $(document).ready(function() {
+        var dataSrc = [];
+
+        var table = $('#categoryTable').DataTable({
+            'initComplete': function(){
+                var api = this.api();
+
+                // Populate a dataset for autocomplete functionality
+                // using data from first, second and third columns // api.cells('tr', [0, 1, 2])
+                api.cells('tr', [1]).every(function(){
+                    // Get cell data as plain text
+                    var data = $('<div>').html(this.data()).text();           
+                    if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
+                });
+         
+                // Sort dataset alphabetically
+                dataSrc.sort();
+        
+                // Initialize Typeahead plug-in
+                $('.dataTables_filter input[type="search"]', api.table().container())
+                    .typeahead({
+                            source: dataSrc,
+                            afterSelect: function(value){
+                                api.search(value).draw();
+                            }
+                        }
+                    );
+            }
+        });
+    });
+
+
+    $(".editButton").click(function () {
+
+        $.ajax({
+                type: "GET",
+                url: "/Admin/Category/Edit",
+                data: {
+                    Id: $(this).attr('data-id')
+                }
+
+            })
+            .done(function (response) {
+                $("#editModal .modal-dialog").html(response);
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Fail");
+            });
+
+    });
+
+    $(".deleteButton").click(function () {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                        type: "POST",
+                        url: "/Admin/Category/Delete",
+                        data: {
+                            Id: $(this).attr('data-id')
+                        }
+
+                    })
+                    .done(function (response) {
+                        Swal.fire({
+                            title: 'Deleted SuccessFully',
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.reload();
+                            }
+                        });
+                    })
+                    .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Fail");
+                    });
+               
+            }
+        });
+
+    });
+</script>
+

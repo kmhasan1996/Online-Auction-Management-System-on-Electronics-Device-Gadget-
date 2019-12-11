@@ -1,0 +1,5 @@
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug\Auction.Entities.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug\Auction.Entities.pdb
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.csproj.CoreCompileInputs.cache
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.pdb

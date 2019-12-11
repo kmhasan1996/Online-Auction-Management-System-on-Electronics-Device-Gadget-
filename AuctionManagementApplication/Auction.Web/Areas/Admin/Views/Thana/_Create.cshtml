@@ -1,0 +1,47 @@
+﻿@model List<Auction.Entities.District>
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Thana</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form id="thanaForm">
+        <div class="modal-body">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label form-control-sm">District</label>
+                <div class="col-sm-9">
+                    <select id="DistrictId" name="DistrictId" class="form-control form-control-sm" size="1">
+                        <option value="">--Select District--</option>
+
+                        @if (Model != null)
+                        {
+                            foreach (var district in Model)
+                            {
+                                <option value="@district.Id">@district.Name</option>
+                            }
+                        }
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label form-control-sm">Thana</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control form-control-sm" id="Name" name="Name" placeholder="Enter district name">
+                    <span id="NameError"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button id="saveButton" type="button" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Save</button>
+            <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Close</button>
+        </div>
+    </form>
+</div>
+
+<script src="~/Scripts/MyScript/Thana.js"></script>
+

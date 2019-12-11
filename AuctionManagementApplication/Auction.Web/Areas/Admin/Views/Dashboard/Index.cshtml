@@ -1,0 +1,201 @@
+﻿@model  dynamic
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Contents/css/StyleSheet1.css" rel="stylesheet" />
+
+<div class="row mt-5">
+    <div class="col-md-3">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@Model.CategoryCount</h3>
+
+                <p>Total Category</p>
+            </div>
+            <div class="icon bg-dark">
+                <i class="fas fa-folder"></i>
+            </div>
+            <a href="@Url.Action("Index", "Category")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @*<div class="card">
+                <div class="card-header text-center bg-primary text-white">
+                    No. of Category
+                </div>
+                <div class="card-body bg-secondary text-white text-center ">
+                    <p class="card-text  display-1"> @Model.CategoryCount</p>
+
+                    <a href="@Url.Action("Index", "Category")" class="btn btn-primary float-right">See Details >></a>
+                </div>
+            </div>*@
+    </div>
+    <div class="col-md-3">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>@Model.AdRequestCount</h3>
+
+                <p>Total Ad Request Pending</p>
+            </div>
+            <div class="icon bg-dark">
+                <i class="fas fa-ad"></i>
+            </div>
+            <a href="@Url.Action("", "")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @*<div class="card">
+                <div class="card-header">
+                    Type of product
+                </div>
+                <div class="card-body text-center ">
+                    <p class="card-text display-1"> @Model.ProductCount</p>
+
+                    <a href="@Url.Action("Index", "Product")" class="btn btn-primary float-right">See Details >></a>
+                </div>
+            </div>*@
+    </div>
+    <div class="col-md-3">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3> @Model.LiveAdCount</h3>
+
+                <p>Total Live Ad</p>
+            </div>
+            <div class="icon bg-dark">
+                <i class="fas fa-ad"></i>
+            </div>
+            <a href="@Url.Action("", "")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @*<div class="card">
+                <div class="card-header">
+                    No. of Customer
+                </div>
+                <div class="card-body text-center ">
+                    <p class="card-text display-1"> @Model.CustomerCount</p>
+
+                    <a href="@Url.Action("Index", "Customer")" class="btn btn-primary float-right">See Details >></a>
+                </div>
+            </div>*@
+    </div>
+    <div class="col-md-3">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>@Model.BlockedAdCount</h3>
+
+                <p>Total Ad Reject</p>
+            </div>
+            <div class="icon bg-dark">
+                <i class="fas fa-ad"></i>
+            </div>
+            <a href="@Url.Action("", "")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @*<div class="card">
+                <div class="card-header">
+                    No. of Supplier
+                </div>
+                <div class="card-body text-center ">
+                    <p class="card-text display-1"> @Model.SupplierCount</p>
+
+                    <a href="@Url.Action("Index", "Supplier")" class="btn btn-primary float-right">See Details >></a>
+                </div>
+            </div>*@
+    </div>
+
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-3">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@Model.UserCount</h3>
+
+                <p>Total Active User</p>
+            </div>
+            <div class="icon bg-dark">
+                <i class="fas fa-users"></i>
+            </div>
+            <a href="@Url.Action("", "")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @*<div class="card">
+                <div class="card-header text-center bg-primary text-white">
+                    No. of Category
+                </div>
+                <div class="card-body bg-secondary text-white text-center ">
+                    <p class="card-text  display-1"> @Model.CategoryCount</p>
+
+                    <a href="@Url.Action("Index", "Category")" class="btn btn-primary float-right">See Details >></a>
+                </div>
+            </div>*@
+    </div>
+    <div class="col-md-3">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>@Model.BlockedUserCount</h3>
+
+                <p>Total Blocked User</p>
+            </div>
+            <div class="icon bg-dark">
+                <i class="fas fa-users"></i>
+            </div>
+            <a href="@Url.Action("", "")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @*<div class="card">
+                <div class="card-header">
+                    Type of product
+                </div>
+                <div class="card-body text-center ">
+                    <p class="card-text display-1"> @Model.ProductCount</p>
+
+                    <a href="@Url.Action("Index", "Product")" class="btn btn-primary float-right">See Details >></a>
+                </div>
+            </div>*@
+    </div>
+    <div class="col-md-3">
+        <div class="small-box bg-secondary">
+            <div class="inner">
+                <h3> @Model.DistrictCount</h3>
+
+                <p>Total District</p>
+            </div>
+            <div class="icon bg-dark">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <a href="@Url.Action("", "")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @*<div class="card">
+                <div class="card-header">
+                    No. of Customer
+                </div>
+                <div class="card-body text-center ">
+                    <p class="card-text display-1"> @Model.CustomerCount</p>
+
+                    <a href="@Url.Action("Index", "Customer")" class="btn btn-primary float-right">See Details >></a>
+                </div>
+            </div>*@
+    </div>
+    <div class="col-md-3">
+        <div class="small-box bg-secondary">
+            <div class="inner">
+                <h3>@Model.ThanaCount</h3>
+
+                <p>Total Thana</p>
+            </div>
+            <div class="icon bg-dark">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <a href="@Url.Action("", "")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @*<div class="card">
+                <div class="card-header">
+                    No. of Supplier
+                </div>
+                <div class="card-body text-center ">
+                    <p class="card-text display-1"> @Model.SupplierCount</p>
+
+                    <a href="@Url.Action("Index", "Supplier")" class="btn btn-primary float-right">See Details >></a>
+                </div>
+            </div>*@
+    </div>
+
+</div>
+

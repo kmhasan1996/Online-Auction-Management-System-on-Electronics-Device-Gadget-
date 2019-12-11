@@ -1,0 +1,39 @@
+﻿@model List<Auction.Entities.District>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col col-lg-12">
+        <h2>District</h2>
+        <hr />
+    </div>
+
+
+    <div class="col col-lg-6 mb-3">
+        <form>
+            <div class="input-group">
+
+                <div class="input-group-append" id="button-addon4">
+                    <button id="createButton" class="btn btn-success" type="button" data-toggle="modal" data-target="#createDistrictModal"><i class="fas fa-plus mr-2"></i>New District</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col col-lg-12">
+        @{Html.RenderPartial("_List", Model);}
+    </div>
+
+    <!-- Modal Create -->
+    <div class="modal fade" id="createDistrictModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog " role="document">
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/MyScript/District.js"></script>
+
