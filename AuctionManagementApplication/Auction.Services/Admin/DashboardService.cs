@@ -56,6 +56,44 @@ namespace Auction.Services.Admin
                 return context.Thanas.Count();
             }
         }
+        public int GetActiveUserCount()
+        {
+            using (var context = new AuctionDbContext())
+            {
+                return context.Users.Count(x => x.IsActive);
+            }
+        }
+
+        public int GetDeactivateUserCount()
+        {
+            using (var context = new AuctionDbContext())
+            {
+                return context.Users.Count(x=>x.IsActive==false);
+            }
+        }
+        public int GetActivePostedAdCount()
+        {
+            using (var context = new AuctionDbContext())
+            {
+                return context.Products.Count(x=>x.IsActive);
+            }
+        }
+        public int GetPendingPostedAdCount()
+        {
+            using (var context = new AuctionDbContext())
+            {
+                return context.Products.Count(x=>x.IsActive==false);
+            }
+        }
+
+        //public int GetPendingPostedAdCount()
+        //{
+        //    using (var context = new AuctionDbContext())
+        //    {
+        //        return context.Products.Count(x=>x.IsActive==false);
+        //    }
+        //}
+       
 
     }
 }

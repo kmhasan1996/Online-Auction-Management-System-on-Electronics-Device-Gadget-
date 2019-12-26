@@ -16,7 +16,7 @@ namespace Auction.Database
         public DbSet<Thana> Thanas { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Bidder> Bidders { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
     }
 }

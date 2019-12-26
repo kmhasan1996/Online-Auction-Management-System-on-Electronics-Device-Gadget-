@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Auction.Services.UserAccountService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,9 @@ namespace Auction.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var allCategories = UserCategoryService.Instance.GetAll();
+
+            return View(allCategories);
         }
 
         public ActionResult About()

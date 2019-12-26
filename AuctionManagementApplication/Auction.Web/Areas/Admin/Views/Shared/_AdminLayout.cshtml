@@ -41,16 +41,12 @@
         <div class=" border-right" id="sidebar-wrapper" style="background: rgb(0, 31, 63)">
             <div class="sidebar-heading" style="background: rgb(0, 31, 63);color: white"><i class="fas fa-bars mr-3"></i>Menu </div>
             <div class="list-group list-group-flush">
-                @*<a href="@Url.Action("Index","AdminHome")" class="list-group-item list-group-item-action"><i class="fas fa-home mr-2"></i>Home</a>*@
 
-                <a href="@Url.Action("Index","Dashboard")" class="list-group-item list-group-item-action" @*style="background: black;color: white"*@><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
-
+                <a href="@Url.Action("Index","Dashboard")" class="list-group-item list-group-item-action" ><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
                 <a href="@Url.Action("Index","Category")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Category</a>
                 <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Ad Request</a>
-                <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Live Ad </a>
-                <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Blocked Ad</a>
-                <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-users mr-2"></i>User</a>
-                <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-users mr-2"></i>Blocked User</a>
+                <a href="@Url.Action("Index","PostedAd")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Ads</a>
+                <a href="@Url.Action("Index","UserAccount")" class="list-group-item list-group-item-action  "><i class="fas fa-users mr-2"></i>Users</a>
                 <a href="@Url.Action("Index","District")" class="list-group-item list-group-item-action  "><i class="fas fa-map-marker-alt mr-2"></i>District</a>
                 <a href="@Url.Action("Index","Thana")" class="list-group-item list-group-item-action  "><i class="fas fa-map-marker-alt mr-2"></i>Thana</a>
 

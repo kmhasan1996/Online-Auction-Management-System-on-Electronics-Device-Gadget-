@@ -1,0 +1,20 @@
+﻿@model List<Auction.Entities.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="row">
+        <div class="col col-lg-12">
+            <h2>Users</h2>
+            <hr />
+        </div>
+
+        <div class="col col-lg-12">
+            @{Html.RenderPartial("_List", Model);}
+        </div>
+
+       
+    </div>
+

@@ -11,8 +11,7 @@ namespace Auction.Web.Areas.Admin.Controllers
     {
         public JsonResult UploadImage()
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult {JsonRequestBehavior = JsonRequestBehavior.AllowGet};
 
             try
             {
@@ -40,7 +39,7 @@ namespace Auction.Web.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                result.Data = new { Success = false, Message = ex.Message };
+                result.Data = new { Success = false, ex.Message };
             }
             return result;
         }

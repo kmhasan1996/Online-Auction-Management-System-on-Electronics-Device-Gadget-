@@ -1,42 +1,292 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>Auction - @ViewBag.Title</title>
+
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" type="text/css" href="~/Contents/stylesheets/bootstrap.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" type="text/css" href="~/Contents/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="~/Contents/stylesheets/responsive.css">
+
+    <!-- Colors -->
+    <link rel="stylesheet" type="text/css" href="~/Contents/stylesheets/colors/color1.css" id="colors">
+
+    <!-- Animation Style -->
+    <link rel="stylesheet" type="text/css" href="~/Contents/stylesheets/animate.css">
+
+
+    <!-- Favicon and touch icons  -->
+    <link href="icon/favicon.png" rel="shortcut icon">
+
+    <!-- javascript-->
+    @*<script src="~/Contents/javascript/jquery-ui.js"></script>*@
+     <script src="~/Contents/javascript/jquery.min.js"></script>
+
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link href="~/Scripts/jquery-ui.min.css" rel="stylesheet" />
+    
+
+    <!--[if lt IE 9]>
+        <script src="javascript/html5shiv.js"></script>
+        <script src="javascript/respond.min.js"></script> header-absolute header-center
+    <![endif]-->
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+<body class="header_sticky header-style-2 topbar-style-1  has-menu-extra">
+
+    <!-- Preloader -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- Boxed -->
+    <div class="boxed">
+        <div id="site-header-wrap">
+            <!-- Top Bar -->
+            <div id="top-bar">
+                <div id="top-bar-inner" class="container">
+                    <div class="top-bar-inner-wrap">
+                        <div class="top-bar-content">
+                            <span class="content">Register | Bid | Win</span>
+                        </div>
+                        <div class="top-bar-nav">
+                            <div class="inner">
+                                @Html.Partial("_LoginPartial")
+                                @*<div class="language-wrap">
+                                        <ul class="language">
+                                            <li>
+                                                <a href="#">English</a>
+                                                <ul class="sub-language">
+                                                    <li><a href="#">English</a></li>
+                                                    <li><a href="#">France</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>*@
+                                @*<div class="money">USD <i class="fa fa-usd"></i></div>*@
+                                @*<div class="account"><a href="#">My Account <i class="fa fa-user"></i></a></div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Top Bar -->
+            <!-- Header -->
+            <header id="header" class="header header-container clearfix " style="background: #031D2C;">
+                <div class="container clearfix" id="site-header-inner">
+                    <div id="logo" class="logo float-left">
+                        <a href="index.html" title="logo">
+                            <img src="~/Contents/Images/System/logo-658x114.png" alt="image" width="200" height="60" style="background-color:white;">
+                        </a>
+
+                    </div><!-- /.logo -->
+                    <div class="mobile-button"><span></span></div>
+                    <ul class="menu-extra">
+                        <li class="box-search">
+                            <a class="icon_search header-search-icon" href="#" style="color:black;background-color:white;"></a>
+                            <form role="search" method="get" class="header-search-form" action="#">
+                                <input type="text" value="" name="s" class="header-search-field" placeholder="Search...">
+                                <button type="submit" class="header-search-submit" title="Search">Search</button>
+                            </form>
+                        </li>
+                        @*<li class="box-login">
+                                <a class="icon_login" href="#"></a>
+                            </li>*@
+
+                    </ul><!-- /.menu-extra -->
+                    <div class="nav-wrap  float-left">
+                        <nav id="mainnav" class="mainnav ">
+                            <ul class="menu ">
+                                <li class="active ">
+                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                </li>
+                                <li>
+                                    <a href="shop-3col.html" style="color:white">Category</a>
+                                </li>
+                               
+                                <li>
+                                    <a href="contact.html" style="color:white">Contact</a>
+                                   
+                                </li>
+                                <li>
+                                    <a href="contact.html" style="color:white">About</a>
+                                    
+                                </li>
+                            </ul>
+                        </nav><!-- /.mainnav -->
+                    </div><!-- /.nav-wrap -->
+                </div><!-- /.container-fluid -->
+            </header><!-- /header -->
+        </div><!-- /#site-header-wrap -->
+        <!-- Body Content-->
+       
+            @RenderBody()
+      
+
+
+        <section class="flat-row mail-chimp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text">
+                            <h3>Sign up for Send Newsletter</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="subscribe clearfix">
+                            <form action="#" method="post" accept-charset="utf-8" id="subscribe-form">
+                                <div class="subscribe-content">
+                                    <div class="input">
+                                        <input type="email" name="subscribe-email" placeholder="Your Email">
+                                    </div>
+                                    <div class="button">
+                                        <button type="button">SUBCRIBE</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <ul class="flat-social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul><!-- /.flat-social -->
+                        </div><!-- /.subscribe -->
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.mail-chimp -->
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget widget-link">
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Online Store</a></li>
+                                <li><a href="blog-list.html">Blog</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div><!-- /.widget -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget widget-link link-login">
+                            <ul>
+                                <li><a href="#">Login/ Register</a></li>
+                                <li><a href="#">Your Cart</a></li>
+                                <li><a href="#">Wishlist items</a></li>
+                                <li><a href="#">Your checkout</a></li>
+                            </ul>
+                        </div><!-- /.widget -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget widget-link link-faq">
+                            <ul>
+                                <li><a href="faqs.html">FAQs</a></li>
+                                <li><a href="#">Term of service</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Returns</a></li>
+                            </ul>
+                        </div><!-- /.widget -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget widget-brand">
+                            <div class="logo logo-footer">
+                                <a href="index.html"><img src="~/Contents/Images/System/logo-658x114.png" alt="image" width="107" height="24"></a>
+                            </div>
+
+                            <ul class="flat-contact">
+                                <li class="address">112 Kingdom, NA 12, New York</li>
+                                <li class="phone">+12 345 678 910</li>
+                                <li class="email">infor.deercreative@gmail.com</li>
+                            </ul><!-- /.flat-contact -->
+                        </div><!-- /.widget -->
+                    </div><!-- /.col-md-3 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </footer><!-- /.footer -->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="copyright text-center">Copyright @DateTime.Now.Year <a href="#">Modaz</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Go Top -->
+        <a class="go-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+
+
+    <!-- Javascript -->
+    <script>
+
+        var pathname = window.location.pathname;
+        $('.menu > li > a[href="' + pathname + '"]').parent().addClass('active');
+    </script>
+    @*<script src="~/Contents/javascript/jquery-ui.js"></script>
+    <script src="~/Contents/javascript/jquery.min.js"></script>*@
+    <script src="~/Contents/javascript/tether.min.js"></script>
+    <script src="~/Contents/javascript/bootstrap.min.js"></script>
+    <script src="~/Contents/javascript/jquery.easing.js"></script>
+    <script src="~/Contents/javascript/parallax.js"></script>
+    <script src="~/Contents/javascript/jquery-waypoints.js"></script>
+    <script src="~/Contents/javascript/jquery-countTo.js"></script>
+    <script src="~/Contents/javascript/jquery.countdown.js"></script>
+    <script src="~/Contents/javascript/jquery.flexslider-min.js"></script>
+    <script src="~/Contents/javascript/images-loaded.js"></script>
+    <script src="~/Contents/javascript/jquery.isotope.min.js"></script>
+    <script src="~/Contents/javascript/magnific.popup.min.js"></script>
+    <script src="~/Contents/javascript/jquery.hoverdir.js"></script>
+    <script src="~/Contents/javascript/owl.carousel.min.js"></script>
+    <script src="~/Contents/javascript/equalize.min.js"></script>
+    <script src="~/Contents/javascript/gmap3.min.js"></script>
+    @*<script src="~/Contents/javascript/jquery-ui.js"></script>*@
+    <script src="~/Contents/javascript/jquery.cookie.js"></script>
+    <script src="~/Contents/javascript/main.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&region=GB"></script>
+
+    <!-- Revolution Slider -->
+    <script src="~/Contents/rev-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Contents/rev-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Contents/javascript/rev-slider.js"></script>
+    <!-- Load Extensions only on Local File Systems ! The following part can be removed on Server for On Demand Loading -->
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="~/Contents/rev-slider/js/extensions/revolution.extension.video.min.js"></script>
 </body>
 </html>

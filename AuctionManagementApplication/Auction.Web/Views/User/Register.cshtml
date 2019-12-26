@@ -1,0 +1,141 @@
+﻿@model List<Auction.Entities.District>
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="flat-row flat-iconbox">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section">
+                    <h2 class="title">
+                        Register
+
+                    </h2>
+                   
+                </div>
+            </div>
+        </div>
+
+        <form id="registerForm">
+
+            <div class="row">
+               
+                <div class="col-md-1">
+
+                </div>
+                <div class="col-md-5">
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label ">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-sm" id="FirstName" name="FirstName" placeholder="Enter First Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label ">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-sm" id="LastName" name="LastName" placeholder="Enter Last Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label ">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-sm" id="Email" name="Email" placeholder="Enter Email Address">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Gender</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class=" form-control">
+                                    <label><input name="Gender"  type="radio" value="Male" checked /> Male</label>
+                                </div>
+                                <div class=" form-control">
+                                    <label><input name="Gender"  type="radio" value="Female" /> Female</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label ">District</label>
+                        <div class="col-sm-9">
+                             <select id="DistrictId" name="DistrictId" class="form-control form-control-sm" size="1">
+                                    <option value="">Select One</option>
+                                    @if (Model !=null)
+                                    {
+                                        foreach (var district in Model)
+                                        {
+                                            <option value="@district.Id">@district.Name</option>
+                                        }
+                                    }
+
+                                </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5">
+
+                    <hr />
+                   
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label ">Thana</label>
+                        <div class="col-sm-9">
+                            <select id="ThanaId" name="ThanaId" class="form-control form-control-sm" size="1">
+                                <option value="">Select One</option>
+                                   
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="IsActive" value="true"  />
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label ">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control form-control-sm" id="Password" name="Password" placeholder="Enter Password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-7 col-form-label ">Confirm Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control form-control-sm" id="ConfirmPassword" name="ConfirmPassword" placeholder="Enter Confirm Password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label ">Address</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" rows="2" class="form-control form-control-sm" id="Address" name="Address" placeholder="Enter  Address"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button style="color: white;" id="registerButton" class="btn btn-default">Register</button>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="form-group mt-3">
+                        <div class="col-md-offset-2 col-md-10">
+                            <label>Already have an account.</label>
+                            @*@Html.ActionLink("Register Now", "Register", "DashboardAccount", null, null)*@
+
+                            <a class="btn btn-success" href="@Url.Action("Login","User")">Login Now</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script src="~/Scripts/MyScript/LoginRegistration.js"></script>

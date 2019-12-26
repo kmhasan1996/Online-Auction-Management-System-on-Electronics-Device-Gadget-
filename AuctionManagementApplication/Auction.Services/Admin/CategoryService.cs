@@ -97,6 +97,13 @@ namespace Auction.Services.Admin
                 return context.Categories.ToList();
             }
         }
+        public List<Category> GetAllActiveCategory()
+        {
+            using (var context=new AuctionDbContext())
+            {
+                return context.Categories.Where(x=>x.IsActive).ToList();
+            }
+        }
 
         #endregion
     }

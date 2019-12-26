@@ -16,11 +16,11 @@ namespace Auction.Web.Areas.Admin.Controllers
             //DashboardViewModel model=new DashboardViewModel();
             dynamic model = new System.Dynamic.ExpandoObject();
             model.CategoryCount = DashboardService.Instance.GetCategoryCount();
-            model.AdRequestCount = 0;
-            model.LiveAdCount = 0;
+            model.AdRequestCount = DashboardService.Instance.GetPendingPostedAdCount();
+            model.LiveAdCount = DashboardService.Instance.GetActivePostedAdCount();
             model.BlockedAdCount = 0;
-            model.UserCount = 0;
-            model.BlockedUserCount = 0;
+            model.UserCount = DashboardService.Instance.GetActiveUserCount();
+            model.BlockedUserCount = DashboardService.Instance.GetDeactivateUserCount();
             model.DistrictCount = DashboardService.Instance.GetDistrictCount();
             model.ThanaCount = DashboardService.Instance.GetThanaCount();
 
