@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Auction.Entities;
 using Auction.Services.UserAccountService;
 using Auction.Web.ViewModels;
@@ -63,7 +64,7 @@ namespace Auction.Web.Controllers
         [HttpPost]
         public ActionResult Register(User model)
         {
-
+            model.Credit = 100;
             JsonResult jason = new JsonResult
             {
                 Data = UserAccountService.Instance.AddUser(model) ? new {Success = true} : new {Success = false}
@@ -98,16 +99,16 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult UserProfile()
         {
-            if (Session["UserData"] == null)
-            {
-                return RedirectToAction("Login");
-            }
+            if (Session["UserData"] == null) { return RedirectToAction("Login"); }
+
             return View();
         }
 
         [HttpGet]
         public ActionResult NewAd()
         {
+            if (Session["UserData"] == null) { return RedirectToAction("Login"); }
+
             dynamic model = new System.Dynamic.ExpandoObject();
             var userData = Session["UserData"] as User;
             model.UserId = userData.Id;
@@ -119,6 +120,15 @@ namespace Auction.Web.Controllers
         [HttpPost]
         public ActionResult NewAd(Product product)
         {
+            if (Session["UserData"] == null) { return RedirectToAction("Login"); }
+
+            product.CurrentBidPrice = 0;
+            product.IsActive = false;
+            product.IsPending = true;
+            product.IsRejected = false;
+
+
+            product.StarDateTime= DateTime.Now;
             JsonResult json = new JsonResult
             {
                 Data = UserProductService.Instance.AddNewPost(product)
@@ -133,9 +143,13 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult MyAds()
         {
+            if (Session["UserData"] == null) { return RedirectToAction("Login"); }
+
             dynamic model = new System.Dynamic.ExpandoObject();
             var userData = Session["UserData"] as User;
-            model.PenddingAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsActive == false)
+            model.PenddingAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsPending)
+                .ToList();
+            model.RejectAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsRejected)
                 .ToList();
             model.ActiveAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsActive)
                 .ToList();

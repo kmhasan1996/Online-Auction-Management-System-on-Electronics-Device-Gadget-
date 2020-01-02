@@ -140,14 +140,25 @@
     <Compile Include="Areas\Admin\Models\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RegistrationViewModel.cs" />
+    <Compile Include="Code\Enums.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\TestimonialController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserSharedController.cs" />
+    <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\FilterProductsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Pager.cs" />
+    <Compile Include="ViewModels\PostDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ProductWidgetViewmodel.cs" />
+    <Compile Include="ViewModels\ShopViewModel.cs" />
+    <Compile Include="ViewModels\TestimonialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Contents\Bootstrap\bootstrap-theme.css" />
@@ -253,6 +264,12 @@
     <Content Include="Contents\fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Contents\fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="Contents\fonts\fontawesome-webfont.svg" />
+    <Content Include="Contents\Images\parallax\bg-parallax1.jpg" />
+    <Content Include="Contents\Images\parallax\bg-parallax2.jpg" />
+    <Content Include="Contents\Images\parallax\bg-parallax3.jpg" />
+    <Content Include="Contents\Images\parallax\bg-parallax4.jpg" />
+    <Content Include="Contents\Images\Slider\1.jpg" />
+    <Content Include="Contents\Images\Slider\2.jpg" />
     <Content Include="Contents\Images\System\logo-658x114.png" />
     <Content Include="Contents\Images\System\placeholder-image1.png" />
     <Content Include="Contents\jQueryDateTime\jquery-ui.min.css" />
@@ -360,6 +377,10 @@
     <Content Include="Areas\Admin\Views\PostedAd\_ViewAndUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\PostedAd\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PostedAd\_UserDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\PostedAd\PendingAds.cshtml" />
+    <Content Include="Areas\Admin\Views\PostedAd\RejectedAds.cshtml" />
+    <Content Include="Areas\Admin\Views\PostedAd\_RejectedAdList.cshtml" />
+    <Content Include="Areas\Admin\Views\PostedAd\_PendingAdList.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.min.css" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -418,6 +439,11 @@
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\NewAd.cshtml" />
     <Content Include="Views\User\MyAds.cshtml" />
+    <Content Include="Views\Widget\_Products.cshtml" />
+    <Content Include="Views\Product\ProductDetails.cshtml" />
+    <Content Include="Views\Shop\FilterProduct.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Testimonial\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

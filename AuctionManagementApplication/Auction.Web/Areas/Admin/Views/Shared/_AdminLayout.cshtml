@@ -44,8 +44,10 @@
 
                 <a href="@Url.Action("Index","Dashboard")" class="list-group-item list-group-item-action" ><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
                 <a href="@Url.Action("Index","Category")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Category</a>
-                <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Ad Request</a>
+                @*<a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Ad Request</a>*@
                 <a href="@Url.Action("Index","PostedAd")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Ads</a>
+                <a href="@Url.Action("PendingAds","PostedAd")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Pending Ads</a>
+                <a href="@Url.Action("RejectedAds","PostedAd")" class="list-group-item list-group-item-action  "><i class="fas fa-ad mr-2"></i>Rejected Ads</a>
                 <a href="@Url.Action("Index","UserAccount")" class="list-group-item list-group-item-action  "><i class="fas fa-users mr-2"></i>Users</a>
                 <a href="@Url.Action("Index","District")" class="list-group-item list-group-item-action  "><i class="fas fa-map-marker-alt mr-2"></i>District</a>
                 <a href="@Url.Action("Index","Thana")" class="list-group-item list-group-item-action  "><i class="fas fa-map-marker-alt mr-2"></i>Thana</a>
@@ -65,7 +67,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item" >
-                            <a class="nav-link" href="#" style="color: white;"> <i class="fas fa-sign-out-alt mr-1"></i>Logout</a>
+                            <a class="nav-link" href="@Url.Action("Logout","Account")" style="color: white;"> <i class="fas fa-sign-out-alt mr-1"></i>Logout</a>
                         </li>
 
                     </ul>

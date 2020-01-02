@@ -37,7 +37,23 @@ namespace Auction.Services.Admin
         {
             using (var context=new AuctionDbContext())
             {
-                return context.Products.Include(x => x.User).Include(x=>x.Category).ToList();
+                return context.Products.Include(x => x.User).Include(x=>x.Category).Where(x=> !x.IsPending && !x.IsRejected && x.Category.IsActive && x.User.IsActive ).ToList();
+            }
+
+        }
+        public List<Product> GetAllPendingAds()
+        {
+            using (var context=new AuctionDbContext())
+            {
+                return context.Products.Include(x => x.User).Include(x=>x.Category).Where(x=>x.Category.IsActive && x.IsPending).ToList();
+            }
+
+        }
+        public List<Product> GetAllRejectedAds()
+        {
+            using (var context=new AuctionDbContext())
+            {
+                return context.Products.Include(x => x.User).Include(x=>x.Category).Where(x=>x.Category.IsActive && x.IsRejected).ToList();
             }
 
         }
@@ -62,13 +78,52 @@ namespace Auction.Services.Admin
 
             }
         }
+
+        public bool AcceptPostedAd(int productId)
+        {
+            using (var context = new AuctionDbContext())
+            {
+                var model = context.Products.Find(productId);
+
+                model.Id = productId;
+                if (model.IsPending)
+                {
+                    model.IsPending = false;
+                    model.IsActive = true;
+                   
+                }
+               
+
+                return context.SaveChanges() > 0;
+
+            }
+        }
+
+        public bool RejectPostedAd(int productId)
+        {
+            using (var context = new AuctionDbContext())
+            {
+                var model = context.Products.Find(productId);
+
+                model.Id = productId;
+                if (model.IsPending)
+                {
+                    model.IsPending = false;
+                    model.IsRejected = true;
+                   
+                }
+                
+                return context.SaveChanges() > 0;
+
+            }
+        }
         public Product GetPostedAdById(int productId)
         {
             using (var context = new AuctionDbContext())
             {
-               return context.Products.Find(productId);
+                return context.Products.Include(x => x.Category).FirstOrDefault(x => x.Id == productId);
 
-               
+
 
             }
         }

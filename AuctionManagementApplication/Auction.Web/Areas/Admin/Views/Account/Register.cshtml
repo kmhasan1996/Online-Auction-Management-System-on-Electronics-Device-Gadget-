@@ -13,7 +13,7 @@
     <link href="~/Areas/Admin/Contents/Bootstrap/bootstrap.css" type="text/css" rel="stylesheet" />
 
     @*<link href="~/Areas/Admin/Contents/Custom/style.css" type="text/css" rel="stylesheet" />*@
-    <link href="~/Areas/Admin/Contents/Custom/responsive.css" type="text/css"  rel="stylesheet" />
+    <link href="~/Areas/Admin/Contents/Custom/responsive.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body>
@@ -95,16 +95,17 @@
                         </div>
                     </div>
                 </div>
-
+               
             </div>
             <hr />
+            <div>
+                @Html.ActionLink("Back to Login", "Login")
+            </div>
         }
     </section>
 </div>
-<div>
-    @Html.ActionLink("Back to Login", "Login")
-</div>
-    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>

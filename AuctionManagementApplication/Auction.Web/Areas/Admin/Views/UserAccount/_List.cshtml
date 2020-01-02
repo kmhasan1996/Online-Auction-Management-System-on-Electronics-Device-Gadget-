@@ -15,7 +15,7 @@
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">IsActive</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -32,9 +32,18 @@
                             <td>@user.LastName</td>
                             <td>@user.Email</td>
                             @{
-                                String show = user.IsActive == true ? "Yes" : "No";
+                                String show = user.IsActive == true ? "Activate" : "Deactivate";
                             }
-                            <td>@show</td>
+                            <td>
+                                @if (user.IsActive)
+                                {
+                                    <span class="badge badge-primary"> @show</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger"> @show</span>
+                                }
+                            </td>
                             <td>
                                 @if (user.IsActive)
                                 {

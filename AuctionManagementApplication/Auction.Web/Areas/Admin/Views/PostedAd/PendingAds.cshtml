@@ -1,0 +1,19 @@
+﻿@model List<Auction.Entities.Product>
+
+@{
+    ViewBag.Title = "PendingAds";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col col-lg-12">
+        <h2>Pending Ads</h2>
+        <hr />
+    </div>
+
+    <div class="col col-lg-12">
+        @{Html.RenderPartial("_PendingAdList", Model);}
+    </div>
+
+
+</div>

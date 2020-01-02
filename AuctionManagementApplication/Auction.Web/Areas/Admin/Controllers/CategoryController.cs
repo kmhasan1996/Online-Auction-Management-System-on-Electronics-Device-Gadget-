@@ -9,6 +9,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         // GET: Admin/Category
         public ActionResult Index()
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login","Account"); }
             var categories = CategoryService.Instance.GetAllCategory();
             return View(categories);
         }
@@ -20,6 +21,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             Category model=new Category();
             return PartialView("_Create", model);
 
@@ -28,6 +30,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Category category)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             JsonResult jason = new JsonResult();
 
             if (ModelState.IsValid)
@@ -42,6 +45,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             var category = CategoryService.Instance.GetCategoryById(id);
             return PartialView("_Edit", category);
         }
@@ -49,6 +53,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Category category)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             JsonResult jason = new JsonResult();
             //var existingCategory = CategoryService.Instance.GetCategoryById(category.Id);
             //existingCategory.Name = category.Name;
@@ -67,6 +72,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             CategoryService.Instance.Delete(id);
             return RedirectToAction("Index");
         }

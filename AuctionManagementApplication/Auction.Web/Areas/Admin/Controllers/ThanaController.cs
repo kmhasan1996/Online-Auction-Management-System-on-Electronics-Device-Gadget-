@@ -9,18 +9,21 @@ namespace Auction.Web.Areas.Admin.Controllers
         // GET: Admin/Thana
         public ActionResult Index()
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             var thanas = ThanaService.Instance.GetAll();
             return View(thanas);
         }
 
         public bool UniqueName(Thana thana)
         {
+           
             return ThanaService.Instance.UniqueName(thana);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             var districts = DistrictService.Instance.GetAll();
             
             return PartialView("_Create",districts);
@@ -29,6 +32,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Thana thana)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             JsonResult json = new JsonResult();
             if (ModelState.IsValid)
             {
@@ -42,6 +46,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             var thana = ThanaService.Instance.GetById(id);
             return PartialView("_Edit", thana);
         }
@@ -49,6 +54,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Thana thana)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             JsonResult json = new JsonResult();
 
             if (ModelState.IsValid)
@@ -61,6 +67,7 @@ namespace Auction.Web.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             JsonResult json = new JsonResult
             {
                 Data = ThanaService.Instance.Delete(id) ? new { Success = true } : new { Success = false }

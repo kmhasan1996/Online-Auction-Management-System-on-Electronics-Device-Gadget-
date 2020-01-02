@@ -1,0 +1,227 @@
+﻿@model Auction.Web.ViewModels.PostDetailsViewModel
+
+@{
+        ViewBag.Title = "PostDetails";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+}
+   
+
+@if (Model != null && Model.Product != null)
+{
+
+    <!-- Page title -->
+    <div class="page-title parallax parallax1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-title-heading">
+                        <h3 class="title">
+                            Product Ad Details
+                        </h3>
+                        <h3>
+                            <a href="@Url.Action("Index", "Home")">Home ></a>
+                            <a href="@Url.Action("Index", "Shop")">All Product ></a>
+                            <a href="@Url.Action("Index","Shop",new { categoryID=Model.Product.Category.Id})">@Model.Product.Category.Name ></a>
+                            <a> @Model.Product.Name </a>
+                        </h3>
+                    </div><!-- /.page-title-heading -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-title -->
+
+    <section class="flat-row main-shop shop-detail ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="wrap-flexslider">
+                        <div class="inner">
+                            <div class="flexslider style-1 has-relative">
+                                <ul class="slides">
+                                    <li data-thumb="@Model.Product.ImageUrl1">
+                                        <img src="@Model.Product.ImageUrl1" alt="Image">
+                                        <div class="flat-icon style-1">
+                                            <a href="@Model.Product.ImageUrl1" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                        </div>
+                                    </li>
+                                    <li data-thumb="@Model.Product.ImageUrl2">
+                                        <img src="@Model.Product.ImageUrl2" alt="Image">
+                                        <div class="flat-icon style-1">
+                                            <a href="@Model.Product.ImageUrl2" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                        </div>
+                                    </li>
+                                    <li data-thumb="@Model.Product.ImageUrl3">
+                                        <img src="@Model.Product.ImageUrl3" alt="Image">
+                                        <div class="flat-icon style-1">
+                                            <a href="@Model.Product.ImageUrl3" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                        </div>
+                                    </li>
+                                    <li data-thumb="@Model.Product.ImageUrl4">
+                                        <img src="@Model.Product.ImageUrl4" alt="Image">
+                                        <div class="flat-icon style-1">
+                                            <a href="@Model.Product.ImageUrl4" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!-- /.flexslider -->
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="content-inner mt-5">
+                        Description
+                        <div class="inner max-width-83 padding-top-33">
+                            <p>
+                                @Model.Product.Description
+                            </p>
+                        </div><!-- /.flat-grid-box -->
+                    </div><!-- /.content-inner -->
+                </div><!-- /.col-md-6 -->
+
+                <div class="col-md-6">
+                    <div class="product-detail">
+                        <div class="inner">
+                            <div class="content-detail">
+
+                                <h3 class="product-title">
+                                    @Model.Product.Name
+                                </h3>
+                                <div>
+                                    <span>End Date: @Model.Product.EndDateTime</span>
+                                </div>
+                                <div class="product-categories">
+                                    <span>Category: </span><a href="#">@Model.Product.Category.Name</a>
+                                </div>
+                               
+
+                                <div class="price">
+                                    <ins>
+                                        <span class="amount">
+                                            Current Bid Price: @Model.Product.CurrentBidPrice tk
+                                        </span>
+                                    </ins>
+                                </div>
+                                <div>
+                                    <span class="ml-2">Start Price: @Model.Product.BasePrice tk </span>
+                                </div>
+
+                                <div class="product-quantity">
+                                    <div class="">
+                                        <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter bid price" />
+                                    </div>
+
+                                    <div class="add-to-cart">
+                                        <input type="hidden" id="ProductId" name="ProductId" value="@Model.Product.Id" />
+                                        <a class="bidNowBtn" href="#">Bid Now</a>
+                                    </div>
+
+                                </div>
+                               
+                                @if (Model.Bidders != null)
+                                {
+                                    <table id="allPostedAdTable" class="table table-striped mt-2">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                var i = 0;
+                                                foreach (var bidder in Model.Bidders)
+                                                {
+                                                    i++;
+
+                                                    <tr>
+                                                        <td>@i</td>
+                                                        <td>@bidder.DateTime</td>
+                                                        <td>@bidder.User.FirstName</td>
+                                                        <td>@bidder.BidPrice</td>
+                                                    </tr>
+                                                }
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+
+
+
+                                }
+
+
+                            </div>
+                        </div>
+                    </div><!-- /.product-detail -->
+                </div>
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.flat-row -->
+
+    
+
+    <section class="flat-row shop-related">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-section margin-bottom-55">
+                        <h2 class="title">Related Ads</h2>
+                    </div>
+
+                    @{Html.RenderAction("Products", "Widget", new { isLatestProducts = false, categoryID = Model.Product.Category.Id });}
+
+                </div>
+            </div><!-- /.row -->
+        </div>
+    </section>
+}
+
+
+<script>
+    $(document).ready(function() {
+        $(".bidNowBtn").click(function () {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, activate it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                            type: "POST",
+                            url: "/Shop/BidNow",
+                            data: {
+                                ProductId: $("#ProductId").val(),
+                                bidPrice:$("#BidPrice").val()
+                            }
+
+                    })
+                    .done(function (response) {
+                        Swal.fire({
+                            title: 'Accepted Successful',
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.reload();
+                            }
+                        });
+                    })
+                    .fail(function (xmlHttpRequest, textStatus, errorThrown) {
+                        alert("Fail");
+                    });
+
+                }
+            });
+
+        });
+    });
+</script>

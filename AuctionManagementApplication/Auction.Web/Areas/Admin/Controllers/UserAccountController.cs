@@ -13,6 +13,7 @@ namespace Auction.Web.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             var allUsers = UserAccountService.Instance.GetAllUsers();
                 //.Select(x => new { x.Id, x.FirstName, x.LastName, x.Email, x.IsActive }).ToList();
             return View(allUsers);
@@ -22,6 +23,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(int userId)
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             JsonResult json = new JsonResult
             {
                 Data = UserAccountService.Instance.Update(userId) ? new {Success = true} : new {Success = false}

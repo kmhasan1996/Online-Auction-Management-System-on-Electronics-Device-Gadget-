@@ -13,7 +13,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">IsActive</th>
+                <th scope="col">Status</th>
                 <th scope="col">Image</th>
                 <th scope="col">Action</th>
             </tr>
@@ -29,9 +29,18 @@
                         <td>@i</td>
                         <td>@category.Name</td>
                         @{
-                            String show = category.IsActive == true ? "Yes" : "No";
+                            String show = category.IsActive == true ? "Activate" : "Deactivate";
                         }
-                        <td>@show</td>
+                        <td>
+                            @if (category.IsActive)
+                            {
+                                <span class="badge badge-primary"> @show</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-danger"> @show</span>
+                            }
+                        </td>
                         <td>
                             <img src="@category.ImageUrl" height="50" width="75" alt=""/></td>
                         <td>

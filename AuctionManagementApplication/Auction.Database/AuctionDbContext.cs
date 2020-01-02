@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using Auction.Entities;
 
 namespace Auction.Database
@@ -18,5 +19,17 @@ namespace Auction.Database
         public DbSet<Product> Products { get; set; }
         public DbSet<Bidder> Bidders { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Bidder>().HasRequired(s => s.ProductId)
+        //        .WithMany()
+        //        .WillCascadeOnDelete(false);
+
+        //}
     }
+
 }

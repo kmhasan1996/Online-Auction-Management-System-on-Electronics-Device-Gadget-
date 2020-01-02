@@ -4,13 +4,18 @@
     ViewBag.Title = "MyAds";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+
+<script src="~/Contents/javascript/jquery.countdown.js"></script>
+
 <div class="container">
     <h2>MyAds</h2>
     <hr/>
     <div class="row">
         <div class="col-md-12">
-
-            <h3>Pending Ads</h3><hr/>
+            <div class="alert alert-secondary" role="alert">
+                <h3>Pending Ads <span class="badge badge-pill badge-primary ml-2">@Model.PenddingAds.Count</span></h3>
+            </div>
+            
             @if (Model.ActiveAds != null)
             {
                 <div class="row">
@@ -23,6 +28,10 @@
 
                         <div class="col-md-6">
                             <h4>@penddingAds.Name</h4>
+                            <h4>@penddingAds.StarDateTime</h4>
+                            <h4>@penddingAds.EndDateTime</h4>
+                           
+
                         </div>
                     }
 
@@ -40,10 +49,13 @@
     
         <div class="col-md-12">
             <hr />
-            <h3>Active Ads</h3><hr />
+            <div class="alert alert-secondary" role="alert">
+                <h3>Active Ads<span class="badge badge-pill badge-primary ml-2"> @Model.ActiveAds.Count</span></h3>
+            </div>
+           
             @if (Model.ActiveAds != null)
             {
-                <div class="row">
+                <div class="row" >
                     @foreach (var activeAds in Model.ActiveAds)
                     {
                         <div class="col-md-6">
@@ -52,6 +64,55 @@
 
                         <div class="col-md-6">
                             <h4>@activeAds.Name</h4>
+                            <h6>@activeAds.EndDateTime</h6>
+                            @*<div class="getting-started"></div>
+                            <input  id="datetime"  value="@activeAds.EndDateTime.ToString("yyyy/M/d")" />*@
+                           
+                        </div>
+                    }
+
+                </div>
+            }
+            else
+            {
+                <hr />
+                <div class="alert alert-warning" role="alert">
+                    Sorry! No record found.
+                </div>
+            }
+
+        </div> 
+        
+        <div class="col-md-12">
+            <hr />
+            <div class="alert alert-secondary" role="alert">
+                <h3>Ads That Need Editing <span class="badge badge-pill badge-primary ml-2">@Model.RejectAds.Count</span></h3>
+            </div>
+           
+            @if (Model.ActiveAds != null)
+            {
+                <div class="row">
+                   
+                   
+                    @foreach (var rejectAd in Model.RejectAds)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-warning " role="alert">
+                                You have ads that need to be edited!
+                                Click "Edit" to correct your ad and submit it for publishing again. You can also click "Delete" to remove any ads. 
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <img class="img-thumbnail img-fluid" src="@rejectAd.ImageUrl1" alt="" height="200" width="250"/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4>@rejectAd.Name</h4>
+                            <h6>@rejectAd.EndDateTime</h6>
+                            @*<div class="getting-started"></div>
+                            <input  id="datetime"  value="@activeAds.EndDateTime.ToString("yyyy/M/d")" />*@
+
                         </div>
                     }
 
@@ -70,4 +131,22 @@
     </div>
 </div>
 
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        function timeCount(tt) {
+            //var tt = '2019/12/28';ToShortDateString().
+            var tt = $("#datetime").val();
+            //var tt = $(this).attr("data-id");
+            alert(tt);
+            $(".getting-started")
+                .countdown(tt, function(event) {
+                    $(this).text(
+                        event.strftime('%D:%H:%M:%S')
+                    );
+                }); 
+        }
 
+        timeCount();
+
+    });
+</script>*@

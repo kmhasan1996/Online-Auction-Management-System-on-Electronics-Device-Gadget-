@@ -4,7 +4,8 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Contents/DateTimePicker/jquery.datetimepicker.full.min.js"></script>
+<link href="~/Contents/DateTimePicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 <section class="flat-row flat-iconbox">
     <div class="container">
         <div class="row">
@@ -14,7 +15,7 @@
                         Register
 
                     </h2>
-                   
+
                 </div>
             </div>
         </div>
@@ -22,7 +23,7 @@
         <form id="registerForm">
 
             <div class="row">
-               
+
                 <div class="col-md-1">
 
                 </div>
@@ -46,34 +47,40 @@
                             <input type="text" class="form-control form-control-sm" id="Email" name="Email" placeholder="Enter Email Address">
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Gender</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <div class=" form-control">
-                                    <label><input name="Gender"  type="radio" value="Male" checked /> Male</label>
+                                    <label><input name="Gender" type="radio" value="Male" checked /> Male</label>
                                 </div>
                                 <div class=" form-control">
-                                    <label><input name="Gender"  type="radio" value="Female" /> Female</label>
+                                    <label><input name="Gender" type="radio" value="Female" /> Female</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label ">DateOfBirth</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-sm" id="DateOfBirth" name="DateOfBirth">
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label ">District</label>
                         <div class="col-sm-9">
-                             <select id="DistrictId" name="DistrictId" class="form-control form-control-sm" size="1">
-                                    <option value="">Select One</option>
-                                    @if (Model !=null)
+                            <select id="DistrictId" name="DistrictId" class="form-control form-control-sm" size="1">
+                                <option value="">Select One</option>
+                                @if (Model != null)
+                                {
+                                    foreach (var district in Model)
                                     {
-                                        foreach (var district in Model)
-                                        {
-                                            <option value="@district.Id">@district.Name</option>
-                                        }
+                                        <option value="@district.Id">@district.Name</option>
                                     }
+                                }
 
-                                </select>
+                            </select>
                         </div>
                     </div>
 
@@ -81,18 +88,18 @@
                 <div class="col-md-5">
 
                     <hr />
-                   
+
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label ">Thana</label>
                         <div class="col-sm-9">
                             <select id="ThanaId" name="ThanaId" class="form-control form-control-sm" size="1">
                                 <option value="">Select One</option>
-                                   
+
                             </select>
                         </div>
                     </div>
-                    
-                    <input type="hidden" name="IsActive" value="true"  />
+
+                    <input type="hidden" name="IsActive" value="true" />
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label ">Password</label>
@@ -139,3 +146,12 @@
 </section>
 
 <script src="~/Scripts/MyScript/LoginRegistration.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#DateOfBirth").datetimepicker({
+            timepicker: false
+        });
+
+    });
+</script>

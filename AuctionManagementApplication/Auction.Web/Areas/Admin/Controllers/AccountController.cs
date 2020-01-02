@@ -23,11 +23,13 @@ namespace Auction.Web.Areas.Admin.Controllers
             {
                 using (var context = new AuctionDbContext())
                 {
-                    if (context.Admins.Where(x => x.Email == model.Email && x.Password == model.Password).FirstOrDefault() != null)
+                    var admin = context.Admins.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+                    if ( admin != null)
                     {
-                        Session["FirstName"] = context.Admins.FirstOrDefault(x => x.Email == model.Email).FirstName;
-                        Session["ID"] = context.Admins.FirstOrDefault(x => x.Email == model.Email).Id;
-                        return RedirectToAction("Index", "Category");
+                        //Session["FirstName"] = context.Admins.FirstOrDefault(x => x.Email == model.Email).FirstName;
+                        //Session["ID"] = context.Admins.FirstOrDefault(x => x.Email == model.Email).Id;
+                        Session["AdminData"] = admin;
+                        return RedirectToAction("Index", "Dashboard");
                     }
                     else
                     {
@@ -94,5 +96,15 @@ namespace Auction.Web.Areas.Admin.Controllers
 
             }
         }
+
+        public ActionResult Logout()
+        {
+            //Session.Abandon();
+
+            Session["AdminData"] = null;
+
+            return RedirectToAction("Login", "Account");
+        }
+
     }
 }

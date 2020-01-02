@@ -42,6 +42,8 @@
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <link href="~/Scripts/jquery-ui.min.css" rel="stylesheet" />
     
+    <!--sweet alert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <!--[if lt IE 9]>
         <script src="javascript/html5shiv.js"></script>
@@ -91,7 +93,7 @@
             <header id="header" class="header header-container clearfix " style="background: #031D2C;">
                 <div class="container clearfix" id="site-header-inner">
                     <div id="logo" class="logo float-left">
-                        <a href="index.html" title="logo">
+                        <a href="@Url.Action("Index","Home")" title="logo">
                             <img src="~/Contents/Images/System/logo-658x114.png" alt="image" width="200" height="60" style="background-color:white;">
                         </a>
 
@@ -100,7 +102,7 @@
                     <ul class="menu-extra">
                         <li class="box-search">
                             <a class="icon_search header-search-icon" href="#" style="color:black;background-color:white;"></a>
-                            <form role="search" method="get" class="header-search-form" action="#">
+                            <form role="search" method="get" class="header-search-form" action="@Url.Action("Index", "Shop")">
                                 <input type="text" value="" name="s" class="header-search-field" placeholder="Search...">
                                 <button type="submit" class="header-search-submit" title="Search">Search</button>
                             </form>
@@ -113,21 +115,24 @@
                     <div class="nav-wrap  float-left">
                         <nav id="mainnav" class="mainnav ">
                             <ul class="menu ">
-                                <li class="active ">
-                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                <li>
+                                    <a href="@Url.Action("Index","Home")" >Home</a>
                                 </li>
                                 <li>
-                                    <a href="shop-3col.html" style="color:white">Category</a>
+                                    <a href="@Url.Action("Index","Shop")" >All Ads</a>
                                 </li>
                                
                                 <li>
-                                    <a href="contact.html" style="color:white">Contact</a>
+                                    <a href="@Url.Action("Contact","Home")" >Contact</a>
                                    
                                 </li>
                                 <li>
-                                    <a href="contact.html" style="color:white">About</a>
-                                    
+                                    <a href="@Url.Action("About","Home")" >About</a>
                                 </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Testimonial")">Testimonial</a
+                                </li>
+                               
                             </ul>
                         </nav><!-- /.mainnav -->
                     </div><!-- /.nav-wrap -->
@@ -136,7 +141,12 @@
         </div><!-- /#site-header-wrap -->
         <!-- Body Content-->
        
+   
+        
+        @*<div class="jumbotron">*@
             @RenderBody()
+        @*</div>*@
+       
       
 
 
@@ -250,6 +260,7 @@
 
         var pathname = window.location.pathname;
         $('.menu > li > a[href="' + pathname + '"]').parent().addClass('active');
+        //alert(pathname);
     </script>
     @*<script src="~/Contents/javascript/jquery-ui.js"></script>
     <script src="~/Contents/javascript/jquery.min.js"></script>*@

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
+    <Compile Include="Area.cs" />
     <Compile Include="Bidder.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="District.cs" />

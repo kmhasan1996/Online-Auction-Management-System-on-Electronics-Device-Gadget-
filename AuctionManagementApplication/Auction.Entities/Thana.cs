@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Auction.Entities
 {
@@ -10,5 +11,6 @@ namespace Auction.Entities
         [Required]
         public string Name { get; set; }
         public virtual District District { get; set; }
+        public virtual List<Area> Areas { get; set; }
     }
 }

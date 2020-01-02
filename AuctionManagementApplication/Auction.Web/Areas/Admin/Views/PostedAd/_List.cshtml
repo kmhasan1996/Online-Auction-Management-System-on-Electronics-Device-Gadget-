@@ -5,6 +5,7 @@
 <script src="~/Contents/DataTables/DataTables-1.10.18/js/jquery.dataTables.js"></script>
 <script src="~/Contents/DataTables/DataTables-1.10.18/js/Bootstrap-3-Typeahead.js"></script>
 
+
 @if (Model.Count > 0)
 {
     <div class="table-responsive">
@@ -15,7 +16,9 @@
                     <th scope="col">Category</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">User</th>
-                    <th scope="col">IsActive</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -30,23 +33,47 @@
                             <td>@i</td>
                             <td>@postedAd.Category.Name</td>
                             <td>@postedAd.Name</td>
-                            <td>
-                                <a class="userName btn" data-id="@postedAd.UserId" data-toggle="modal" data-target="#userDetailModal"><u>@postedAd.User.FirstName @postedAd.User.LastName</u></a>
+                           
+                            <td >
+                                @if (postedAd.User.IsActive)
+                                {
+                                    <a class="userName btn btn-info text-white" data-id="@postedAd.UserId" data-toggle="modal" data-target="#userDetailModal">@postedAd.User.FirstName @postedAd.User.LastName</a>
+                                }
+                                else
+                                {
+                                    <a class="userName btn btn-danger text-white" data-id="@postedAd.UserId" data-toggle="modal" data-target="#userDetailModal">@postedAd.User.FirstName @postedAd.User.LastName</a>
+                                }
+
                             </td>
+                            @*<td>
+                                <a class="userName btn btn-info text-white" data-id="@postedAd.UserId" data-toggle="modal" data-target="#userDetailModal">@postedAd.User.FirstName @postedAd.User.LastName</a>
+                            </td>*@
+                            <td>@postedAd.StarDateTime</td>
+                            <td>@postedAd.EndDateTime</td>
                             @*<td>@postedAd.User.FirstName @postedAd.User.LastName</td>*@
                             @{
-                                String show = postedAd.IsActive == true ? "Yes" : "No";
+                                String show = postedAd.IsActive == true ?  "Activate" : "Deactivate";
                             }
-                            <td>@show</td>
+                            <td >
+                                @if (postedAd.IsActive)
+                                {
+                                <span class="badge badge-primary"> @show</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger"> @show</span>
+                                }
+
+                            </td>
                             <td>
                                 <button type="button" class="viewAndUpdate btn btn-primary" data-id="@postedAd.Id" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen mr-2"></i>Details</button>
                                 @if (postedAd.IsActive)
                                 {
-                                    <button type="button" class="DeactivateButton btn btn-danger" data-id="@postedAd.Id"><i class="fas fa-pen mr-2"></i>Deactivate</button>
+                                    <button type="button" class="PostDeactivateButton btn btn-danger" data-id="@postedAd.Id"><i class="fas fa-check-circle mr-2"></i>Deactivate</button>
                                 }
                                 else
                                 {
-                                    <button type="button" class="ActivateButton btn btn-primary" data-id="@postedAd.Id"><i class="fas fa-pen mr-2"></i>Activate</button>
+                                    <button type="button" class="PostActivateButton btn btn-primary" data-id="@postedAd.Id"><i class="fas fa-check-circle mr-2"></i>Activate</button>
                                 }
 
                             </td>
@@ -114,7 +141,7 @@ else
         });
 
 
-        $(".ActivateButton").click(function () {
+        $(".PostActivateButton").click(function () {
             Swal.fire({
                 icon: 'warning',
                 title: 'Are you sure?',
@@ -155,7 +182,7 @@ else
 
         });
 
-        $(".DeactivateButton").click(function () {
+        $(".PostDeactivateButton").click(function () {
             Swal.fire({
                 icon: 'warning',
                 title: 'Are you sure?',

@@ -19,6 +19,8 @@ namespace Auction.Entities
         public string ImageUrl3 { get; set; }
         public string ImageUrl4 { get; set; }
         public bool IsActive { get; set; }
+        public bool IsPending { get; set; }
+        public bool IsRejected { get; set; }
         public List<Bidder> Bidders { get; set; }
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }

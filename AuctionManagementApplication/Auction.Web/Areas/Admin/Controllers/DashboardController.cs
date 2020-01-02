@@ -13,6 +13,7 @@ namespace Auction.Web.Areas.Admin.Controllers
         // GET: Admin/Dashboard
         public ActionResult Index()
         {
+            if (Session["AdminData"] == null) { return RedirectToAction("Login", "Account"); }
             //DashboardViewModel model=new DashboardViewModel();
             dynamic model = new System.Dynamic.ExpandoObject();
             model.CategoryCount = DashboardService.Instance.GetCategoryCount();

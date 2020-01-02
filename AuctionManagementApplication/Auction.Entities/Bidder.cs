@@ -12,6 +12,9 @@ namespace Auction.Entities
         public int ProductId { get; set; }
         public int UserId { get; set; }
         public double BidPrice { get; set; }
+        public DateTime DateTime { get; set; }
+        public  virtual Product Product { get; set; }
+        public  virtual  User User { get; set; }
 
     }
 }

@@ -107,244 +107,243 @@
        });
     }; 
 
-    var googleMap = function () {
-        // gmap default
-        if ($().gmap3) {
-            var data = JSON.parse('[{"address":"515 Crescent St, Brooklyn, NY 11208","content":""}]');
-            $(".flat-map")
-                .gmap3({
-                    map: {
-                        options: {
-                            zoom: 17,
-                            center: [40.6749633,-73.8699887,18.75],
-                            mapTypeId: 'Modaz',
-                            mapTypeControlOptions: {
-                                mapTypeIds: ['Modaz', google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID]
-                            },
-                            scrollwheel: true
-                        },
-                    },
-                });
+    //var googleMap = function () {
+    //    // gmap default
+    //    if ($().gmap3) {
+    //        var data = JSON.parse('[{"address":"515 Crescent St, Brooklyn, NY 11208","content":""}]');
+    //        $(".flat-map")
+    //            .gmap3({
+    //                map: {
+    //                    options: {
+    //                        zoom: 17,
+    //                        center: [23.79804617762948, 90.44958227960831,12],
+    //                        mapTypeControlOptions: {
+    //                            mapTypeIds: ['Modaz', google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID]
+    //                        },
+    //                        scrollwheel: true
+    //                    },
+    //                },
+    //            });
 
-        }
-        // json loop
-        $.each(data, function (key, val) {
-            $('.flat-map').gmap3({
-                marker: {
-                    values: [{
-                        address: val.address,
-                        options: {
-                            icon: "./images/maps/map_icon.png"
-                        },
-                        events: {
-                            mouseover: function () {
-                                $(this).gmap3({
-                                    overlay: {
-                                        address: val.address,
-                                        options: {
-                                            content: "<div class='infobox'><p>203, Envato Labs, Behind Alis Steet</p><div class='clearfix'></div></div>",
-                                            offset: {
-                                                y: 32,
-                                                x: -19
+    //    }
+    //    // json loop
+    //    $.each(data, function (key, val) {
+    //        $('.flat-map').gmap3({
+    //            marker: {
+    //                values: [{
+    //                    address: val.address,
+    //                    options: {
+    //                        icon: "./images/maps/map_icon.png"
+    //                    },
+    //                    events: {
+    //                        mouseover: function () {
+    //                            $(this).gmap3({
+    //                                overlay: {
+    //                                    address: val.address,
+    //                                    options: {
+    //                                        content: "<div class='infobox'><p>203, Envato Labs, Behind Alis Steet</p><div class='clearfix'></div></div>",
+    //                                        offset: {
+    //                                            y: 32,
+    //                                            x: -19
 
-                                            }
-                                        }
-                                    }
-                                });
-                            },
-                            mouseout: function () {
-                                $('.infobox').each(function () {
-                                    $(this).remove();
-                                });
-                            }
-                        }
-                        }]
-                },
-                styledmaptype: {
-                    id: "Modaz",
-                    options: {
-                        name: "Modaz"
-                    },
-                    styles: [
-                        {
-                            "featureType": "water",
-                            "elementType": "geometry",
-                            "stylers": [
-                                {
-                                    "color": "#e9e9e9"
-                                },
-                                {
-                                    "lightness": 17
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "landscape",
-                            "elementType": "geometry",
-                            "stylers": [
-                                {
-                                    "color": "#f5f5f5"
-                                },
-                                {
-                                    "lightness": 20
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "road.highway",
-                            "elementType": "geometry.fill",
-                            "stylers": [
-                                {
-                                    "color": "#ffffff"
-                                },
-                                {
-                                    "lightness": 17
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "road.highway",
-                            "elementType": "geometry.stroke",
-                            "stylers": [
-                                {
-                                    "color": "#ffffff"
-                                },
-                                {
-                                    "lightness": 29
-                                },
-                                {
-                                    "weight": 0.2
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "road.arterial",
-                            "elementType": "geometry",
-                            "stylers": [
-                                {
-                                    "color": "#ffffff"
-                                },
-                                {
-                                    "lightness": 18
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "road.local",
-                            "elementType": "geometry",
-                            "stylers": [
-                                {
-                                    "color": "#ffffff"
-                                },
-                                {
-                                    "lightness": 16
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "poi",
-                            "elementType": "geometry",
-                            "stylers": [
-                                {
-                                    "color": "#f5f5f5"
-                                },
-                                {
-                                    "lightness": 21
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "poi.park",
-                            "elementType": "geometry",
-                            "stylers": [
-                                {
-                                    "color": "#dedede"
-                                },
-                                {
-                                    "lightness": 21
-                                }
-                            ]
-                        },
-                        {
-                            "elementType": "labels.text.stroke",
-                            "stylers": [
-                                {
-                                    "visibility": "on"
-                                },
-                                {
-                                    "color": "#ffffff"
-                                },
-                                {
-                                    "lightness": 16
-                                }
-                            ]
-                        },
-                        {
-                            "elementType": "labels.text.fill",
-                            "stylers": [
-                                {
-                                    "saturation": 36
-                                },
-                                {
-                                    "color": "#333333"
-                                },
-                                {
-                                    "lightness": 40
-                                }
-                            ]
-                        },
-                        {
-                            "elementType": "labels.icon",
-                            "stylers": [
-                                {
-                                    "visibility": "off"
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "transit",
-                            "elementType": "geometry",
-                            "stylers": [
-                                {
-                                    "color": "#f2f2f2"
-                                },
-                                {
-                                    "lightness": 19
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "administrative",
-                            "elementType": "geometry.fill",
-                            "stylers": [
-                                {
-                                    "color": "#fefefe"
-                                },
-                                {
-                                    "lightness": 20
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "administrative",
-                            "elementType": "geometry.stroke",
-                            "stylers": [
-                                {
-                                    "color": "#fefefe"
-                                },
-                                {
-                                    "lightness": 17
-                                },
-                                {
-                                    "weight": 1.2
-                                }
-                            ]
-                        }
-                    ]
-                }
-            });
-        });
-    };
+    //                                        }
+    //                                    }
+    //                                }
+    //                            });
+    //                        },
+    //                        mouseout: function () {
+    //                            $('.infobox').each(function () {
+    //                                $(this).remove();
+    //                            });
+    //                        }
+    //                    }
+    //                    }]
+    //            },
+    //            styledmaptype: {
+    //                id: "Modaz",
+    //                options: {
+    //                    name: "Modaz"
+    //                },
+    //                styles: [
+    //                    {
+    //                        "featureType": "water",
+    //                        "elementType": "geometry",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#e9e9e9"
+    //                            },
+    //                            {
+    //                                "lightness": 17
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "landscape",
+    //                        "elementType": "geometry",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#f5f5f5"
+    //                            },
+    //                            {
+    //                                "lightness": 20
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "road.highway",
+    //                        "elementType": "geometry.fill",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#ffffff"
+    //                            },
+    //                            {
+    //                                "lightness": 17
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "road.highway",
+    //                        "elementType": "geometry.stroke",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#ffffff"
+    //                            },
+    //                            {
+    //                                "lightness": 29
+    //                            },
+    //                            {
+    //                                "weight": 0.2
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "road.arterial",
+    //                        "elementType": "geometry",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#ffffff"
+    //                            },
+    //                            {
+    //                                "lightness": 18
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "road.local",
+    //                        "elementType": "geometry",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#ffffff"
+    //                            },
+    //                            {
+    //                                "lightness": 16
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "poi",
+    //                        "elementType": "geometry",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#f5f5f5"
+    //                            },
+    //                            {
+    //                                "lightness": 21
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "poi.park",
+    //                        "elementType": "geometry",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#dedede"
+    //                            },
+    //                            {
+    //                                "lightness": 21
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "elementType": "labels.text.stroke",
+    //                        "stylers": [
+    //                            {
+    //                                "visibility": "on"
+    //                            },
+    //                            {
+    //                                "color": "#ffffff"
+    //                            },
+    //                            {
+    //                                "lightness": 16
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "elementType": "labels.text.fill",
+    //                        "stylers": [
+    //                            {
+    //                                "saturation": 36
+    //                            },
+    //                            {
+    //                                "color": "#333333"
+    //                            },
+    //                            {
+    //                                "lightness": 40
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "elementType": "labels.icon",
+    //                        "stylers": [
+    //                            {
+    //                                "visibility": "off"
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "transit",
+    //                        "elementType": "geometry",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#f2f2f2"
+    //                            },
+    //                            {
+    //                                "lightness": 19
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "administrative",
+    //                        "elementType": "geometry.fill",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#fefefe"
+    //                            },
+    //                            {
+    //                                "lightness": 20
+    //                            }
+    //                        ]
+    //                    },
+    //                    {
+    //                        "featureType": "administrative",
+    //                        "elementType": "geometry.stroke",
+    //                        "stylers": [
+    //                            {
+    //                                "color": "#fefefe"
+    //                            },
+    //                            {
+    //                                "lightness": 17
+    //                            },
+    //                            {
+    //                                "weight": 1.2
+    //                            }
+    //                        ]
+    //                    }
+    //                ]
+    //            }
+    //        });
+    //    });
+    //};
 
     var goTop = function() {
       $(window).scroll(function() {
@@ -377,22 +376,22 @@
       });
     };
 
-    var flatPrice = function() {
-        if( $().slider ) {
-            $( function() {
-                $( "#slide-range" ).slider({
-                  range: true,
-                  min: 0,
-                  max: 2900,
-                  values: [ 0, 2900 ],
-                  slide: function( event, ui ) {
-                    $( "#amount" ).val( "$" + ui.values[ 0 ] + ".00" + " - " + "$" + ui.values[ 1 ] + ".00" );
-                  }
-                });
-                $( "#amount" ).val( $( "#slide-range" ).slider( "values", 0 ) + "$" + " - " + $( "#slide-range" ).slider( "values", 1 ) + "$" );
-            });
-        }
-    };
+    //var flatPrice = function() {
+    //    if( $().slider ) {
+    //        $( function() {
+    //            $( "#slide-range" ).slider({
+    //              range: true,
+    //              min: 0,
+    //              max: 2900,
+    //              values: [ 0, 2900 ],
+    //              slide: function( event, ui ) {
+    //                $( "#amount" ).val( "$" + ui.values[ 0 ] + ".00" + " - " + "$" + ui.values[ 1 ] + ".00" );
+    //              }
+    //            });
+    //            $( "#amount" ).val( $( "#slide-range" ).slider( "values", 0 ) + "$" + " - " + $( "#slide-range" ).slider( "values", 1 ) + "$" );
+    //        });
+    //    }
+    //};
 
     var flatFilterBox = function(){
         $('.box-filter').hide();
@@ -458,25 +457,38 @@
             controlNav: "thumbnails"
         });
     }; 
+    //var productUnit = document.getElementById("unit").value;
+    //var quantityNumber = function () {
+    //    productUnit = productUnit - 1;
+    //    $('.quantity-button').on('click', function () {
+           
+           
+    //        var numberValue= $(this).parent().find('.quantity-number').val();
+            
+    //        if ($(this).text() == "+") {
+    //            //productUnit = productUnit - 1;
+    //            if (productUnit > 0) {
+    //                productUnit = productUnit - 1;
+    //                var newVal = parseFloat(numberValue) + 1;
+    //            }
+    //            else {
+    //                newVal = parseFloat(numberValue);
+    //            }
+    //        } else {
+               
+    //            if (numberValue > 0) {
+    //                productUnit = productUnit + 1;
+    //                var newVal = parseFloat(numberValue) -1;
+    //            }else{
+    //                newVal = parseFloat(numberValue);
+    //            }
+    //        }
 
-    var quantityNumber = function(){
-        $('.quantity-button').on('click', function(){
-            var numberValue= $(this).parent().find('.quantity-number').val();
+    //        $(this).parent().find('.quantity-number').val(newVal);
+    //    });
+    //};
 
-            if($(this).text()=="+") {
-                var newVal=parseFloat(numberValue) + 1;
-            }else{
-                if(numberValue > 0){
-                    var newVal = parseFloat(numberValue) -1;
-                }else{
-                    newVal = 0;
-                }
-            }
-
-            $(this).parent().find('.quantity-number').val(newVal);
-        });
-    };
-
+    
     var flatTabs=function(){
         $('.flat-tabs').each(function(){
             $(this).find('.content-tab').children().hide();
@@ -818,13 +830,13 @@
       flatAccordion();
       countDown();
       flatCounter();
-      googleMap();
-      flatPrice();  
+      //googleMap();
+      //flatPrice();  
       flatFilterBox(); 
       flatShopSearch();
       topSearch();
       flexProduct(); 
-      quantityNumber(); 
+      //quantityNumber(); 
       flatTabs();
       flatImagePopup();
       flatVideoPopup(); 
@@ -834,3 +846,128 @@
       flatContentBox();
    	});
 })(jQuery);
+var cartProducts;
+function updateCartProducts() {
+  
+    var existingCookiesData = $.cookie('CartProducts');
+
+    if (existingCookiesData != undefined && existingCookiesData != "" && existingCookiesData != null) {
+        cartProducts = existingCookiesData.split('-');
+    }
+    else {
+        cartProducts = [];
+    }
+    $("#cartProductCount").html(cartProducts.length);
+}
+
+    var products;
+    updateCartProducts();
+
+    $(".productAddTocart").click(function () {
+        var existingCookiesData = $.cookie('CartProducts');
+
+        if (existingCookiesData != undefined && existingCookiesData != "" && existingCookiesData!=null) {
+        products = existingCookiesData.split('-');
+        }
+        else {
+        products = [];
+        }
+
+        var productID = $(this).attr('data-id');
+        products.push(productID);
+
+        $.cookie('CartProducts', products.join('-'), {path: '/' });
+        updateCartProducts();
+
+        swal("Done", "Product added to cart", "success", {
+            timer: 3000,
+            buttons: {
+                cancel: "Shop more",
+                catch: {
+                    text: "Checkout",
+                    value: "catch",
+                },
+               
+            },
+           
+        })
+            .then((value) => {
+                switch (value) {
+
+                    case "catch":
+                        window.location.href = '/Shop/Checkout/';
+                        break;
+
+                    default:
+                        
+                }
+            });
+
+    });
+
+$(".multiProductAddTocart").click(function () {
+    var existingCookiesData = $.cookie('CartProducts');
+
+    if (existingCookiesData != undefined && existingCookiesData != "" && existingCookiesData != null) {
+        products = existingCookiesData.split('-');
+    }
+    else {
+        products = [];
+    }
+
+    var productID = $(this).attr('data-id');
+   
+    var qua = document.getElementById("quantity").value;
+  
+    if (qua >= 1) {
+        for (var i = 0; i < qua; i++) {
+            products.push(productID);
+        }
+
+        $.cookie('CartProducts', products.join('-'), { path: '/' });
+        updateCartProducts();
+
+        swal("Done", "Product added to cart", "success", {
+            timer: 3000,
+            buttons: {
+                cancel: "Shop more",
+                catch: {
+                    text: "Checkout",
+                    value: "catch",
+                },
+
+            },
+
+        })
+            .then((value) => {
+                switch (value) {
+
+                    case "catch":
+                        window.location.href = '/Shop/Checkout/';
+                        break;
+
+                    default:
+
+                }
+            });
+
+    }
+    
+
+});
+
+$(".removeBtn").click(function () {
+    var productId = $(this).attr('data-id');
+    var remProduct = $.cookie('CartProducts').split('-');
+
+    var newp=[];
+    for (var i in remProduct) {
+        if (remProduct[i] != productId) {
+            var j = remProduct[i];
+            newp.push(j);
+        }
+    }
+
+    $.cookie('CartProducts', newp.join('-'), { path: '/' });
+    updateCartProducts();
+});
