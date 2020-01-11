@@ -11,6 +11,7 @@ namespace Auction.Web.ViewModels
         public List<Product> Products { get; set; }
         public Pager Pager { get; set; }
         public int? SortBy { get; set; }
+        public string SearchText { get; set; }
         public int? CategoryID { get; set; }
     }
 }

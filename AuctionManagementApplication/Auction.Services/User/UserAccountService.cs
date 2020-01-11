@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Auction.Database;
 using System.Linq;
+using System.Data.Entity;
 using Auction.Entities;
 
 
@@ -34,7 +35,7 @@ namespace Auction.Services.UserAccountService
         {
             using (var context = new AuctionDbContext())
             {
-                return context.Users.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+                return context.Users.Include(x=>x.Products).FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
 
             }
 
@@ -86,6 +87,27 @@ namespace Auction.Services.UserAccountService
                     model.IsActive = true;
                 }
                 
+                return context.SaveChanges() > 0;
+
+            }
+        }
+
+        public double MyCredit(int userId)  
+        {
+            using (var context=new AuctionDbContext())
+            {
+                return context.Users.Where(x => x.Id == userId).Select(x => x.Credit).FirstOrDefault();
+            }
+        }
+
+        public bool UpdateMyCredit(int userId, double credit)
+        {
+            using (var context=new AuctionDbContext())
+            {
+                var user = context.Users.Find(userId);
+
+                user.Credit += credit;
+
                 return context.SaveChanges() > 0;
 
             }

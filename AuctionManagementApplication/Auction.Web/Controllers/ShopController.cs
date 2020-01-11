@@ -16,6 +16,7 @@ namespace Auction.Web.Controllers
             int pageSize = 9;
             ShopViewModel model = new ShopViewModel
             {
+                SearchText = searchTxt,
                 FeaturedCategories = UserCategoryService.Instance.GetFeaturedNotNullItemCategory(),
                 MaximumPrice = UserProductService.Instance.GetMaximumPrice(),
                 MinimumPrice = UserProductService.Instance.GetMinimumPrice()
@@ -38,6 +39,7 @@ namespace Auction.Web.Controllers
             int pageSize = 9;
             FilterProductsViewModel model = new FilterProductsViewModel();
 
+            model.SearchText = searchTxt;
             pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
             model.SortBy = sortBy;
             model.CategoryID = categoryID;
@@ -54,14 +56,33 @@ namespace Auction.Web.Controllers
         {
             if (Session["UserData"] == null) { return RedirectToAction("Login", "User"); }
             var userData = Session["UserData"] as User;
-            model.UserId = userData.Id;
-            model.DateTime=DateTime.Now;
-            JsonResult json=new JsonResult
-            {
-                Data=UserProductService.Instance.BidNow(model) ? new { Success = true} : new { Success = false}
 
-            };
-            return json;
+            model.UserId = userData.Id;
+            model.DateTime = DateTime.Now;
+
+            var bidder = UserProductService.Instance.ExistBidder(model);
+            
+            if (bidder !=null)
+            {
+                JsonResult json = new JsonResult
+                {
+                    Data = UserProductService.Instance.UpdateBidNow(model) ? new { Success = true } : new { Success = false }
+
+                };
+                return json;
+            }
+            else
+            {
+                JsonResult json = new JsonResult
+                {
+                    Data = UserProductService.Instance.BidNow(model) ? new { Success = true } : new { Success = false }
+
+                };
+                return json;
+            }
+
+
+           
         }
 
     }

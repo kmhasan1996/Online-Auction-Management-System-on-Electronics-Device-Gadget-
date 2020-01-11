@@ -7,7 +7,7 @@
 <script src="~/Contents/DateTimePicker/jquery.datetimepicker.full.min.js"></script>
 <link href="~/Contents/DateTimePicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 <section class="flat-row flat-iconbox">
-    <div class="container">
+    <div class="container" style="background: white; margin-top: -35px; padding-bottom: 100px;">
         <div class="row">
             <div class="col-md-12">
                 <div class="title-section">
@@ -120,11 +120,20 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <label><input name="Gender" type="radio" value="Male" /> I agree to the<a class= " text-primary ml-2" id="termandcondition"  data-toggle="modal" data-target="#termandconditionModal">terms & conditions</a></label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <button style="color: white;" id="registerButton" class="btn btn-default">Register</button>
                         </div>
                     </div>
+
 
                     <hr />
                     <div class="form-group mt-3">
@@ -143,14 +152,39 @@
             </div>
         </form>
     </div>
+
+    <!-- Modal termandcondition -->
+    <div class="modal fade" id="termandconditionModal" tabindex="-1" role="dialog" style="margin-top: 50px">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+
+        </div>
+    </div>
 </section>
 
 <script src="~/Scripts/MyScript/LoginRegistration.js"></script>
 
 <script>
     $(document).ready(function () {
+
         $("#DateOfBirth").datetimepicker({
             timepicker: false
+        });
+
+        //get create page
+        $("#termandcondition").click(function () {
+            $.ajax({
+                    type: "GET",
+                    url: "/User/TermAndCondition"
+
+                })
+                .done(function (response) {
+                    $("#termandconditionModal .modal-dialog").html(response);
+
+
+                })
+                .fail(function (xmlHttpRequest, textStatus, errorThrown) {
+                    alert("Fail");
+                });
         });
 
     });

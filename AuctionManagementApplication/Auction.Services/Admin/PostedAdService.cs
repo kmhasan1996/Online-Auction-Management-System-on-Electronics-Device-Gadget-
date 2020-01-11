@@ -121,7 +121,7 @@ namespace Auction.Services.Admin
         {
             using (var context = new AuctionDbContext())
             {
-                return context.Products.Include(x => x.Category).FirstOrDefault(x => x.Id == productId);
+                return context.Products.Include(x => x.Category).Include(x => x.User).Include(x => x.User.Thana).Include(x => x.User.Thana.District).FirstOrDefault(x => x.Id == productId);
 
 
 

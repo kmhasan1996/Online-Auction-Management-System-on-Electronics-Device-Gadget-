@@ -880,3 +880,73 @@
     </div>
 </section>
 <!-- END NEW LATEST -->
+
+
+
+
+
+
+
+
+
+@model List<Auction.Entities.Category>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<!-- IMAGE BOX -->
+<section class="flat-row row-image-box style2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section margin-bottom-42">
+                    <h2 class="title">
+                        Top Category
+                    </h2>
+                </div>
+            </div>
+            @foreach (var category in Model)
+            {
+                <div class="col-sm-6 col-md-4" style="padding-bottom:15px">
+                    <div class="flat-image-box style-1 data-effect div-h22 clearfix">
+                        <div class="item data-effect-item">
+                            <div class="inner">
+                                <div class="thumb ">
+                                    <img src="@category.ImageUrl" height="200" alt="Image">
+                                    <div class="elm-btn ">
+                                        <a href="@Url.Action("Index","Shop",new { categoryID=category.Id})" class="themesflat-button  bg-white width-150">@category.Name</a>
+                                    </div>
+                                    @*<div class="text-wrap text-center">
+                                            <span class="font-weight-400 text-333">SHOP BY</span>
+                                            <h2 class="font-size-30 line-height-36 font-weight-600"><a href="#">Eyewear</a></h2>
+                                        </div>*@
+                                    <div class="overlay-effect bg-color-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+</section>
+<!-- END IMAGE BOX -->
+<!-- PRODUCT NEW -->
+<section class="flat-row row-product-new">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section margin-bottom-41">
+                    <h2 class="title">
+                        New Product
+                    </h2>
+                </div>
+                @{Html.RenderAction("Products", "Widget", new { isLatestProducts = true });}
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+<!-- END PRODUCT NEW -->

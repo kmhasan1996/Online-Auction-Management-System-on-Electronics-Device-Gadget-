@@ -769,7 +769,7 @@ h6 {
 
         #top-bar .top-bar-content .content {
             letter-spacing: -0.5px;
-            line-height: 30px;
+            line-height: 10px;
         }
 
     #top-bar .top-bar-nav {
@@ -891,7 +891,7 @@ h6 {
         }
 
 .topbar-style-1 #top-bar .top-bar-inner-wrap {
-    padding: 7px 0px 8px 0px;
+    padding: 3px 0px 4px 0px;
 }
 
 /* Syle 2 */
@@ -967,7 +967,7 @@ h6 {
 #site-header-inner {
     position: relative;
     height: 100%;
-    padding: 20px 0px 21px;
+    padding: 10px 0px 11px;
 }
 
 .header-absolute .header {

@@ -88,7 +88,7 @@ namespace Auction.Services.User
                     Where(x => x.Category.Id == categoryId && x.Category.IsActive && x.User.IsActive).
                     OrderByDescending(x => x.Id).
                     Take(numberOfProducts).
-                    Include(x => x.Category).
+                    Include(x => x.Category).Include(x => x.User).Include(x => x.User.Thana).Include(x => x.User.Thana.District).
                     ToList();
 
             }
@@ -115,7 +115,7 @@ namespace Auction.Services.User
         {
             using (var context = new AuctionDbContext())
             {
-                var products = context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive).ToList();
+                var products = context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive).Include(x => x.User).Include(x => x.User.Thana).Include(x => x.User.Thana.District).ToList();
 
                 if (categoryID.HasValue)
                 {
@@ -232,12 +232,54 @@ namespace Auction.Services.User
                 return context.SaveChanges() > 0;
             }
         }
+        public bool UpdateBidNow(Bidder model)
+        {
+            using (var context = new AuctionDbContext())
+            {
+                //set current price to product
+                var product = context.Products.Find(model.ProductId);
+                product.CurrentBidPrice = model.BidPrice;
+                context.SaveChanges();
+
+                //set exist bidder bid price
+                var bidder = context.Bidders.FirstOrDefault(x => x.ProductId == model.ProductId && x.UserId == model.UserId);
+                if (bidder != null) bidder.BidPrice = model.BidPrice;
+                return context.SaveChanges() > 0;
+            }
+        }
+
+        public Bidder ExistBidder(Bidder model)
+        {
+            using (var context=new AuctionDbContext())
+            {
+               return context.Bidders.FirstOrDefault(x => x.ProductId == model.ProductId && x.UserId == model.UserId);
+            }
+        }
 
         public List<Bidder> Bidders(int productId)
         {
             using (var context=new AuctionDbContext())
             {
                 return context.Bidders.Where(x => x.ProductId == productId).Include(x=>x.User).OrderByDescending(x=>x.Id).ToList();
+            }
+        }
+
+        public bool DeleteAd(int id)
+        {
+            using (var context = new AuctionDbContext())
+            {
+                var bidders = context.Bidders.Where(x => x.ProductId == id);
+                foreach (var bidder in bidders)
+                {
+                   // var bider = context.Bidders.Find(bidder.Id);
+                   context.Bidders.Remove(bidder);
+                    context.SaveChanges();
+
+                }
+
+                Product product = context.Products.Find(id);
+                context.Products.Remove(product);
+                return context.SaveChanges() > 0;
             }
         }
     }

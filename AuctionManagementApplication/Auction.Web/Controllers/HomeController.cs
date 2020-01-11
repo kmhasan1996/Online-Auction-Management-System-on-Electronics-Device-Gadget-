@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Auction.Services.Admin;
+using Auction.Web.ViewModels;
 
 namespace Auction.Web.Controllers
 {
@@ -11,9 +13,11 @@ namespace Auction.Web.Controllers
     {
         public ActionResult Index()
         {
-            var allCategories = UserCategoryService.Instance.GetAll();
+            HomeViewModel model=new HomeViewModel();
 
-            return View(allCategories);
+            model.Categories = UserCategoryService.Instance.GetAll();
+            model.Districts = DistrictService.Instance.GetAll();
+            return View(model);
         }
 
         public ActionResult About()

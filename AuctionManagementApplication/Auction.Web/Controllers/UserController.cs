@@ -71,6 +71,10 @@ namespace Auction.Web.Controllers
             };
             return jason;
         }
+        public ActionResult TermAndCondition()
+        {
+            return PartialView("_TermAndCondition");
+        }
 
         public ActionResult Logout()
         {
@@ -144,23 +148,75 @@ namespace Auction.Web.Controllers
         public ActionResult MyAds()
         {
             if (Session["UserData"] == null) { return RedirectToAction("Login"); }
-
-            dynamic model = new System.Dynamic.ExpandoObject();
             var userData = Session["UserData"] as User;
-            model.PenddingAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsPending)
-                .ToList();
-            model.RejectAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsRejected)
-                .ToList();
-            model.ActiveAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsActive)
-                .ToList();
+
+            MyAdsViewModel model = new MyAdsViewModel
+            {
+                User = userData,
+                PendingAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsPending)
+                    .ToList(),
+                RejectAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsRejected)
+                    .ToList(),
+                ActiveAds = UserProductService.Instance.GetAdByUserId(userData.Id).Where(x => x.IsActive)
+                    .ToList()
+            };
+
 
             return View(model);
         }
 
+        //[HttpGet]
+        //public ActionResult UpdateInformation()
+        //{
 
+        //}
 
+        [HttpGet]
+        public ActionResult MyCredit()
+        {
+            if (Session["UserData"] == null) { return RedirectToAction("Login"); }
+            var userData = Session["UserData"] as User;
 
+            dynamic model=new System.Dynamic.ExpandoObject();
+
+            model.credit = UserAccountService.Instance.MyCredit(userData.Id);
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public ActionResult MyCredit(double credit)
+        {
+            if (Session["UserData"] == null) { return RedirectToAction("Login"); }
+            var userData = Session["UserData"] as User;
+
+            UserAccountService.Instance.UpdateMyCredit(userData.Id, credit);
+
+            dynamic model = new System.Dynamic.ExpandoObject();
+
+            model.credit = UserAccountService.Instance.MyCredit(userData.Id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAd(int id)
+        {
+            if (Session["UserData"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            JsonResult json = new JsonResult
+            {
+                Data = UserProductService.Instance.DeleteAd(id) ? new {Success = true} : new {Success = false}
+            };
+            return json;
+        }
         #endregion
-
     }
+
+
+
 }

@@ -829,7 +829,7 @@
 /* Product
 ---------------------------------------------------------------*/
 .product-threecolumn .product .product-item {
-	width: 33.3333%;
+    width: 100%;
 }
 
 .product-slidebar {

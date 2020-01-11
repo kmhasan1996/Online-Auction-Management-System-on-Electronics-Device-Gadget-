@@ -19,6 +19,8 @@
     <link href="~/Contents/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href="~/Contents/css/simple-sidebar.css" rel="stylesheet" />
+    
+    <link href="~/Contents/stylesheets/style.css" rel="stylesheet" />
 
     <script src="~/Contents/js/jquery.min.js"></script>
 
@@ -41,13 +43,16 @@
     </style>
 </head>
 <body >
-    <div class="d-flex container mt-4" id="wrapper">
-        <div class=" border-right" id="sidebar-wrapper" style="background: rgb(0, 31, 63)">
+    <div class="d-flex container padding-top-33" id="wrapper" style="background: white;">
+        <div class=" border-right" id="sidebar-wrapper" style="background: rgb(0, 31, 63); margin-left: -14px;">
             <div class="sidebar-heading" style="background: rgb(0, 31, 63);color: white"><i class="fas fa-bars mr-3"></i>User Menu </div>
             <div class="list-group list-group-flush">
-                <a href="@Url.Action("MyAds","User")" class="list-group-item list-group-item-action" ><i class="fas fa-tachometer-alt mr-2"></i>My Ads</a>
+                <a href="@Url.Action("MyAds","User")" class="list-group-item list-group-item-action" ><i class="fas fa-user-alt mr-2"></i>My Account</a>
+                @*<a href="@Url.Action("MyAds","User")" class="list-group-item list-group-item-action" ><i class="fas fa-folder mr-2"></i>My Ads</a>*@
 
-                <a href="@Url.Action("NewAd","User")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>New Ad</a>
+                <a href="@Url.Action("NewAd","User")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Post New Ad</a>
+                <a href="@Url.Action("MyCredit","User")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>My Credit</a>
+                <a href="@Url.Action("BiddingHistory","User")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Bidding History</a>
                 <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Update Information</a>
                 <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Change Password</a>
 

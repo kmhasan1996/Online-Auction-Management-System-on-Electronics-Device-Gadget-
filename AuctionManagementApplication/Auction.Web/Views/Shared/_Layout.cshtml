@@ -13,7 +13,7 @@
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <title>Auction - @ViewBag.Title</title>
 
-
+   
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -30,7 +30,7 @@
     <!-- Animation Style -->
     <link rel="stylesheet" type="text/css" href="~/Contents/stylesheets/animate.css">
 
-
+    <link href="~/Contents/fontawesome/css/all.min.css" rel="stylesheet" />
     <!-- Favicon and touch icons  -->
     <link href="icon/favicon.png" rel="shortcut icon">
 
@@ -57,32 +57,21 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Boxed -->
-    <div class="boxed">
+    <!-- Boxed rgb(214,215,215)-->
+    <div class="boxed" style="background: rgb(231,237,238)">
         <div id="site-header-wrap">
             <!-- Top Bar -->
-            <div id="top-bar">
+            <div id="top-bar" @*class="bg-info"*@ style="background: rgb(0,116,186)" @*style="background:#031D2C; color: white;"*@>
                 <div id="top-bar-inner" class="container">
                     <div class="top-bar-inner-wrap">
                         <div class="top-bar-content">
                             <span class="content">Register | Bid | Win</span>
+                            <a href="@Url.Action("Contact","Home")" class="ml-5">Contact</a>
+                             <a href="@Url.Action("About","Home")" class="ml-2">About</a>
                         </div>
                         <div class="top-bar-nav">
                             <div class="inner">
                                 @Html.Partial("_LoginPartial")
-                                @*<div class="language-wrap">
-                                        <ul class="language">
-                                            <li>
-                                                <a href="#">English</a>
-                                                <ul class="sub-language">
-                                                    <li><a href="#">English</a></li>
-                                                    <li><a href="#">France</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>*@
-                                @*<div class="money">USD <i class="fa fa-usd"></i></div>*@
-                                @*<div class="account"><a href="#">My Account <i class="fa fa-user"></i></a></div>*@
                             </div>
                         </div>
                     </div>
@@ -90,15 +79,16 @@
             </div>
             <!-- End Top Bar -->
             <!-- Header -->
-            <header id="header" class="header header-container clearfix " style="background: #031D2C;">
+            <header id="header" class="header header-container clearfix" @*style="background: rgb(0,116,186)"*@ style="background: #031D2C;">
                 <div class="container clearfix" id="site-header-inner">
                     <div id="logo" class="logo float-left">
                         <a href="@Url.Action("Index","Home")" title="logo">
-                            <img src="~/Contents/Images/System/logo-658x114.png" alt="image" width="200" height="60" style="background-color:white;">
+                            @*<img src="~/Contents/Images/System/logo-658x114.png" alt="image" width="200" height="60" style="background-color:white;">*@
+                            <h2 class="text-white"><i class="fas fa-gavel mr-1"></i>Auction House</h2>
                         </a>
 
                     </div><!-- /.logo -->
-                    <div class="mobile-button"><span></span></div>
+                    @*<div class="mobile-button"><span></span></div>*@
                     <ul class="menu-extra">
                         <li class="box-search">
                             <a class="icon_search header-search-icon" href="#" style="color:black;background-color:white;"></a>
@@ -108,31 +98,38 @@
                             </form>
                         </li>
                         @*<li class="box-login">
-                                <a class="icon_login" href="#"></a>
+                                   <a class="icon_login" href="#"></a>
                             </li>*@
 
                     </ul><!-- /.menu-extra -->
-                    <div class="nav-wrap  float-left">
+                    <div class="nav-wrap  float-right ">
                         <nav id="mainnav" class="mainnav ">
                             <ul class="menu ">
                                 <li>
-                                    <a href="@Url.Action("Index","Home")" >Home</a>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index","Shop")" >All Ads</a>
-                                </li>
-                               
-                                <li>
-                                    <a href="@Url.Action("Contact","Home")" >Contact</a>
-                                   
+                                    <a href="@Url.Action("Index","Shop")">All Ads</a>
+                                  
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("About","Home")" >About</a>
+                                    <a href="@Url.Action("Index","EndingToday")">Ending Today</a>
+                                </li>
+
+                                @*<li>
+                                    <a href="@Url.Action("Contact","Home")">Contact</a>
+
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index","Testimonial")">Testimonial</a
+                                    <a href="@Url.Action("About","Home")">About</a>
+                                </li>*@
+                                <li>
+                                    <a href="@Url.Action("Index","Testimonial")">Testimonial</a>
                                 </li>
-                               
+                                <li>
+                                    <a href="@Url.Action("NewAd", "User")" style="color: yellow;">Post ad now!</a>
+                                </li>
+
                             </ul>
                         </nav><!-- /.mainnav -->
                     </div><!-- /.nav-wrap -->
@@ -140,14 +137,15 @@
             </header><!-- /header -->
         </div><!-- /#site-header-wrap -->
         <!-- Body Content-->
-       
-   
-        
+        @*<section class="flat-row container" style="background: white; margin-top: -75px;">*@
+
+
+
         @*<div class="jumbotron">*@
-            @RenderBody()
+        @RenderBody()
         @*</div>*@
-       
-      
+
+        @*</section>*@
 
 
         <section class="flat-row mail-chimp">
@@ -190,8 +188,6 @@
                         <div class="widget widget-link">
                             <ul>
                                 <li><a href="#">About Us</a></li>
-                                <li><a href="#">Online Store</a></li>
-                                <li><a href="blog-list.html">Blog</a></li>
                                 <li><a href="contact.html">Contact Us</a></li>
                             </ul>
                         </div><!-- /.widget -->
@@ -199,33 +195,31 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="widget widget-link link-login">
                             <ul>
-                                <li><a href="#">Login/ Register</a></li>
-                                <li><a href="#">Your Cart</a></li>
-                                <li><a href="#">Wishlist items</a></li>
-                                <li><a href="#">Your checkout</a></li>
+                                <li><a href="#">Login</a></li>
+                                <li><a href="#">Register</a></li>
+
                             </ul>
                         </div><!-- /.widget -->
                     </div><!-- /.col-md-3 -->
                     <div class="col-sm-6 col-md-3">
                         <div class="widget widget-link link-faq">
                             <ul>
-                                <li><a href="faqs.html">FAQs</a></li>
+                                <li><a href="#">FAQs</a></li>
                                 <li><a href="#">Term of service</a></li>
                                 <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Returns</a></li>
                             </ul>
                         </div><!-- /.widget -->
                     </div><!-- /.col-md-3 -->
                     <div class="col-sm-6 col-md-3">
                         <div class="widget widget-brand">
                             <div class="logo logo-footer">
-                                <a href="index.html"><img src="~/Contents/Images/System/logo-658x114.png" alt="image" width="107" height="24"></a>
+                                <a href="index.html"><img src="~/Contents/Images/System/logo-658x114.png" alt="image" width="107" height="24" style="background: white;"></a>
                             </div>
 
                             <ul class="flat-contact">
-                                <li class="address">112 Kingdom, NA 12, New York</li>
-                                <li class="phone">+12 345 678 910</li>
-                                <li class="email">infor.deercreative@gmail.com</li>
+                                <li class="address">Dhaka - 1212, Bangladesh </li>
+                                <li class="phone">+880 1749 796054</li>
+                                <li class="email">khasan142035@bscse.uiu.ac.bd</li>
                             </ul><!-- /.flat-contact -->
                         </div><!-- /.widget -->
                     </div><!-- /.col-md-3 -->
@@ -260,10 +254,10 @@
 
         var pathname = window.location.pathname;
         $('.menu > li > a[href="' + pathname + '"]').parent().addClass('active');
-        //alert(pathname);
+            //alert(pathname);
     </script>
     @*<script src="~/Contents/javascript/jquery-ui.js"></script>
-    <script src="~/Contents/javascript/jquery.min.js"></script>*@
+        <script src="~/Contents/javascript/jquery.min.js"></script>*@
     <script src="~/Contents/javascript/tether.min.js"></script>
     <script src="~/Contents/javascript/bootstrap.min.js"></script>
     <script src="~/Contents/javascript/jquery.easing.js"></script>
@@ -283,7 +277,7 @@
     <script src="~/Contents/javascript/jquery.cookie.js"></script>
     <script src="~/Contents/javascript/main.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&region=GB"></script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&region=GB"></script>*@
 
     <!-- Revolution Slider -->
     <script src="~/Contents/rev-slider/js/jquery.themepunch.tools.min.js"></script>

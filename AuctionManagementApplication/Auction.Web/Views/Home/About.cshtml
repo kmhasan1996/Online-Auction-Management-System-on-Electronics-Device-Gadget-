@@ -2,10 +2,37 @@
     ViewBag.Title = "About";
 }
 
-<div class="container">
-    <h2>@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+<div class="boxed">
+    <div class="container" style="background: white;margin-top: 10px; padding: 10px;">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+                <ul>
+                    <li> <i class="fas fa-home mr-1"></i><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li> <a href="@Url.Action("About", "Home")">About</a></li>
+                </ul>
+            </div><!-- /.breadcrumbs -->
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+</div><!-- /.container -->
+    <!-- Blog posts -->
+    <section class="blog-posts blog-detail">
+        <div class="container" style="background: white; margin-top: -45px;">
+            <h3 class="text-justify mt-5">
+                Our web application will help an auctioneer to sell electronic devices or gadgets and help a user to buy electronic devices or
+                gadgets by bidding. There will be plenty of choices in one place for the buyer.
+            </h3>
+            <h3 class="text-justify mt-5">
+                Auctioneer can post a product for auction with minimum price and auction end time.
+                Auctioneer has to post a product with base price limit, end time and a product image.
+            </h3>
+            <h3 class="text-justify mt-5">
+                Bidder can bid on a posted auction product. Bidders have to deposit a percentage of the base price of auction product before biding.
+                If a bidder wins the bid then, he will not be able to get back the deposit money and have to pay the rest of the biding
+                money to claim the product within a time limit.
+               
+            </h3>
 
-    <p>Use this area to provide additional information.</p>
+        </div><!-- /.container -->
+    </section><!-- /.blog posts -->
 </div>
-

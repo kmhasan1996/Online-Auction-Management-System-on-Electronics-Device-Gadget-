@@ -5,111 +5,6 @@
 {
     if (Model.IsLatestProduct == true && Model.ByCategory == false)
     {
-        @*<div class="product-content product-fourcolumn clearfix">
-
-            <ul class="product style2  clearfix">
-                @foreach (var product in Model.Products)
-                {
-                    <li class="product-item" style="padding-left: 10px;">
-                        <div class="product-thumb clearfix">
-                            <a href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})" class="product-thumb">
-                                <img src="@product.ImageUrl1" width="500" height="333" style="padding-bottom: 15px;" alt="image">
-                            </a>
-
-                            <span class="new">New</span>
-
-
-                        </div>
-                        <div class="product-info text-center clearfix">
-
-                            <span class="product-title">@product.Name</span>
-
-                            <div class="price">
-                                <ins>
-                                    <span class="amount">BDT @product.BasePrice</span>
-                                </ins>
-                            </div>
-                            <span class="product-title">End Date: @product.EndDateTime</span>
-                        </div>
-                        <div class="add-to-cart text-center" data-id="@product.Id">
-                            <a href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})">Bid Now</a>
-                        </div>
-                    </li>
-                }
-
-            </ul>
-
-
-        </div>*@
-
-        <div class="product-content product-fivecolumn clearfix">
-            <ul class="product style3">
-            @foreach (var product in Model.Products)
-            {
-                <li class="product-item">
-                    <div class="product-thumb clearfix">
-                        <a href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})" class="product-thumb">
-                            <img src="@product.ImageUrl1" width="500" height="333" style="padding-bottom: 15px;" alt="image">
-                        </a>
-                        <span class="new">New</span>
-                    </div>
-                    <div class="product-info text-center clearfix">
-
-                        <span class="product-title">@product.Name</span>
-
-                        <div class="price">
-                            <ins>
-                                <span class="amount">BDT @product.BasePrice</span>
-                            </ins>
-                        </div>
-                        <span class="product-title">End Date: @product.EndDateTime</span>
-                    </div>
-                    <div class="add-to-cart text-center" data-id="@product.Id">
-                        <a class="add-to-cart text-center" href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})">Bid Now</a>
-                    </div>
-                </li>
-            }
-            </ul>
-        </div>
-
-    }
-    else if (Model.ByCategory)
-    {
-        @*<div class="product-content product-fourcolumn clearfix">
-            <ul class="product style2  clearfix">
-
-                @foreach (var product in Model.Products)
-                {
-                    <li class="product-item " style="padding-left:10px;">
-                        <div class="product-thumb clearfix">
-                            <a href="@Url.Action("ProductDetails", "Product", new { postId = product.Id })" class="product-thumb">
-                                <img src="@product.ImageUrl1" width="500" height="333" style="padding-bottom: 15px;" alt="image">
-                            </a>
-
-                            <span class="new">New</span>
-
-
-                        </div>
-                        <div class="product-info text-center clearfix">
-
-                            <span class="product-title">@product.Name</span>
-                            <div class="price">
-                                <ins>
-                                    <span class="amount">BDT @product.BasePrice</span>
-                                </ins>
-                            </div>
-                        </div>
-                        <div class="add-to-cart text-center productAddTocart" data-id="@product.Id">
-                            <a href="@Url.Action("ProductDetails", "Product", new { postId = product.Id })">Bid Now</a>
-                        </div>
-                       
-                    </li>
-                }
-
-
-
-            </ul>
-        </div>*@
 
         <div class="product-content product-fivecolumn clearfix">
             <ul class="product style3">
@@ -140,6 +35,85 @@
                 }
             </ul>
         </div>
+
+    }
+    else if (Model.ByCategory)
+    {
+
+        foreach (var product in Model.Products)
+        {
+            <div class="product-item col-md-6 mb-3">
+                <hr />
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})">
+                            <img src="@product.ImageUrl1" alt="image">
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <table>
+                            <tr>
+                                <th><h2>@product.Name</h2></th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <i class="fas fa-map-marker-alt"></i> @product.User.Thana.Name, @product.User.Thana.District.Name
+                                </th>
+                            </tr>
+                            <tr>
+                                <th><b>Start Price:</b> BDT @product.BasePrice</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <b>Current Bid Price:</b> BDT @product.CurrentBidPrice
+                                </th>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                    <div class="col-md-3">
+                        @*<div class="add-to-cart text-center">*@
+                        <a class="btn btn-danger text-center" href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})">See Details</a>
+                        @*</div>*@
+                    </div>
+
+                </div>
+
+            </div>
+
+        }
+
+        @*<div class="product-content product-fivecolumn clearfix">
+                <ul class="product style3">
+                    @foreach (var product in Model.Products)
+                    {
+                        <li class="product-item">
+                            <div class="product-thumb clearfix">
+                                <a href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})" class="product-thumb">
+                                    <img src="@product.ImageUrl1" width="500" height="333" style="padding-bottom: 15px;" alt="image">
+                                </a>
+                                <span class="new">New</span>
+                            </div>
+                            <div class="product-info text-center clearfix">
+
+                                <span class="product-title">@product.Name</span>
+
+                                <div class="price">
+                                    <ins>
+                                        <span class="amount">BDT @product.BasePrice</span>
+                                    </ins>
+                                </div>
+                                <span class="product-title">End Date: @product.EndDateTime</span>
+                            </div>
+                            <div class="add-to-cart text-center" data-id="@product.Id">
+                                <a class="add-to-cart text-center" href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})">Bid Now</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>*@
 
     }
     else

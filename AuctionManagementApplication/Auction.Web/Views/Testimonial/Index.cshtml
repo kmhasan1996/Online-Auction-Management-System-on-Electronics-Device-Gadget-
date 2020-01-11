@@ -11,28 +11,24 @@
 
     <!-- Boxed -->
     <div class="boxed">
-       
         <!-- Page title -->
-        <div class="page-title parallax parallax1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="page-title-heading">
-                            <h1 class="title">Testimonials</h1>
-                        </div><!-- /.page-title-heading -->
-                        <div class="breadcrumbs">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="blog-list-1.html">Testimonial</a></li>
-                            </ul>
-                        </div><!-- /.breadcrumbs -->
-                    </div><!-- /.col-md-12 -->
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </div><!-- /.page-title -->
+  
+        <div class="container" style="background: white;margin-top: 10px; padding: 10px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li> <i class="fas fa-home mr-1"></i><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li> <a href="@Url.Action("Index", "Testimonial")">Testimonials</a></li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+
         <!-- Blog posts -->
         <section class="blog-posts blog-detail">
-            <div class="container">
+            <div class="container" style="background: white; margin-top: -45px;">
                 <div class="row">
                     <div class="col-md-9">
 
@@ -87,11 +83,11 @@
                                     <form class="comment-form" id="testimonialForm">
                                         <p class="comment-form-comment">
                                             <label>Review*</label>
-                                            <textarea class="" tabindex="4" id="Comment" name="Comment" required></textarea>
+                                            <textarea class="" tabindex="4" id="Comment" name="Comment" placeholder="Enter your comment" required></textarea>
                                         </p>
 
                                         <p class="form-submit">
-                                            <button id="submit" class="comment-submit">Submit</button>
+                                            <button id="submit" class="comment-submit text-capitalize">Submit</button>
                                         </p>
                                     </form>
                                 </div><!-- /.comment-respond -->

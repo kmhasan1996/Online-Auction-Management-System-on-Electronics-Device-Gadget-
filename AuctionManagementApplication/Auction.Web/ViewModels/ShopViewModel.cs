@@ -9,6 +9,7 @@ namespace Auction.Web.ViewModels
     public class ShopViewModel
     {
         public int? SortBy { get; set; }
+        public string SearchText { get; set; }
         public List<Category> FeaturedCategories { get; set; }
         public List<Product> Products { get; set; }
         public int MaximumPrice { get; set; }

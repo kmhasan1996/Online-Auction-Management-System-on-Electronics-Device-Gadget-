@@ -1,42 +1,91 @@
-﻿@model List<Auction.Entities.Category>
+﻿@model Auction.Web.ViewModels.HomeViewModel
 
 @{
     ViewBag.Title = "Home Page";
+    var str = "fas fa-desktop mr-2";
+    var location = "fas fa-map-marker-alt mr-2";
 }
 
+<script src="~/Contents/map/countrymap.js"></script>
+<script src="~/Contents/map/mapdata.js"></script>
 
+<section class="flat-row" style="background: white">
+    <div class="container" style="margin-top: -85px; ">
+        <div class="row" style="padding-top: 20px">
+            <div class="col-md-6">
+                <h5 class="text-justify">Welcome to ElectricAuction.com - first online auction marketplace in Bangladesh!</h5>
+                <p class="text-justify">Register, Bid and Win.Auction your electronics device/gadget Buy and sell electronics device/gadget <strong>in Bangladesh!</strong></p>
 
-<!-- IMAGE BOX -->
-<section class="flat-row row-image-box style2">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="title-section margin-bottom-42">
-                    <h2 class="title">
-                        Top Category
-                    </h2>
-                </div>
+                <h3 class="mt-5">Top Categories</h3>
+                <ul>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li><i class="@str"></i><a href="@Url.Action("Index", "Shop", new {categoryID = @category.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@category.Name</a></li>
+
+                    }
+                </ul>
             </div>
-            @foreach (var category in Model)
-            {
-                <div class="col-sm-6 col-md-4" style="padding-bottom:15px">
-                    <div class="flat-image-box style-1 data-effect div-h22 clearfix">
-                        <div class="item data-effect-item">
-                            <div class="inner">
-                                <div class="thumb ">
-                                    <img src="@category.ImageUrl" height="200" alt="Image">
-                                    <div class="elm-btn ">
-                                        <a href="@Url.Action("Index","Shop",new { categoryID=category.Id})"  class="themesflat-button  bg-white width-150">@category.Name</a>
-                                    </div>
-                                    @*<div class="text-wrap text-center">
-                                            <span class="font-weight-400 text-333">SHOP BY</span>
-                                            <h2 class="font-size-30 line-height-36 font-weight-600"><a href="#">Eyewear</a></h2>
-                                        </div>*@
-                                    <div class="overlay-effect bg-color-1"></div>
-                                </div>
-                            </div>
+            <div class="col-md-6 float-right">
+                <div class="row">
+                    <div class="col-md-6 float-right">
+                        <div class="float-right" style="background: black;">
+                            @*<img src="~/Contents/Images/System/BDMap.jpg" height="200" width="200" />*@
+                            @*<div id="map"></div>*@
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="float-right">
+
+                            <h3>Cities</h3>
+                            <ul>
+
+                                @foreach (var cities in Model.Districts)
+                                {
+                                    <li><i class="@location"></i><a href="@Url.Action("Index", "Shop", new {categoryID = @cities.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@cities.Name</a></li>
+
+                                }
+                            </ul>
+                            @*</div>
+
+                                <div class="float-right">*@
+                            <h3 class="mt-5">Divisions</h3>
+                            <ul>
+
+                                @foreach (var cities in Model.Districts)
+                                {
+                                    <li><i class="@location"></i><a href="@Url.Action("Index", "Shop", new {categoryID = @cities.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@cities.Name</a></li>
+
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- IMAGE BOX -->
+<section class="flat-row row-image-box style2" style="margin-top: -20px">
+    <div class="container" style="background: white;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section margin-bottom-42 mt-4">
+                    <h3>All Category</h3>
+                </div>
+            </div>
+            @foreach (var category in Model.Categories)
+            {
+                <div class="col-md-2">
+
+                    <img src="@category.ImageUrl" height="100" width="100" alt="Image"><br />
+
+                    <a href="@Url.Action("Index","Shop",new { categoryID=category.Id})" class="btn btn-primary mt-2">@category.Name</a>
+
                 </div>
             }
         </div><!-- /.row -->
@@ -44,19 +93,14 @@
     </div><!-- /.container -->
 </section>
 <!-- END IMAGE BOX -->
-<!-- PRODUCT NEW -->
-<section class="flat-row row-product-new">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="title-section margin-bottom-41">
-                    <h2 class="title">
-                        New Product
-                    </h2>
-                </div>
-                @{Html.RenderAction("Products", "Widget", new { isLatestProducts = true });}
-            </div>
-        </div><!-- /.row -->
-    </div><!-- /.container -->
+
+<section class="flat-row" style="margin-top: -100px">
+    <div class="container" >
+        <div class="text-center margin-top-30">
+            <h3>Do you have any electronic device or gadget to auction?</h3>
+            <h4 class="mt-2">Click the "Post an ad now!" button to post your ad.</h4>
+            <a href="@Url.Action("NewAd", "User")" class="btn btn-primary text-white text-capitalize mt-4">Post your ad now!</a>
+        </div>
+    </div>
+
 </section>
-<!-- END PRODUCT NEW -->

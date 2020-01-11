@@ -1,19 +1,156 @@
 ﻿@{
     ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container">
-    <h2>@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+<div class="boxed">
+    <div class="container" style="background: white;margin-top: 10px; padding: 10px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li> <i class="fas fa-home mr-1"></i><a href="@Url.Action("Index", "Home")">Home</a></li>
+                        <li> <a href="@Url.Action("About", "Home")">Contact</a></li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <!-- Blog posts -->
+    <section class="blog-posts blog-detail">
+         <div class="container" style="background: white; margin-top: -45px;">
+             <section class="flat-row flat-iconbox">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="title-section">
+                                <h2 class="title">
+                                    Get In Touch
+                                </h2>
+                            </div><!-- /.title-section -->
+                        </div><!-- /.col-md-12 -->
+                    </div><!-- /.row -->
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="iconbox text-center">
+                                <div class="box-header nomargin">
+                                    <h3>Address</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-content">
+                                    <p>Vatara,Badda,Dhaka</p>
+                                </div><!-- /.box-content -->
+                            </div><!-- /.iconbox -->
+                        </div><!-- /.col-md-4 -->
+                        <div class="col-md-4">
+                            <div class="divider h0"></div>
+                            <div class="iconbox text-center">
+                                <div class="box-header">
+                                    <h3>Mobile</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-content">
+                                    <p>+8801749796054</p>
+                                </div><!-- /.box-content -->
+                            </div><!-- /.iconbox -->
+                        </div><!-- /.col-md-4 -->
+                        <div class="col-md-4">
+                            <div class="divider h0"></div>
+                            <div class="iconbox text-center">
+                                <div class="box-header">
+                                    <h3>Email</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-content">
+                                    <p>Info.auction@gmail.com</p>
+                                </div><!-- /.box-content -->
+                            </div><!-- /.iconbox -->
+                        </div><!-- /.col-md-4 -->
+                    </div><!-- /.row -->
+                    <div class="divider h43"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="flat-map" id="mapArea"></div>
+                        </div><!-- /.col-md-12 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </section><!-- /.flat-row -->
+            <section class="flat-row flat-contact">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="title-section margin_bottom_17">
+                                <h2 class="title">
+                                    Send Us Email
+                                </h2>
+                            </div><!-- /.title-section -->
+                        </div><!-- /.col-md-12 -->
+                    </div><!-- /.row -->
+                    <div class="row">
+                        <div class="wrap-contact">
+                            <form novalidate="" class="contact-form" id="contactform" method="post" action="#">
+                                <div class="form-text-wrap clearfix">
+                                    <div class="contact-name clearfix">
+                                        <label>Name</label>
+                                        <input type="text" aria-required="true" size="30" value="" name="author" id="author">
+                                    </div>
+                                    <div class="contact-email">
+                                        <label>Email</label>
+                                        <input type="email" size="30" value="" name="email" id="email">
+                                    </div>
+                                    <div class="contact-subject">
+                                        <label>Subject</label>
+                                        <input type="text" aria-required="true" size="30" value="" name="subject" id="subject">
+                                    </div>
+                                </div>
+
+                                <div class="contact-message clearfix margin-top-40">
+                                    <label>Message</label>
+                                    <textarea class="" tabindex="4" name="message" required></textarea>
+                                </div>
+                                <div class="form-submit margin-top-32 ">
+                                    <button class="text-capitalize">Send</button>
+                                </div>
+                            </form>
+                        </div><!-- /.wrap-contact -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </section><!-- /.flat-row -->
+   
+         </div><!-- /.container -->
+    </section><!-- /.blog posts -->
 </div>
+<script>
+    function drawMap() {
+        //alert(select);
+        var Lat = 23.8051;
+        var Lng = 90.4261;
+        var uiu = new google.maps.LatLng(Lat, Lng);
+        map = new google.maps.Map(document.getElementById('mapArea'), {
+            center: uiu,
+            zoom: 15,
+            mapTypeId: 'hybrid'
+        });
+
+        var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+        var mk = new google.maps.Marker({
+            position: uiu,
+            map: map,
+            //icon: image
+        });
+
+        var contentString = 'Vatara';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 200,
+            maxWidth: 400
+        });
+        infowindow.open(map, mk);
+        //     mk.addListener('click', function() {
+        //  infowindow.open(map, mk);
+        //});
+
+
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&callback=drawMap"></script>
+       
