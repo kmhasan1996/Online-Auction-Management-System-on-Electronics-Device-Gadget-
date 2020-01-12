@@ -4,6 +4,7 @@ using System.Web.Helpers;
 using Auction.Web.ViewModels;
 using System.Web.Mvc;
 using Auction.Entities;
+using Auction.Services.Admin;
 using Auction.Services.User;
 using Auction.Services.UserAccountService;
 
@@ -18,6 +19,7 @@ namespace Auction.Web.Controllers
             {
                 SearchText = searchTxt,
                 FeaturedCategories = UserCategoryService.Instance.GetFeaturedNotNullItemCategory(),
+                Districts = DistrictService.Instance.GetAll(),
                 MaximumPrice = UserProductService.Instance.GetMaximumPrice(),
                 MinimumPrice = UserProductService.Instance.GetMinimumPrice()
             };
@@ -52,7 +54,7 @@ namespace Auction.Web.Controllers
 
         }
 
-        public ActionResult BidNow(Bidder model)
+        public ActionResult BidNow(Bidder model,double depositAmount)
         {
             if (Session["UserData"] == null) { return RedirectToAction("Login", "User"); }
             var userData = Session["UserData"] as User;
@@ -73,6 +75,8 @@ namespace Auction.Web.Controllers
             }
             else
             {
+                UserAccountService.Instance.DepositCreditForBidding(userData.Id, depositAmount);
+
                 JsonResult json = new JsonResult
                 {
                     Data = UserProductService.Instance.BidNow(model) ? new { Success = true } : new { Success = false }

@@ -49,6 +49,14 @@ namespace Auction.Services.User
             }
         }
 
+        public Product GetAdByIdAndUserId(int userId,int adId)
+                {
+                    using (var context = new AuctionDbContext())
+                    {
+                        return context.Products.FirstOrDefault(x => x.UserId == userId && x.Id == adId);
+                    }
+                }
+
         public List<Product> GetLatestProductPosts(int numberOfProducts)
         {
 
@@ -244,9 +252,12 @@ namespace Auction.Services.User
                 //set exist bidder bid price
                 var bidder = context.Bidders.FirstOrDefault(x => x.ProductId == model.ProductId && x.UserId == model.UserId);
                 if (bidder != null) bidder.BidPrice = model.BidPrice;
+                bidder.DateTime = model.DateTime;
                 return context.SaveChanges() > 0;
             }
         }
+
+
 
         public Bidder ExistBidder(Bidder model)
         {
@@ -260,7 +271,7 @@ namespace Auction.Services.User
         {
             using (var context=new AuctionDbContext())
             {
-                return context.Bidders.Where(x => x.ProductId == productId).Include(x=>x.User).OrderByDescending(x=>x.Id).ToList();
+                return context.Bidders.Where(x => x.ProductId == productId).Include(x=>x.User).OrderByDescending(x=>x.BidPrice).ToList();
             }
         }
 
@@ -280,6 +291,16 @@ namespace Auction.Services.User
                 Product product = context.Products.Find(id);
                 context.Products.Remove(product);
                 return context.SaveChanges() > 0;
+            }
+        }
+
+        public List<Product> BiddedProducts(int userId)
+        {
+            using (var context = new AuctionDbContext())
+            {
+                var productId = context.Bidders.Where(x => x.UserId == userId).ToList();
+
+                return context.Products.Where(x => x.Bidders.Any(i => i.UserId == userId)).Include(x=>x.Bidders).ToList();
             }
         }
     }

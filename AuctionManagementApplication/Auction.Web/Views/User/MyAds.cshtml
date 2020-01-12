@@ -47,9 +47,16 @@
 
             @foreach (var PendingAd in Model.PendingAds)
             {
+                <div class="col-md-12">
+                    <div class="alert alert-warning " role="alert">
+                        Your posted ad is now under review!
+                        We will manually review your ad.It takes usually one to two hours to review your ad.
 
-                <div class="product-item col-md-12 mb-3">
-                    <hr/>
+                    </div>
+                </div>
+
+                <div class="product-item col-md-12 mb-3" style="opacity: 0.5;">
+                    <hr />
                     <div class="row">
                         <div class="col-md-3">
 
@@ -61,13 +68,14 @@
                             <table>
                                 <tr>
                                     <th>
-                                        <h2>@PendingAd.Name</h2></th>
+                                        <h2>@PendingAd.Name</h2>
+                                    </th>
                                 </tr>
                                 @*<tr>
-                                    <th>
-                                        <i class="fas fa-map-marker-alt"></i> @activeAds.User.Thana.Name, @activeAds.User.Thana.District.Name
-                                    </th>
-                                </tr>*@
+                                <th>
+                                    <i class="fas fa-map-marker-alt"></i> @activeAds.User.Thana.Name, @activeAds.User.Thana.District.Name
+                                </th>
+                            </tr>*@
                                 <tr>
                                     <th><b>Start Price:</b> BDT @PendingAd.BasePrice</th>
                                 </tr>
@@ -102,18 +110,6 @@
 
                 </div>
 
-
-                            @*<div class="col-md-6">
-                                <img class="img-thumbnail img-fluid" src="@penddingAds.ImageUrl1" alt="" height="200" width="250" />
-                            </div>
-
-                            <div class="col-md-6">
-                                <h4>@penddingAds.Name</h4>
-                                <h4>@penddingAds.StarDateTime</h4>
-                                <h4>@penddingAds.EndDateTime</h4>
-
-
-                            </div>*@
             }
 
         </div>
@@ -174,7 +170,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <button type="button" class="deleteButton btn btn-danger mt-3" data-id="@activeAds.Id"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
+                                        <button type="button" class="deleteButton btn btn-danger text-capitalize mt-3" data-id="@activeAds.Id"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
                                     </th>
                                 </tr>
                             </table>
@@ -261,7 +257,8 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <button type="button" class="deleteButton btn btn-danger" data-id="@RejectAd.Id"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
+                                        <button type="button" class=" btn btn-primary text-capitalize" data-id="@RejectAd.Id"><i class="fas fa-pen mr-2"></i>Edit</button>
+                                        <button type="button" class="deleteButton btn btn-danger text-capitalize" data-id="@RejectAd.Id"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
                                     </th>
                                 </tr>
 

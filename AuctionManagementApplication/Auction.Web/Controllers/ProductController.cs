@@ -17,18 +17,26 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult ProductDetails(int postId)
         {
-            var userData = Session["UserData"] as User;
+            var oldUserData = Session["UserData"] as User;
+
+            var userData = (dynamic)null;
+            if (oldUserData !=null)
+            {
+                userData = UserAccountService.Instance.IsRegisteredUser(oldUserData);
+            }
+           
 
             Bidder bidder = new Bidder();
             PostDetailsViewModel model = new PostDetailsViewModel();
-            if (userData!=null)
+            if (userData != null)
             {
 
                 bidder.UserId = userData.Id;
                 bidder.ProductId = postId;
             
 
-                var product = userData.Products.FirstOrDefault(x => x.Id == postId);
+                //var product = userData.Products.FirstOrDefault(x => x.Id == postId);
+                var product = UserProductService.Instance.GetAdByIdAndUserId(userData.Id,postId);
 
                 if (product != null)
                 {

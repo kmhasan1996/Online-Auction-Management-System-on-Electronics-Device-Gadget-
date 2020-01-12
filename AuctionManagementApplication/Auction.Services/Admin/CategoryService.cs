@@ -65,6 +65,7 @@ namespace Auction.Services.Admin
                 {
                     model.Id = category.Id;
                     model.Name = category.Name;
+                    model.Icon = category.Icon;
                     model.ImageUrl = category.ImageUrl;
                     model.IsActive = category.IsActive;
                 }

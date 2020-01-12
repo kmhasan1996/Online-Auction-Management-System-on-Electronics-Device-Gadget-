@@ -12,6 +12,7 @@ namespace Auction.Web.ViewModels
         public string SearchText { get; set; }
         public List<Category> FeaturedCategories { get; set; }
         public List<Product> Products { get; set; }
+        public List<District> Districts { get; set; }
         public int MaximumPrice { get; set; }
         public int MinimumPrice { get; set; }
         public int? CategoryID { get; set; }

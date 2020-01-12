@@ -37,5 +37,6 @@ namespace Auction.Services.User
                 return context.Thanas.Where(x => x.DistrictId == districtId).ToList();
             }
         }
+       
     }
 }

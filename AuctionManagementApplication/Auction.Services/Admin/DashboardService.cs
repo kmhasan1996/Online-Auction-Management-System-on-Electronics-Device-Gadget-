@@ -82,18 +82,18 @@ namespace Auction.Services.Admin
         {
             using (var context = new AuctionDbContext())
             {
-                return context.Products.Count(x=>x.IsActive==false);
+                return context.Products.Count(x=>x.IsPending);
             }
         }
 
-        //public int GetPendingPostedAdCount()
-        //{
-        //    using (var context = new AuctionDbContext())
-        //    {
-        //        return context.Products.Count(x=>x.IsActive==false);
-        //    }
-        //}
-       
+        public int GetRejectPostedAdCount()
+        {
+            using (var context = new AuctionDbContext())
+            {
+                return context.Products.Count(x => x.IsRejected);
+            }
+        }
+
 
     }
 }

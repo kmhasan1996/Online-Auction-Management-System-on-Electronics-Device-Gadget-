@@ -113,6 +113,20 @@ namespace Auction.Services.UserAccountService
             }
         }
 
+        public bool DepositCreditForBidding(int userId, double credit)
+        {
+            using (var context = new AuctionDbContext())
+            {
+                var user = context.Users.Find(userId);
+
+                user.Credit -= credit;
+
+                return context.SaveChanges() > 0;
+
+            }
+        }
+
+
         #endregion
 
         #region MyRegion

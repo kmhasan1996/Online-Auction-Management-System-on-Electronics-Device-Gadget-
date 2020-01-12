@@ -6,47 +6,6 @@
 
 }
 
-<!-- Page title -->
-
-@*<div class="page-title parallax parallax1">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-title-heading">
-
-                    <h3>
-                        <a href="@Url.Action("Index", "Home")">Home ></a> 
-                        <a href="@Url.Action("Index", "Shop")">All Categories </a> 
-
-                        @foreach (var category in Model.FeaturedCategories)
-                        {
-                            if (category.Id == Model.CategoryID) { 
-                                 <a href="@Url.Action("Index","Shop",new { categoryID=category.Id,sortBy=Model.SortBy})" class="@(Model.CategoryID.HasValue && Model.CategoryID.Value==category.Id?"active" : string.Empty)". >@category.Name</a>
-                            }
-
-                        }
-
-                    </h3>
-                   
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
-
-@*<h3 class="container">
-    <a href="@Url.Action("Index", "Home")">Home ></a> 
-    <a href="@Url.Action("Index", "Shop")">All Categories </a> 
-
-    @foreach (var category in Model.FeaturedCategories)
-    {
-        if (category.Id == Model.CategoryID) { 
-            <a href="@Url.Action("Index","Shop",new { categoryID=category.Id,sortBy=Model.SortBy})" class="@(Model.CategoryID.HasValue && Model.CategoryID.Value==category.Id?"active" : string.Empty)" >@category.Name</a>
-        }
-
-    }
-
-</h3>*@
 
 <style>
     .vl {
@@ -59,21 +18,33 @@
     }
 </style>
 <section class="flat-row main-shop shop-slidebar">
-    <div class="container pb-3" style="background: white; margin-top: -80px;padding-top:20px">
+    <div class="container pb-3" style="background: rgb(255,255,255); margin-top: -80px;padding-top:20px">
         <div class="row">
             <div class="col-md-12 mb-3">
                 @*<i class="fas fa-map-marker-alt mr-2"></i>*@
                 <div class="row">
-                    <div class="col-md-3">
-                        <select id="" name="" class="form-control form-control-sm" size="1">
-                            <option value="" > Select Location</option>
-
+                    <div class="col-md-2">
+                        <select  id="DistrictId" name="DistrictId" class="form-control form-control-sm" size="1">
+                            <option value="" > Select District</option>
+                            @foreach (var district in Model.Districts)
+                            {
+                                <option value="@district.Id">@district.Name</option>
+                            }
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <select id="" name="" class="form-control form-control-sm" size="1">
+                    <div class="col-md-2">
+                        <select id="ThanaId" name="ThanaId" class="form-control form-control-sm" size="1">
+                            <option value="" > Select Location</option>
+                           
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select id="CategoryId" name="CategoryId" class="form-control form-control-sm" size="1">
                             <option value="">Select Category</option>
-
+                            @foreach (var category in Model.FeaturedCategories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
                         </select>
                     </div>
                     <div class="col-md-5">
@@ -150,16 +121,14 @@
                             @foreach (var category in Model.FeaturedCategories)
                             {
 
-
                                 <a href="@Url.Action("Index","Shop",new { categoryID=category.Id,sortBy=Model.SortBy})" class="@(Model.CategoryID.HasValue && Model.CategoryID.Value==category.Id?"active" : string.Empty)">@category.Name <span>(@category.Products.Count(x=>x.IsActive))</span></a>
-
 
                             }
                         </div>
                     </div>
 
                     <div class="widget widget-price">
-                        <h5 class="widget-title">Filter by price</h5>
+                        <h5 class="widget-title">Filter by base price</h5>
                         <div class="price-filter">
                             <div id="slide-range"></div>
                             <p class="amount">
@@ -167,7 +136,7 @@
                             </p>
                         </div>
                     </div><!-- /.widget -->
-                    <a href="@Url.Action("Index", "Shop")" class="btn btn-danger">Reset Filters</a>
+                    <a href="@Url.Action("Index", "Shop")" class="btn btn-danger ml-5">Reset Filters</a>
                 </div><!-- /.sidebar -->
                 <div class="vl"></div>
             </div><!-- /.col-md-3 -->
@@ -192,28 +161,30 @@
 </section><!-- /.flat-row -->
 
 <script>
-    var callTimeout;
 
-   $("#amount").val("$" + @Model.MinimumPrice + ".00" + " - " + "$" + @Model.MaximumPrice + ".00");
+    $(document).ready(function() {
+         var callTimeout;
 
-	var priceSlider = $("#slide-range").slider({
-		range: true,
-		min: @Model.MinimumPrice,
-		max: @Model.MaximumPrice,
-		values: [@Model.MinimumPrice, @Model.MaximumPrice],
-		slide: function (event, ui) {
-			var minPrice = ui.values[0];
-			var maxPrice = ui.values[1];
+    $("#amount").val("$" + @Model.MinimumPrice + ".00" + " - " + "$" + @Model.MaximumPrice + ".00");
+
+    var priceSlider = $("#slide-range").slider({
+        range: true,
+        min: @Model.MinimumPrice,
+        max: @Model.MaximumPrice,
+        values: [@Model.MinimumPrice, @Model.MaximumPrice],
+        slide: function (event, ui) {
+            var minPrice = ui.values[0];
+            var maxPrice = ui.values[1];
 
             $("#amount").val("$" + minPrice + ".00" + " - " + "$" + maxPrice + ".00");
 
             clearTimeout(callTimeout);
-			callTimeout = setTimeout(GetData, 500);
-		}
+            callTimeout = setTimeout(GetData, 500);
+        }
     });
 
     function GetData(minimumPrice, maximumPrice) {
-         //console.log("GetData Called");
+        //console.log("GetData Called");
         $.ajax({
 
             url: '@Url.Action("FilterProduct", "Shop")',
@@ -225,17 +196,53 @@
             }
         })
         .done(function(response) {
-           $("#productsDiv").html(response);
+            $("#productsDiv").html(response);
 
         })
-       .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-           swal({
-               title: "Warning",
-               text: "Please enter all required fields.",
-               icon: "warning",
-               buttons: true,
-               dangerMode: true,
-           });
-       });
+        .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+            swal({
+                title: "Warning",
+                text: "Please enter all required fields.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            });
+        });
     }
+
+    $("#DistrictId").on("change",
+        function () {
+            var districtId = $('#DistrictId').val();
+            var jsonData = { districtId: districtId };
+
+            $('#ThanaId').empty();
+
+            if (districtId <= 0) {
+                //alert("hi");
+                var defaultValue = '<option value=0 > Select One</option>';
+                $('#ThanaId').append(defaultValue);
+            }
+            else {
+                var defaultValue1 = '<option value=0 > Select One</option>';
+                $('#ThanaId').append(defaultValue1);
+                $.ajax({
+                    type: "POST",
+                    url: "/User/GetThanaByDistrictId/",
+                    data: JSON.stringify(jsonData),
+                    //data: {
+                    //    categoryId:$("#categoryId").val()
+                    //} ,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        $.each(data, function (key, thana) {
+                            var optionText = "<option value='" + thana.Id + "' >" + thana.Name + "</option>";
+                            $('#ThanaId').append(optionText);
+                        });
+                    }
+                });
+            }
+
+        });
+    });
+
 </script>

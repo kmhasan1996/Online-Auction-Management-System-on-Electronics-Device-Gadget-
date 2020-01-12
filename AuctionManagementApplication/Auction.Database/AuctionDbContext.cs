@@ -23,13 +23,7 @@ namespace Auction.Database
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Bidder>().HasRequired(s => s.ProductId)
-        //        .WithMany()
-        //        .WillCascadeOnDelete(false);
-
-        //}
+        
     }
 
 }

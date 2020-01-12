@@ -20,7 +20,7 @@
                 <ul>
                     @foreach (var category in Model.Categories)
                     {
-                        <li><i class="@str"></i><a href="@Url.Action("Index", "Shop", new {categoryID = @category.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@category.Name</a></li>
+                        <li><i class="@category.Icon mr-2"></i><a href="@Url.Action("Index", "Shop", new {categoryID = @category.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@category.Name</a></li>
 
                     }
                 </ul>
@@ -71,8 +71,8 @@
 
 <!-- IMAGE BOX -->
 <section class="flat-row row-image-box style2" style="margin-top: -20px">
-    <div class="container" style="background: white;">
-        <div class="row">
+    <div class="container " style="background: white;">
+        <div class="row ">
             <div class="col-md-12">
                 <div class="title-section margin-bottom-42 mt-4">
                     <h3>All Category</h3>
@@ -82,9 +82,9 @@
             {
                 <div class="col-md-2">
 
-                    <img src="@category.ImageUrl" height="100" width="100" alt="Image"><br />
+                    @*<img src="@category.ImageUrl" height="100" width="100" alt="Image"><br />*@
 
-                    <a href="@Url.Action("Index","Shop",new { categoryID=category.Id})" class="btn btn-primary mt-2">@category.Name</a>
+                    <a href="@Url.Action("Index","Shop",new { categoryID=category.Id})" class="btn btn-secondary @category.Icon p-3 mt-2 mb-5"><i class="mr-2"></i>@category.Name</a>
 
                 </div>
             }

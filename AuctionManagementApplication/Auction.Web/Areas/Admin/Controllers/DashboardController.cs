@@ -19,7 +19,7 @@ namespace Auction.Web.Areas.Admin.Controllers
             model.CategoryCount = DashboardService.Instance.GetCategoryCount();
             model.AdRequestCount = DashboardService.Instance.GetPendingPostedAdCount();
             model.LiveAdCount = DashboardService.Instance.GetActivePostedAdCount();
-            model.BlockedAdCount = 0;
+            model.BlockedAdCount = DashboardService.Instance.GetRejectPostedAdCount();
             model.UserCount = DashboardService.Instance.GetActiveUserCount();
             model.BlockedUserCount = DashboardService.Instance.GetDeactivateUserCount();
             model.DistrictCount = DashboardService.Instance.GetDistrictCount();

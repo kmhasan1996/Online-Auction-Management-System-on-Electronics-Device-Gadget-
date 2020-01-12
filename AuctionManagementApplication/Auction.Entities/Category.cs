@@ -7,6 +7,7 @@ namespace Auction.Entities
     {
         public int Id { get; set; }
         [Required]
+        public string Icon { get; set; }
         public string Name { get; set; }
         [Required]
         public string ImageUrl { get; set; }

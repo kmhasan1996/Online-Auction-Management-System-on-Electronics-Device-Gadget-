@@ -1,11 +1,9 @@
 ﻿@model Auction.Web.ViewModels.FilterProductsViewModel
 
 
-@*<div class="filter-shop clearfix">
-        <p class="showing-product float-left">
-            Showing @(((Model.Pager.CurrentPage - 1) * Model.Pager.PageSize) + 1) – @(((Model.Pager.CurrentPage - 1) * Model.Pager.PageSize) + (Model.Products.Count < Model.Pager.PageSize ? Model.Products.Count : Model.Pager.PageSize)) of @Model.Pager.TotalItems Products
-        </p>
-    </div>*@
+@{
+    DateTime dateTime=DateTime.Now;
+}
 
 <div class="product-content product-threecolumn product-slidebar clearfix">
     <div class="row">
@@ -32,12 +30,26 @@
                                     <table>
                                         <tr>
                                             <th>
+                                                @if (product.EndDateTime < dateTime)
+                                                {
+                                                    <h2 class="text-danger">Auction Ended</h2>
+
+                                                }
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
                                                 <h2>@product.Name</h2>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th>
                                                 <i class="fas fa-map-marker-alt"></i> @product.User.Thana.Name, @product.User.Thana.District.Name
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <b>End Date:</b> @product.EndDateTime.ToString("D")
                                             </th>
                                         </tr>
                                         <tr>
@@ -60,14 +72,11 @@
                                             }
 
                                         </tr>
-                                        @*<tr>
-                                                <th>
-                                                    <b>End Date:</b>  @product.EndDateTime
-                                                </th>
-                                            </tr>*@
+
 
 
                                     </table>
+
 
                                 </div>
                                 <div class="col-md-3">

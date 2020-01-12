@@ -214,6 +214,21 @@ namespace Auction.Web.Controllers
             };
             return json;
         }
+
+
+
+        [HttpGet]
+        public ActionResult BiddingHistory()
+        {
+            if (Session["UserData"] == null) { return RedirectToAction("Login"); }
+            var userData = Session["UserData"] as User;
+            BiddingHistoryViewModel model=new BiddingHistoryViewModel();
+                
+            model.Products= UserProductService.Instance.BiddedProducts(userData.Id);
+            model.User = userData;
+            return View(model);
+
+        }
         #endregion
     }
 
