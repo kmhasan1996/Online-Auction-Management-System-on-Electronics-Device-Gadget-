@@ -1,5 +1,9 @@
 ﻿@model Auction.Web.ViewModels.ProductWidgetViewmodel
 
+@{
+    DateTime dateTime = DateTime.Now;
+    var i = 0;
+}
 
 @if (Model != null && Model.Products != null)
 {
@@ -54,7 +58,38 @@
                     <div class="col-md-6">
                         <table>
                             <tr>
-                                <th><h2>@product.Name</h2></th>
+                                <th>
+                                    @if (product.EndDateTime < dateTime)
+                                    {
+                                        <h3 class="text-danger">[Auction Ended]</h3>
+
+                                    }
+                                    else
+                                    {
+                                        i++;
+                                       
+                                        <h3 class="text-danger hh-@i" id="hh"></h3>
+                                        <input type="hidden" class="endDateTime-@i" value="@product.EndDateTime"/>
+                                        <script>
+
+                                            var tt = '@product.EndDateTime';
+
+                                            $(".hh-@i").countdown(tt,
+                                                function(event) {
+                                                    $(this).text(
+                                                        event.strftime('[%D:%H:%M:%S]')
+                                                    );
+                                                });
+
+                                        </script>
+
+                                    }
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h2>@product.Name</h2>
+                                </th>
                             </tr>
                             <tr>
                                 <th>

@@ -11,7 +11,6 @@ E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.xml
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.xml
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csprojAssemblyReference.cache
-E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CoreCompileInputs.cache
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CopyComplete
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.dll
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.pdb

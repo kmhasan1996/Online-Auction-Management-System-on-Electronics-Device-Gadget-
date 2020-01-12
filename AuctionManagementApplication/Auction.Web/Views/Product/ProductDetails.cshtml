@@ -6,28 +6,25 @@
     DateTime dateTime=DateTime.Now;
 }
    
+<script src="~/Contents/javascript/jquery.countdown.js"></script>
 
 @if (Model != null && Model.Product != null)
 {
-   
-
     <!-- Page title -->
-  
-        <div class="container" style="background: white;margin-top: 10px; padding: 10px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-title-heading">
-                        <h4>
-                            <i class="fas fa-home mr-1"></i><a href="@Url.Action("Index", "Home")">Home ></a>
-                            <a href="@Url.Action("Index", "Shop")">All Product ></a>
-                            <a href="@Url.Action("Index","Shop",new { categoryID=Model.Product.Category.Id})">@Model.Product.Category.Name ></a>
-                            <a> @Model.Product.Name </a>
-                        </h4>
-                    </div><!-- /.page-title-heading -->
-                </div><!-- /.col-md-12 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-
+    <div class="container" style="background: white;margin-top: 10px; padding: 10px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h4>
+                        <i class="fas fa-home mr-1"></i><a href="@Url.Action("Index", "Home")">Home ></a>
+                        <a href="@Url.Action("Index", "Shop")">All Product ></a>
+                        <a href="@Url.Action("Index","Shop",new { categoryID=Model.Product.Category.Id})">@Model.Product.Category.Name ></a>
+                        <a> @Model.Product.Name </a>
+                    </h4>
+                </div><!-- /.page-title-heading -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
 
     <section class="flat-row main-shop shop-detail" >
         <div class="container" style="background: white; margin-top: -45px">
@@ -94,32 +91,33 @@
                             </div>
                         </div>
 
-                        @*<h2>Description</h2>
-        <div class="inner max-width-83 padding-top-33">
-            <p class="text-justify">
-                @Model.Product.Description
-            </p>
-        </div>*@
                     </div>
                 </div><!-- /.col-md-6 -->
 
                 <div class="col-md-6">
-                    <hr/>
-                    @if (Model.Product.EndDateTime<dateTime)
+                    <hr />
+                    <div class="col-md-11 mb-4 p-2" style="border: 1px solid black; margin-left: 42px;">
+                        <h5 class="text-center">Time Left</h5>
+                        <h1 class="getting-started text-danger text-center"></h1>
+                    </div>
+
+                    @if (Model.Product.EndDateTime < dateTime)
                     {
-                        <div class="col-md-12">
+                        <div class="col-md-12 mt-2">
                             <h2 class="text-danger ml-4">[Auction Ended]</h2>
                         </div>
-                                   
+
                     }
+                    
                     <div class="product-detail">
                         <div class="inner">
                             <div class="content-detail">
                                 <table>
+
                                     <tr>
                                         <th><b>Start Price:</b> BDT @Model.Product.BasePrice</th>
                                     </tr>
-                                   
+
                                     <tr>
                                         @{
                                             if (Model.Product.CurrentBidPrice == 0)
@@ -138,7 +136,11 @@
 
                                     </tr>
                                     <tr>
-                                        <th><b>End Date:</b> @Model.Product.EndDateTime.ToString("dddd, d MMMM, yyyy")</th>
+                                        <th>
+                                            <input type="hidden" id="endDate" value="@Model.Product.EndDateTime.ToShortDateString()" />
+                                            <input type="hidden" id="endDateTime" value="@Model.Product.EndDateTime" />
+                                            <b>End Date:</b> @Model.Product.EndDateTime.ToString("dddd, d MMMM, yyyy")
+                                        </th>
                                     </tr>
                                     <tr>
                                         <th><b>End Time:</b> @Model.Product.EndDateTime.ToString("hh:mm tt")</th>
@@ -147,10 +149,11 @@
                                         <th><b>Category:</b>@Model.Product.Category.Name</th>
                                     </tr>
 
+
                                 </table>
 
                                 @{
-                                    if (Model.Product.EndDateTime<dateTime)
+                                    if (Model.Product.EndDateTime < dateTime)
                                     {
                                         <div class="product-quantity">
                                             <div class="">
@@ -162,7 +165,7 @@
                                                 <a class="bidNowBtn btn disabled" href="#">Place My Bid</a>
 
                                             </div>
-                                            
+
 
                                         </div>
                                     }
@@ -170,7 +173,7 @@
                                     {
                                         if (Model.OwnAd)
                                         {
-                                            <input type="hidden" id="ownAd" value="@Model.OwnAd"/>
+                                            <input type="hidden" id="ownAd" value="@Model.OwnAd" />
                                             <div class="product-quantity">
                                                 <div class="">
                                                     <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter bid price" disabled />
@@ -233,12 +236,12 @@
                                     }
                                 }
 
-                                <hr/>
+                                <hr />
                                 <h2>Bidding History:</h2>
                                 @if (Model.Bidders.Count != 0)
                                 {
-                                    
-                                   
+
+
                                     <table class="table table-striped mt-2">
                                         <thead class="thead-dark" style="background: gray; color: white">
                                             <tr>
@@ -258,10 +261,10 @@
                                                     <tr>
                                                         <td>@i</td>
                                                         <td>@bidder.DateTime.ToString("dd-MM-yyyy hh:mm tt")</td>
-                                                        
+
                                                         @if (@Model.User != null)
                                                         {
-                                                            if (bidder.UserId==Model.User.Id)
+                                                            if (bidder.UserId == Model.User.Id)
                                                             {
                                                                 <td><strong>@bidder.User.FirstName (You)</strong></td>
                                                             }
@@ -270,12 +273,12 @@
                                                                 <td>@bidder.User.FirstName</td>
                                                             }
                                                         }
-                                                        
+
                                                         else
                                                         {
                                                             <td>@bidder.User.FirstName</td>
                                                         }
-                                                       
+
                                                         <td>@bidder.BidPrice</td>
                                                     </tr>
                                                 }
@@ -284,7 +287,7 @@
 
                                         </tbody>
                                     </table>
-                                                }
+                                }
                                 else
                                 {
                                     <h3 class="text-danger">[No Bid Yet]</h3>
@@ -300,8 +303,6 @@
         </div><!-- /.container -->
     </section><!-- /.flat-row -->
 
-    
-
     <section class="flat-row shop-related">
         <div class="container" style="background: white; margin-top: -65px;">
             <div class="row">
@@ -310,7 +311,7 @@
                         <h2 class="title">Related Ads</h2>
                     </div>
 
-                    @{Html.RenderAction("Products", "Widget", new { isLatestProducts = false, categoryID = Model.Product.Category.Id });}
+                    @{Html.RenderAction("Products", "Widget", new { isLatestProducts = false, categoryID = Model.Product.Category.Id,productId=Model.Product.Id });}
 
                 </div>
             </div><!-- /.row -->
@@ -321,6 +322,16 @@
 
 <script>
     $(document).ready(function () {
+
+        var tt = $("#endDateTime").val();
+        //var tt = '2020/1/13';
+        $(".getting-started").countdown(tt, function(event) {
+            $(this).text(
+                event.strftime('[%D:%H:%M:%S]')
+                //event.strftime('Days: %D:Hours: %H:Minutes:%M:Seconds:%S');
+            );
+        }); 
+
 
         //bid price only digit
         $('input[name="BidPrice"]').keyup(function(e) {
@@ -355,14 +366,9 @@
                 document.getElementById("errorMessage").innerHTML = "<br/>You are a bidder of this ad ";
             }
         }
-       
-        
-      
 
 
         $(".bidNowBtn").click(function () {
-
-
             //check for empty bid price field
             var bidingPrice = $("#BidPrice").val();
             if (bidingPrice.length === 0) {
@@ -376,7 +382,6 @@
                 });
                 return;
             }
-
 
             //check for entered bid price must be greater than current bid price
             var currentBidPrice = $("#currentBidPrice").val();
@@ -414,8 +419,6 @@
             }
           
 
-           
-           
             if (!existenceBidder) {
                 if (parseInt(userCredit) >= parseInt(depositAmount)) {
                     Swal.fire({
@@ -520,9 +523,6 @@
                         }
                     });
             }
-
-           
-
 
 
         });

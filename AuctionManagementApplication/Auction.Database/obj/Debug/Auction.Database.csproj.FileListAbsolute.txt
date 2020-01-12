@@ -8,7 +8,6 @@ E:\Online Auction System\AuctionManagementApplication\Auction.Database\bin\Debug
 E:\Online Auction System\AuctionManagementApplication\Auction.Database\bin\Debug\EntityFramework.xml
 E:\Online Auction System\AuctionManagementApplication\Auction.Database\bin\Debug\EntityFramework.SqlServer.xml
 E:\Online Auction System\AuctionManagementApplication\Auction.Database\obj\Debug\Auction.Database.csprojAssemblyReference.cache
-E:\Online Auction System\AuctionManagementApplication\Auction.Database\obj\Debug\Auction.Database.csproj.CoreCompileInputs.cache
 E:\Online Auction System\AuctionManagementApplication\Auction.Database\obj\Debug\Auction.Database.csproj.CopyComplete
 E:\Online Auction System\AuctionManagementApplication\Auction.Database\obj\Debug\Auction.Database.dll
 E:\Online Auction System\AuctionManagementApplication\Auction.Database\obj\Debug\Auction.Database.pdb

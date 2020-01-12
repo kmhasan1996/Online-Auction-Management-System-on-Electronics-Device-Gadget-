@@ -82,7 +82,6 @@ E:\Online Auction System\AuctionManagementApplication\Auction.Web\bin\Newtonsoft
 E:\Online Auction System\AuctionManagementApplication\Auction.Web\bin\Antlr3.Runtime.pdb
 E:\Online Auction System\AuctionManagementApplication\Auction.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\Online Auction System\AuctionManagementApplication\Auction.Web\obj\Debug\Auction.Web.csprojAssemblyReference.cache
-E:\Online Auction System\AuctionManagementApplication\Auction.Web\obj\Debug\Auction.Web.csproj.CoreCompileInputs.cache
 E:\Online Auction System\AuctionManagementApplication\Auction.Web\obj\Debug\Auction.Web.csproj.CopyComplete
 E:\Online Auction System\AuctionManagementApplication\Auction.Web\obj\Debug\Auction.Web.dll
 E:\Online Auction System\AuctionManagementApplication\Auction.Web\obj\Debug\Auction.Web.pdb

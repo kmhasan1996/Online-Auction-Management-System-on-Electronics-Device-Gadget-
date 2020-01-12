@@ -12,7 +12,18 @@ namespace Auction.Web.Controllers
         // GET: Testimonial
         public ActionResult Index()
         {
-            TestimonialViewModel model=new TestimonialViewModel();
+            var userData = Session["UserData"] as User;
+
+            TestimonialViewModel model = new TestimonialViewModel();
+            if (userData != null)
+            {
+                model.User = userData;
+            }
+            else
+            {
+                model.User = null;
+            }
+           
             model.FeaturedCategories = UserCategoryService.Instance.GetFeaturedNotNullItemCategory();
             model.Testimonials = TestimonialService.Instance.GetAllTestimonials();
             return View(model);

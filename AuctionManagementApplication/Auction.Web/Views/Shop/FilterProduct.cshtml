@@ -1,17 +1,21 @@
 ﻿@model Auction.Web.ViewModels.FilterProductsViewModel
 
- @{
-     DateTime dateTime=DateTime.Now;
- }
-   
+@{
+    DateTime dateTime = DateTime.Now;
+    var i = 0;
+}
+
+<script src="~/Contents/javascript/jquery.countdown.js"></script>
+
 <div class="product-content product-threecolumn product-slidebar clearfix">
     <div class="row">
-        @if (Model.Products.Count !=0)
+        @if (Model.Products.Count != 0)
         {
             <ul class="product style2 sd1">
-               
+
                 @foreach (var product in Model.Products)
                 {
+                    
 
                     ////var imageURL = product.ImageUrl1;
 
@@ -19,7 +23,7 @@
                         <div class="product-item col-md-11 ml-3 p-3" style="border-bottom: 1px solid black; margin-top: -30px;">
                             @*<hr />*@
                             <div class="row">
-                               
+
                                 <div class="col-md-3">
                                     <a href="@Url.Action("ProductDetails", "Product", new {postId = product.Id})">
                                         <img src="@product.ImageUrl1" alt="image">
@@ -30,10 +34,27 @@
                                     <table>
                                         <tr>
                                             <th>
-                                                @if (product.EndDateTime<dateTime)
+                                                @if (product.EndDateTime < dateTime)
                                                 {
                                                     <h2 class="text-danger">[Auction Ended]</h2>
 
+                                                }
+                                                else
+                                                {
+                                                    i++;
+                                                    <h2 class="text-danger hh-@i" id="hh"></h2>
+                                                    <input type="hidden" class="endDateTime-@i" value="@product.EndDateTime" />
+                                                    <script>
+
+                                                        var tt='@product.EndDateTime';
+
+                                                        $(".hh-@i").countdown(tt, function (event) {
+                                                            $(this).text(
+                                                                event.strftime('[%D:%H:%M:%S]')
+                                                            );
+                                                        });
+
+                                                    </script>
                                                 }
                                             </th>
                                         </tr>
@@ -49,6 +70,7 @@
                                         </tr>
                                         <tr>
                                             <th>
+                                                @*<input type="hidden" id="endDateTime" value="@product.EndDateTime" />*@
                                                 <b>End Date:</b> @product.EndDateTime.ToString("D")
                                             </th>
                                         </tr>
@@ -93,7 +115,7 @@
 
                 }
 
-            </ul><!-- /.product --> 
+            </ul><!-- /.product -->
         }
         else
         {
@@ -105,35 +127,48 @@
         }
 
     </div>
-  
+
 </div><!-- /.product-content -->
 
-@if (Model.Pager != null @*&& Model.Pager.TotalPages > 1*@)
+@if (Model.Pager != null@*&& Model.Pager.TotalPages > 1*@)
 {
-    <div class="product-pagination text-center clearfix">
-        <ul class="flat-pagination">
-            @if (Model.Pager.CurrentPage > 1)
-            {
-                <li class="prev">
-                    <a href="@Url.Action("Index", "Shop", new { pageNo = Model.Pager.CurrentPage - 1, sortBy = Model.SortBy, categoryID = Model.CategoryID})" class="pageDataLink"><i class="fa fa-angle-left"></i></a>
-                </li>
-               
-            }
+<div class="product-pagination text-center clearfix">
+    <ul class="flat-pagination">
+        @if (Model.Pager.CurrentPage > 1)
+        {
+            <li class="prev">
+                <a href="@Url.Action("Index", "Shop", new { pageNo = Model.Pager.CurrentPage - 1, sortBy = Model.SortBy, categoryID = Model.CategoryID})" class="pageDataLink"><i class="fa fa-angle-left"></i></a>
+            </li>
 
-                @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
-            {
-                    string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
+        }
 
-                <li class="@activeClass"><a href="@Url.Action("Index", "Shop", new { pageNo = page, sortBy = Model.SortBy, categoryID = Model.CategoryID })" title="" class="pageDataLink">@page</a></li>
-            }
+        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+        {
+            string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
 
-            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
-            {
-                
+            <li class="@activeClass"><a href="@Url.Action("Index", "Shop", new { pageNo = page, sortBy = Model.SortBy, categoryID = Model.CategoryID })" title="" class="pageDataLink">@page</a></li>
+        }
 
-                <li><a href="@Url.Action("Index", "Shop", new { pageNo = Model.Pager.CurrentPage+1,sortBy = Model.SortBy, categoryID = Model.CategoryID})"><i class="fa fa-angle-right"></i></a></li>
-               
-            }
-        </ul><!-- /.flat-pagination -->
-    </div>
+        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+        {
+
+
+            <li><a href="@Url.Action("Index", "Shop", new { pageNo = Model.Pager.CurrentPage+1,sortBy = Model.SortBy, categoryID = Model.CategoryID})"><i class="fa fa-angle-right"></i></a></li>
+
+        }
+    </ul><!-- /.flat-pagination -->
+</div>
 }
+
+<script>
+    $(document).ready(function() {
+        //var tt = $("#endDateTime").val();
+        ////var tt = '2020/1/13';
+        //$(".getting-started").countdown(tt, function(event) {
+        //    $(this).text(
+        //        event.strftime('[%D:%H:%M:%S]')
+        //    );
+        //}); 
+
+    });
+</script>

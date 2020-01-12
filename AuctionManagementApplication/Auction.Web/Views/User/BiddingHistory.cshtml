@@ -3,9 +3,14 @@
 @{
     ViewBag.Title = "BiddingHistory";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    DateTime dateTime = DateTime.Now;
+    var i = 0;
 }
 
-    <div class="container">
+<script src="~/Contents/javascript/jquery.countdown.js"></script>
+
+<div class="container">
 
        
         <h2>My Biding History</h2>
@@ -46,14 +51,39 @@
                                         <table>
                                             <tr>
                                                 <th>
+                                                    @if (ad.EndDateTime < dateTime)
+                                                    {
+                                                        <h3 class="text-danger">[Auction Ended]</h3>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        i++;
+
+                                                        <h3 class="text-danger hh-@i"></h3>
+                                                        <input type="hidden" class="endDateTime-@i" value="@ad.EndDateTime" />
+                                                        <script>
+
+                                                            var tt = '@ad.EndDateTime';
+
+                                                            $(".hh-@i").countdown(tt,
+                                                                function(event) {
+                                                                    $(this).text(
+                                                                        event.strftime('[%D:%H:%M:%S]')
+                                                                    );
+                                                                });
+
+                                                        </script>
+
+                                                    }
+                                                </th>
+
+                                            </tr>
+                                            <tr>
+                                                <th>
                                                     <h2>@ad.Name</h2>
                                                 </th>
                                             </tr>
-                                            @*<tr>
-                                                <th>
-                                                    <i class="fas fa-map-marker-alt"></i> @activeAds.User.Thana.Name, @activeAds.User.Thana.District.Name
-                                                </th>
-                                            </tr>*@
                                             <tr>
                                                 <th><b>Start Price:</b> BDT @ad.BasePrice</th>
                                             </tr>
@@ -79,7 +109,7 @@
                                                     var userId = Model.User.Id;
                                                     var postId = ad.Id;
                                                     var bidAmount = ad.Bidders.FirstOrDefault(x => x.UserId == userId && x.ProductId == postId).BidPrice;
-                                                    var positionList = ad.Bidders.Where(x => x.ProductId == postId).OrderByDescending(x=>x.BidPrice).Select(x => x.BidPrice).ToList();
+                                                    var positionList = ad.Bidders.Where(x => x.ProductId == postId).OrderByDescending(x => x.BidPrice).Select(x => x.BidPrice).ToList();
 
                                                     var position = positionList.IndexOf(bidAmount);
                                                     position += 1;

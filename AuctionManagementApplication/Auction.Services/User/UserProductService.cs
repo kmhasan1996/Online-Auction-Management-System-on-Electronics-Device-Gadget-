@@ -87,13 +87,13 @@ namespace Auction.Services.User
 
         }
 
-        public List<Product> GetProductsByCategory(int categoryId, int numberOfProducts)
+        public List<Product> GetProductsByCategory(int categoryId, int numberOfProducts,int productId)
         {
 
             using (var context = new AuctionDbContext())
             {
                 return context.Products.
-                    Where(x => x.Category.Id == categoryId && x.Category.IsActive && x.User.IsActive).
+                    Where(x => x.Category.Id == categoryId && x.Category.IsActive && x.User.IsActive && x.IsActive && x.Id !=productId).
                     OrderByDescending(x => x.Id).
                     Take(numberOfProducts).
                     Include(x => x.Category).Include(x => x.User).Include(x => x.User.Thana).Include(x => x.User.Thana.District).

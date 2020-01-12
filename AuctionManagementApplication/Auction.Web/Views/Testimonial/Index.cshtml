@@ -36,7 +36,7 @@
 
                             <div class="comments-area">
 
-                                @if (@Model.Testimonials.Count != null)
+                                @if (@Model.Testimonials.Count != 0)
                                 {
                                     <ol class="comment-list">
                                         @foreach (var comment in Model.Testimonials)
@@ -49,18 +49,19 @@
                                                     <div class="comment-text">
                                                         <div class="comment-metadata clearfix">
                                                             <h5>@comment.User.FirstName @comment.User.LastName</h5>
-                                                            <span class="date">Date: @comment.DateTime</span>
+                                                            <span class="date">[Date: @comment.DateTime]</span>
                                                         </div><!-- .comment-metadata -->
                                                         <div class="comment-content text-justify">
                                                             <p>@comment.Comment</p>
                                                         </div>
-                                                    </div><!-- .comment-content 
+                                                    </div>
+                                                    <!-- .comment-content
 
-                                                    @*<div class="reply">
-                                                            <a href="#" class="comment-like-link"><i class="fa fa-thumbs-up"></i>108</a>
-                                                            <a href="#" class="comment-reply-link"><i class="fa fa-pencil-square-o"></i>Reply</a>
-                                                        </div>*@
-                                                    </div><!-- /.comment-text -->
+                        @*<div class="reply">
+                                <a href="#" class="comment-like-link"><i class="fa fa-thumbs-up"></i>108</a>
+                                <a href="#" class="comment-reply-link"><i class="fa fa-pencil-square-o"></i>Reply</a>
+                            </div>*@
+                        </div><!-- /.comment-text -->
                                                 </article><!-- .comment-body -->
 
                                             </li><!-- #comment-## -->
@@ -75,22 +76,45 @@
                                     </div>
                                 }
 
-                                <div class="comment-respond" id="respond">
-                                    <div class="comment-reply-title">
-                                        <h5>Write a Comment</h5>
-                                        <p>Your email address will not be published. Required fields are marked *</p>
-                                    </div>
-                                    <form class="comment-form" id="testimonialForm">
-                                        <p class="comment-form-comment">
-                                            <label>Review*</label>
-                                            <textarea class="" tabindex="4" id="Comment" name="Comment" placeholder="Enter your comment" required></textarea>
-                                        </p>
+                                <hr/>
+                                @if (Model.User != null)
+                                {
+                                    <div class="comment-respond" id="respond">
+                                        <div class="comment-reply-title">
+                                            <h5>Write a Comment</h5>
+                                        </div>
+                                        <form class="comment-form" id="testimonialForm">
+                                            <p class="comment-form-comment">
+                                                <textarea class="" tabindex="4" id="Comment" name="Comment" placeholder="Enter your comment" required></textarea>
+                                            </p>
 
-                                        <p class="form-submit">
-                                            <button id="submit" class="comment-submit text-capitalize">Submit</button>
-                                        </p>
-                                    </form>
-                                </div><!-- /.comment-respond -->
+                                            <p class="form-submit">
+                                                <button id="submit" class="comment-submit text-capitalize">Submit</button>
+                                            </p>
+                                        </form>
+                                    </div><!-- /.comment-respond -->
+                                }
+                                else
+                                {
+                                    <h2 class="text-danger">You have to login to give your review!</h2>
+                                    <div class="comment-respond" id="respond" style="opacity: 0.5">
+
+                                        <div class="comment-reply-title">
+                                            <h5>Write a Comment</h5>
+                                        </div>
+                                        <form class="comment-form" id="testimonialForm">
+
+                                            <p class="comment-form-comment">
+                                                <textarea class="" tabindex="4" id="Comment" name="Comment" placeholder="Enter your comment" disabled=""></textarea>
+                                            </p>
+
+                                            <p class="form-submit">
+                                                <a id="submit" class="btn btn-danger text-white comment-submit text-capitalize disabled">Submit</a>
+                                            </p>
+                                        </form>
+                                    </div><!-- /.comment-respond -->
+                                }
+
                             </div><!-- /.comments-area -->
                         </div><!-- /.main-single -->
                     </div><!-- /.col-md-9 -->
