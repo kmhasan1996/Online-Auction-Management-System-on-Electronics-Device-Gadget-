@@ -110,66 +110,6 @@ legend {
     white-space: normal;
 }
 
-button,
-input,
-select,
-textarea {
-    font-size: 100%;
-    margin: 0;
-    max-width: 100%;
-    vertical-align: baseline;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-button,
-input {
-    line-height: normal;
-}
-
-input,
-textarea {
-    background-image: -webkit-linear-gradient(hsla(0,0%,100%,0), hsla(0,0%,100%,0)); /* Removing the inner shadow, rounded corners on iOS inputs */
-}
-
-    button,
-    input[type="button"],
-    input[type="reset"],
-    input[type="submit"] {
-        line-height: 1;
-        cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
-        -webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
-        border: none;
-    }
-
-    input[type="checkbox"],
-    input[type="radio"] {
-        padding: 0; /* Addresses excess padding in IE8/9 */
-    }
-
-    input[type="search"] {
-        -webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
-    }
-
-        input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
-            -webkit-appearance: none;
-        }
-
-    button::-moz-focus-inner,
-    input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-        border: 0;
-        padding: 0;
-    }
-
-*,
-*:before,
-*:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
     /* Repeatable Patterns
 -------------------------------------------------------------- */
     *,
@@ -233,12 +173,11 @@ input[type="submit"] {
     font-weight: 700;
     color: #ffffff;
     line-height: 30px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     padding: 7px 26px;
     background-color: #f63440;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
-    /*-ms-transition: all 0.3s ease 0s;*/
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
@@ -260,17 +199,16 @@ input[type="search"],
 input[type="tel"],
 input[type="color"] {
     background-color: #ffffff;
-    height: 50px;
+    /*height: 50px;*/
     width: 100%;
     padding-left: 17px;
     line-height: 30px;
     letter-spacing: 0.6px;
     font-weight: 400;
     outline: none;
-    border: 1px solid #ebebeb;
+    border: 1px solid gray;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
-    /*-ms-transition: all 0.3s ease-in-out;*/
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
@@ -332,9 +270,9 @@ label {
     margin-bottom: 9px;
 }
 
-input[type="checkbox"] {
+/*input[type="checkbox"] {
     display: none;
-}
+}*/
 
 button {
     z-index: 1;
@@ -1248,7 +1186,7 @@ h6 {
         font-weight: 500;
         color: white;
         font-size: 15px;
-        line-height: 88px;
+        line-height: 20px;
         margin: 0px 16.8px;
         display: block;
     }

@@ -50,7 +50,7 @@
         <script src="javascript/respond.min.js"></script> header-absolute header-center
     <![endif]-->
 </head>
-<body class="header_sticky header-style-2 topbar-style-1  has-menu-extra">
+<body class="header_sticky header-style-2 topbar-style-1">
 
     <!-- Preloader -->
     <div id="loading-overlay">
@@ -84,25 +84,11 @@
                     <div id="logo" class="logo float-left">
                         <a href="@Url.Action("Index","Home")" title="logo">
                             @*<img src="~/Contents/Images/System/logo-658x114.png" alt="image" width="200" height="60" style="background-color:white;">*@
-                            <h2 class="text-white"><i class="fas fa-gavel mr-1"></i>Auction House</h2>
+                            <h2 class="text-white"><i class="fas fa-gavel mr-1"></i>AuctionHouse</h2>
                         </a>
 
-                    </div><!-- /.logo -->
-                    @*<div class="mobile-button"><span></span></div>*@
-                    <ul class="menu-extra">
-                        <li class="box-search">
-                            <a class="icon_search header-search-icon" href="#" style="color:black;background-color:white;"></a>
-                            <form role="search" method="get" class="header-search-form" action="@Url.Action("Index", "Shop")">
-                                <input type="text" value="" name="s" class="header-search-field" placeholder="Search...">
-                                <button type="submit" class="header-search-submit" title="Search">Search</button>
-                            </form>
-                        </li>
-                        @*<li class="box-login">
-                                   <a class="icon_login" href="#"></a>
-                            </li>*@
-
-                    </ul><!-- /.menu-extra -->
-                    <div class="nav-wrap  float-right ">
+                    </div>
+                    <div class="nav-wrap" id="nav">
                         <nav id="mainnav" class="mainnav ">
                             <ul class="menu ">
                                 <li>
@@ -110,24 +96,27 @@
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Index","Shop")">All Ads</a>
-                                  
+
+                                </li>
+                                @*<li>
+                                    <a href="@Url.Action("Index","EndingToday")">Ending Today</a>
+                                </li>*@
+                                <li>
+                                    <a href="@Url.Action("Index","EndingToday")">Winners</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index","EndingToday")">Ending Today</a>
+                                    <a href="@Url.Action("Index","Testimonial")">Testimonial</a>
                                 </li>
-
-                                @*<li>
+                                <li>
                                     <a href="@Url.Action("Contact","Home")">Contact</a>
 
                                 </li>
                                 <li>
                                     <a href="@Url.Action("About","Home")">About</a>
-                                </li>*@
-                                <li>
-                                    <a href="@Url.Action("Index","Testimonial")">Testimonial</a>
                                 </li>
+
                                 <li>
-                                    <a href="@Url.Action("NewAd", "User")" style="color: yellow;">Post ad now!</a>
+                                    <a href="@Url.Action("NewAd", "User")" class="btn " style="Background:yellow; color: black;">POST YOUR AD NOW</a>
                                 </li>
 
                             </ul>
@@ -137,16 +126,9 @@
             </header><!-- /header -->
         </div><!-- /#site-header-wrap -->
         <!-- Body Content-->
-        @*<section class="flat-row container" style="background: white; margin-top: -75px;">*@
 
 
-
-        @*<div class="jumbotron">*@
         @RenderBody()
-        @*</div>*@
-
-        @*</section>*@
-
 
         <section class="flat-row mail-chimp">
             <div class="container">
@@ -169,11 +151,9 @@
                                 </div>
                             </form>
                             <ul class="flat-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul><!-- /.flat-social -->
                         </div><!-- /.subscribe -->
                     </div>

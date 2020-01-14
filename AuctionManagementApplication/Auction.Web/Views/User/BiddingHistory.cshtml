@@ -92,13 +92,13 @@
                                                     if (ad.CurrentBidPrice == 0)
                                                     {
                                                         <th>
-                                                            <b>Current Bid Price:</b> No Bid Yet
+                                                            <b>Highest Bid Amount:</b> No Bid Yet
                                                         </th>
                                                     }
                                                     else
                                                     {
                                                         <th>
-                                                            <b>Current Bid Price:</b> BDT @ad.CurrentBidPrice
+                                                            <b>Highest Bid Amount:</b> BDT @ad.CurrentBidPrice
                                                         </th>
                                                     }
                                                 }
@@ -116,6 +116,33 @@
                                                 }
                                                 <th><b>Your Bid Amount: </b>BDT @bidAmount (<strong>Position:</strong> @position) </th>
                                             </tr>
+                                            @if (ad.EndDateTime<dateTime && position==1)
+                                            {
+                                                <tr>
+                                                    <th>
+                                                        <h2 class="text-danger">Congratulation ! You win the Bid </h2>
+                                                       
+                                                        <p>
+                                                            <button class="btn btn-primary mt-1" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                                View Auctioneer Contact
+                                                            </button>
+                                                        </p>
+                                                        <div class="collapse" id="collapseExample">
+                                                            <div class="card card-body">
+                                                                <table>
+                                                                    <tr>
+                                                                        <th><strong>Name:</strong> @ad.User.FirstName @ad.User.LastName</th>
+                                                                    </tr> 
+                                                                    <tr>
+                                                                        <th><strong>Email:</strong> @ad.User.Email</th>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            }
+
                                         </table>
 
                                     </div>

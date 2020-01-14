@@ -13,9 +13,12 @@ namespace Auction.Web.ViewModels
         public List<Category> FeaturedCategories { get; set; }
         public List<Product> Products { get; set; }
         public List<District> Districts { get; set; }
+        public List<Bidder> Bidders { get; set; }
+        public int? DistrictId { get; set; }
         public int MaximumPrice { get; set; }
         public int MinimumPrice { get; set; }
         public int? CategoryID { get; set; }
         public Pager Pager { get; set; }
     }
+
 }

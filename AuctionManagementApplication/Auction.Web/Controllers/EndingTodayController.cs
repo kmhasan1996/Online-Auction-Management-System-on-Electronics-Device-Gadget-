@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+using Auction.Services.Admin;
 using Auction.Services.User;
+using Auction.Services.UserAccountService;
 using Auction.Web.ViewModels;
 
 namespace Auction.Web.Controllers
@@ -7,13 +9,14 @@ namespace Auction.Web.Controllers
     public class EndingTodayController : Controller
     {
         [System.Obsolete]
-        public ActionResult Index(string searchTxt, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int? pageNo)
+        public ActionResult Index(string searchTxt, int? districtId, int? thanaId, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int? pageNo)
         {
             int pageSize = 9;
-            ShopViewModel model = new ShopViewModel
+            EndAdViewModel model = new EndAdViewModel()
             {
                 SearchText = searchTxt,
                 FeaturedCategories = EndingTodayService.Instance.GetFeaturedNotNullItemCategory(),
+                Districts = DistrictService.Instance.GetAll(),
                 MaximumPrice = EndingTodayService.Instance.GetMaximumPrice(),
                 MinimumPrice = EndingTodayService.Instance.GetMinimumPrice()
             };
@@ -21,9 +24,13 @@ namespace Auction.Web.Controllers
             pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
             model.SortBy = sortBy;
             model.CategoryID = categoryId;
+            model.DistrictId = districtId;
 
-            int totalCount = EndingTodayService.Instance.SearchProductCount(searchTxt, minimumPrice, maximumPrice, categoryId, sortBy);
-            model.Products = EndingTodayService.Instance.SearchProduct(searchTxt, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize);
+            
+            int totalCount = EndingTodayService.Instance.SearchProduct(searchTxt, districtId, thanaId, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize).Count;
+            model.Products = EndingTodayService.Instance.SearchProduct(searchTxt, districtId, thanaId, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize);
+            
+            model.Winner = EndingTodayService.Instance.Winners(model.Products);
 
             model.Pager = new Pager(totalCount, pageNo, pageSize);
 
@@ -32,7 +39,7 @@ namespace Auction.Web.Controllers
         }
 
         [System.Obsolete]
-        public ActionResult FilterProduct(string searchTxt, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int? pageNo)
+        public ActionResult FilterProduct(string searchTxt, int? districtId, int? thanaId, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int? pageNo)
         {
             int pageSize = 9;
             FilterProductsViewModel model = new FilterProductsViewModel();
@@ -41,10 +48,11 @@ namespace Auction.Web.Controllers
             pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
             model.SortBy = sortBy;
             model.CategoryID = categoryId;
+            model.DistrictId = districtId;
 
-            int totalCount = EndingTodayService.Instance.SearchProductCount(searchTxt, minimumPrice, maximumPrice, categoryId, sortBy);
-            model.Products = EndingTodayService.Instance.SearchProduct(searchTxt, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize);
-
+            int totalCount = EndingTodayService.Instance.SearchProduct(searchTxt, districtId, thanaId, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize).Count;
+            model.Products = EndingTodayService.Instance.SearchProduct(searchTxt, districtId, thanaId, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize);
+            model.Bidders = EndingTodayService.Instance.Winners(model.Products);
             model.Pager = new Pager(totalCount, pageNo, pageSize);
             return PartialView(model);
 

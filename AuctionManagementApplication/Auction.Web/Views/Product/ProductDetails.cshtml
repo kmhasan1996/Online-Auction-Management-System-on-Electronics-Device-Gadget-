@@ -44,25 +44,25 @@
                                     <li data-thumb="@Model.Product.ImageUrl1">
                                         <img src="@Model.Product.ImageUrl1" alt="Image">
                                         <div class="flat-icon style-1">
-                                            <a href="@Model.Product.ImageUrl1" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                            <a href="@Model.Product.ImageUrl1" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
                                         </div>
                                     </li>
                                     <li data-thumb="@Model.Product.ImageUrl2">
                                         <img src="@Model.Product.ImageUrl2" alt="Image">
                                         <div class="flat-icon style-1">
-                                            <a href="@Model.Product.ImageUrl2" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                            <a href="@Model.Product.ImageUrl2" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
                                         </div>
                                     </li>
                                     <li data-thumb="@Model.Product.ImageUrl3">
                                         <img src="@Model.Product.ImageUrl3" alt="Image">
                                         <div class="flat-icon style-1">
-                                            <a href="@Model.Product.ImageUrl3" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                            <a href="@Model.Product.ImageUrl3" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
                                         </div>
                                     </li>
                                     <li data-thumb="@Model.Product.ImageUrl4">
                                         <img src="@Model.Product.ImageUrl4" alt="Image">
                                         <div class="flat-icon style-1">
-                                            <a href="@Model.Product.ImageUrl4" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                            <a href="@Model.Product.ImageUrl4" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
                                         </div>
                                     </li>
                                 </ul>
@@ -157,12 +157,12 @@
                                     {
                                         <div class="product-quantity">
                                             <div class="">
-                                                <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter bid price" disabled />
+                                                <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter Bid Amount" disabled />
                                             </div>
 
                                             <div class="add-to-cart">
                                                 <input type="hidden" id="ProductId" name="ProductId" value="@Model.Product.Id" />
-                                                <a class="bidNowBtn btn disabled" href="#">Place My Bid</a>
+                                                <button class="bidNowBtn btn btn-danger disabled" href="#">Place My Bid</button>
 
                                             </div>
 
@@ -176,16 +176,16 @@
                                             <input type="hidden" id="ownAd" value="@Model.OwnAd" />
                                             <div class="product-quantity">
                                                 <div class="">
-                                                    <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter bid price" disabled />
+                                                    <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter Bid Amount" disabled />
                                                 </div>
 
                                                 <div class="add-to-cart">
                                                     <input type="hidden" id="ProductId" name="ProductId" value="@Model.Product.Id" />
-                                                    <a class="bidNowBtn btn disabled" href="#">Place My Bid</a>
+                                                    <button class="bidNowBtn btn btn-danger disabled" href="#">Place My Bid</button>
 
                                                 </div>
                                                 <div>
-                                                    <p class="text-danger"><strong>This ad is posted by you.You can not biding on this ad.</strong></p>
+                                                    <h5 class="text-danger">This ad is posted by you.You can not biding on this ad</h5>
                                                 </div>
 
                                             </div>
@@ -200,15 +200,15 @@
 
                                             <div class="product-quantity">
                                                 <div class="">
-                                                    <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter bid price" />
+                                                    <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter Bid Amount" />
                                                 </div>
 
                                                 <div class="add-to-cart">
-                                                    <input type="hidden" id="ProductId" name="ProductId" value="@Model.Product.Id" />
-                                                    <a class="bidNowBtn" href="#">Place My Bid</a>
+                                                    <input type="hidden" class="form-control" id="ProductId" name="ProductId" value="@Model.Product.Id" />
+                                                    <button class="bidNowBtn btn btn-danger " href="#">Place My Bid</button>
                                                 </div>
                                                 <div>
-                                                    <p class="text-danger" id="errorMessage"></p>
+                                                    <h5 class="text-danger" id="errorMessage"></h5>
                                                 </div>
                                             </div>
                                         }
@@ -219,16 +219,16 @@
                                     {
                                         <div class="product-quantity">
                                             <div class="">
-                                                <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter bid price" disabled />
+                                                <input type="text" id="BidPrice" name="BidPrice" placeholder="Enter Bid Amount" disabled />
                                             </div>
 
                                             <div class="add-to-cart">
-                                                <input type="hidden" id="ProductId" name="ProductId" value="@Model.Product.Id" />
-                                                <a class="bidNowBtn btn disabled" href="#">Place My Bid</a>
+                                                <input type="hidden" class="form-control" id="ProductId" name="ProductId" value="@Model.Product.Id" />
+                                                <button class="bidNowBtn btn btn-danger disabled" href="#">Place My Bid</button>
 
                                             </div>
                                             <div>
-                                                <p class="text-danger"><strong>You are not logged in.Please, Login first to do bidding</strong></p>
+                                                <h5 class="text-danger">You are not logged in. Please, login first to do bidding!</h5>
                                             </div>
 
                                         </div>
@@ -237,7 +237,22 @@
                                 }
 
                                 <hr />
-                                <h2>Bidding History:</h2>
+                                <h5>
+                                    Bidding History:
+                                    @if (Model.Product.EndDateTime < dateTime)
+                                    {
+                                        foreach (var bidder in Model.Bidders)
+                                        {
+                                            <span> [ Winner: @bidder.User.FirstName @bidder.User.LastName ]</span>
+                                            break;
+                                        }
+
+
+                                    }
+                                </h5>
+
+
+
                                 @if (Model.Bidders.Count != 0)
                                 {
 
@@ -266,17 +281,17 @@
                                                         {
                                                             if (bidder.UserId == Model.User.Id)
                                                             {
-                                                                <td><strong>@bidder.User.FirstName (You)</strong></td>
+                                                                <td><strong>@bidder.User.FirstName @bidder.User.LastName (You)</strong></td>
                                                             }
                                                             else
                                                             {
-                                                                <td>@bidder.User.FirstName</td>
+                                                                <td>@bidder.User.FirstName @bidder.User.LastName</td>
                                                             }
                                                         }
 
                                                         else
                                                         {
-                                                            <td>@bidder.User.FirstName</td>
+                                                            <td>@bidder.User.FirstName @bidder.User.LastName</td>
                                                         }
 
                                                         <td>@bidder.BidPrice</td>

@@ -12,7 +12,7 @@ namespace Auction.Web.Controllers
 {
     public class ShopController : Controller
     {
-        public ActionResult Index(string searchTxt, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
+        public ActionResult Index(string searchTxt, DateTime? todayDateTime, int? districtId,int? thanaId, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int? pageNo)
         {
             int pageSize = 9;
             ShopViewModel model = new ShopViewModel
@@ -26,17 +26,19 @@ namespace Auction.Web.Controllers
 
             pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
             model.SortBy = sortBy;
-            model.CategoryID = categoryID;
+            model.CategoryID = categoryId;
+            model.DistrictId = districtId;
 
-            int totalCount = UserProductService.Instance.SearchProductCount(searchTxt, minimumPrice, maximumPrice, categoryID, sortBy);
-            model.Products = UserProductService.Instance.SearchProduct(searchTxt, minimumPrice, maximumPrice, categoryID, sortBy, pageNo.Value, pageSize);
+            //int totalCount = UserProductService.Instance.SearchProductCount(searchTxt, minimumPrice, maximumPrice, categoryId, sortBy);
+            int totalCount = UserProductService.Instance.SearchProduct(searchTxt,todayDateTime, districtId,thanaId, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize).Count;
+            model.Products = UserProductService.Instance.SearchProduct(searchTxt,todayDateTime, districtId,thanaId, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize);
 
             model.Pager = new Pager(totalCount, pageNo, pageSize);
 
             return View(model);
 
         }
-        public ActionResult FilterProduct(string searchTxt, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
+        public ActionResult FilterProduct(string searchTxt, DateTime? todayDateTime, int? districtId,int? thanaId,int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int? pageNo)
         {
             int pageSize = 9;
             FilterProductsViewModel model = new FilterProductsViewModel();
@@ -44,10 +46,10 @@ namespace Auction.Web.Controllers
             model.SearchText = searchTxt;
             pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
             model.SortBy = sortBy;
-            model.CategoryID = categoryID;
-
-            int totalCount = UserProductService.Instance.SearchProductCount(searchTxt, minimumPrice, maximumPrice, categoryID, sortBy);
-            model.Products = UserProductService.Instance.SearchProduct(searchTxt, minimumPrice, maximumPrice, categoryID, sortBy, pageNo.Value, pageSize);
+            model.CategoryID = categoryId;
+            model.DistrictId = districtId;
+            int totalCount = UserProductService.Instance.SearchProduct(searchTxt,todayDateTime, districtId,thanaId, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize).Count;
+            model.Products = UserProductService.Instance.SearchProduct(searchTxt,todayDateTime,districtId,thanaId, minimumPrice, maximumPrice, categoryId, sortBy, pageNo.Value, pageSize);
 
             model.Pager = new Pager(totalCount, pageNo, pageSize);
             return PartialView(model);

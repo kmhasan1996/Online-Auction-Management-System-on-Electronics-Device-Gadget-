@@ -53,10 +53,10 @@
                             <td>@postedAd.EndDateTime</td>
                             @*<td>@postedAd.User.FirstName @postedAd.User.LastName</td>*@
                             @{
-                                String show = postedAd.IsPending == true ? "Pending" : "Accept";
+                                String show = postedAd.IsRejected == true ? "Rejected" : "Pending";
                             }
                             <td>
-                                @if (postedAd.IsPending)
+                                @if (postedAd.IsRejected)
                                 {
                                     <span class="badge badge-danger"> @show</span>
                                 }

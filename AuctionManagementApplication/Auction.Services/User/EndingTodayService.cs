@@ -31,6 +31,8 @@ namespace Auction.Services.User
         #endregion
 
 
+        private DateTime dateTimeNow = DateTime.Now;
+
         //public List<Product> GetLatestProductPosts(int numberOfProducts)
         //{
         //    using (var context = new AuctionDbContext())
@@ -84,7 +86,7 @@ namespace Auction.Services.User
             {
 
 
-                return context.Categories.Include(x => x.Products).Where(x => x.IsActive && x.Products.Count != 0).Where(c => c.Products.Any(i => i.IsActive) && c.Products.Any(i=> EntityFunctions.TruncateTime(i.EndDateTime) == DateTime.Today.Date)).ToList();
+                return context.Categories.Include(x => x.Products).Where(x => x.IsActive && x.Products.Count != 0).Where(c => c.Products.Any(i => i.IsActive) && c.Products.Any(i=> i.EndDateTime < dateTimeNow)).ToList();
             }
 
         }
@@ -94,7 +96,7 @@ namespace Auction.Services.User
         {
             using (var context = new AuctionDbContext())
             {
-                return (int)(context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && EntityFunctions.TruncateTime(x.EndDateTime) == DateTime.Today.Date).Max(x =>(double?) x.BasePrice) ?? 0);
+                return (int)(context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && x.EndDateTime < dateTimeNow).Max(x =>(double?) x.BasePrice) ?? 0);
             }
         }
 
@@ -103,18 +105,19 @@ namespace Auction.Services.User
         {
             using (var context = new AuctionDbContext())
             {
-                return (int)(context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && EntityFunctions.TruncateTime(x.EndDateTime) == DateTime.Today.Date).Min(x =>(double?) x.BasePrice) ?? 0);
+                return (int)(context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && x.EndDateTime < dateTimeNow).Min(x =>(double?) x.BasePrice) ?? 0);
             }
         }
 
         [Obsolete]
-        public List<Product> SearchProduct(string searchTxt, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int pageNo, int pageSize)
+        public List<Product> SearchProduct(string searchTxt, int? districtId, int? thanaId, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int pageNo, int pageSize)
         {
             using (var context = new AuctionDbContext())
             {
                 var products = context.Products.
-                    Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && EntityFunctions.TruncateTime(x.EndDateTime) == DateTime.Today.Date).
-                    Include(x => x.User).Include(x => x.User.Thana).Include(x => x.User.Thana.District).ToList();
+                    Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && x.EndDateTime < dateTimeNow).
+                    Include(x => x.User).Include(x=>x.Bidders).Include(x => x.User.Thana).Include(x => x.User.Thana.District).ToList();
+                
 
                 if (categoryId.HasValue)
                 {
@@ -136,7 +139,15 @@ namespace Auction.Services.User
                     products = products.Where(x => x.BasePrice <= maximumPrice.Value).ToList();
                 }
 
+                if (districtId.HasValue)
+                {
+                    products = products.Where(x => x.User.Thana.District.Id == districtId).ToList();
+                }
 
+                if (thanaId.HasValue && thanaId != 0)
+                {
+                    products = products.Where(x => x.User.Thana.Id == thanaId).ToList();
+                }
 
                 if (sortBy.HasValue)
                 {
@@ -158,65 +169,44 @@ namespace Auction.Services.User
                             products = products.OrderByDescending(x => x.Id).ToList();
                             break;
                     }
+                }
+                else
+                {
+                    products = products.OrderByDescending(x => x.Id).ToList();
                 }
 
                 return products.Skip((pageNo - 1) * pageSize).Take(pageSize).ToList();
             }
         }
 
-        [Obsolete]
-        public int SearchProductCount(string searchTxt, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy)
+        public List<Entities.User> Winners(List<Product> products)
         {
-            using (var context = new AuctionDbContext())
+           List<Entities.User> winUsers=new List<Entities.User>();
+            using (var context=new AuctionDbContext())
             {
-                var products = context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && EntityFunctions.TruncateTime(x.EndDateTime) == DateTime.Today.Date).ToList();
-
-                if (categoryId.HasValue)
+                foreach (var product in products)
                 {
-                    products = products.Where(x => x.Category.Id == categoryId.Value).ToList();
-                }
-
-                if (!string.IsNullOrEmpty(searchTxt))
-                {
-                    products = products.Where(x => x.Name.ToLower().Contains(searchTxt.ToLower())).ToList();
-                }
-
-                if (minimumPrice.HasValue)
-                {
-                    products = products.Where(x => x.BasePrice >= minimumPrice.Value).ToList();
-                }
-
-                if (maximumPrice.HasValue)
-                {
-                    products = products.Where(x => x.BasePrice <= maximumPrice.Value).ToList();
-                }
-
-
-
-                if (sortBy.HasValue)
-                {
-                    switch (sortBy.Value)
+                    if (product.CurrentBidPrice!=0)
                     {
-                        case 2:
-                            products = products.OrderBy(x => x.BasePrice).ToList();
-                            break;
-                        case 3:
-                            products = products.OrderByDescending(x => x.BasePrice).ToList();
-                            break;
-                        case 4:
-                            products = products.OrderByDescending(x => x.StarDateTime).ToList();
-                            break;
-                        case 5:
-                            products = products.OrderBy(x => x.StarDateTime).ToList();
-                            break;
-                        default:
-                            products = products.OrderByDescending(x => x.Id).ToList();
-                            break;
-                    }
-                }
+                        var bidder =
+                            context.Bidders.FirstOrDefault(x =>
+                                x.ProductId == product.Id && x.BidPrice == product.CurrentBidPrice);
 
-                return products.Count;
+                        var user = context.Users.Find(bidder.UserId);
+
+                        winUsers.Add(user);
+                    }
+                    else
+                    {
+                        var user = (dynamic) null;
+                        winUsers.Add(user);
+                    }
+                   
+                }
             }
+
+            return winUsers;
+
         }
     }
 }

@@ -119,15 +119,15 @@ namespace Auction.Services.User
             }
         }
 
-        public List<Product> SearchProduct(string searchTxt, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int pageNo, int pageSize)
+        public List<Product> SearchProduct(string searchTxt, DateTime? todayDateTime,int? districtId,int?thanaId, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int pageNo, int pageSize)
         {
             using (var context = new AuctionDbContext())
             {
-                var products = context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive).Include(x => x.User).Include(x => x.User.Thana).Include(x => x.User.Thana.District).ToList();
+                var products = context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && x.EndDateTime>DateTime.Now).Include(x => x.User).Include(x => x.User.Thana).Include(x => x.User.Thana.District).ToList();
 
-                if (categoryID.HasValue)
+                if (categoryId.HasValue)
                 {
-                    products = products.Where(x => x.Category.Id == categoryID.Value).ToList();
+                    products = products.Where(x => x.Category.Id == categoryId.Value).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(searchTxt))
@@ -145,7 +145,20 @@ namespace Auction.Services.User
                     products = products.Where(x => x.BasePrice <= maximumPrice.Value).ToList();
                 }
 
+                if (districtId.HasValue)
+                {
+                    products = products.Where(x => x.User.Thana.District.Id == districtId).ToList();
+                }
 
+                if (thanaId.HasValue && thanaId !=0)
+                {
+                    products = products.Where(x => x.User.Thana.Id==thanaId).ToList();
+                }
+
+                if (todayDateTime.HasValue)
+                {
+                    products = products.Where(x => x.EndDateTime < todayDateTime).ToList();
+                }
 
                 if (sortBy.HasValue)
                 {
@@ -167,65 +180,16 @@ namespace Auction.Services.User
                             products = products.OrderByDescending(x => x.Id).ToList();
                             break;
                     }
+                }
+                else
+                {
+                    products = products.OrderByDescending(x => x.Id).ToList();
                 }
 
                 return products.Skip((pageNo - 1) * pageSize).Take(pageSize).ToList();
             }
         }
 
-        public int SearchProductCount(string searchTxt, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy)
-        {
-            using (var context = new AuctionDbContext())
-            {
-                var products = context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive).ToList();
-
-                if (categoryID.HasValue)
-                {
-                    products = products.Where(x => x.Category.Id == categoryID.Value).ToList();
-                }
-
-                if (!string.IsNullOrEmpty(searchTxt))
-                {
-                    products = products.Where(x => x.Name.ToLower().Contains(searchTxt.ToLower())).ToList();
-                }
-
-                if (minimumPrice.HasValue)
-                {
-                    products = products.Where(x => x.BasePrice >= minimumPrice.Value).ToList();
-                }
-
-                if (maximumPrice.HasValue)
-                {
-                    products = products.Where(x => x.BasePrice <= maximumPrice.Value).ToList();
-                }
-
-
-
-                if (sortBy.HasValue)
-                {
-                    switch (sortBy.Value)
-                    {
-                        case 2:
-                            products = products.OrderBy(x => x.BasePrice).ToList();
-                            break;
-                        case 3:
-                            products = products.OrderByDescending(x => x.BasePrice).ToList();
-                            break;
-                        case 4:
-                            products = products.OrderByDescending(x => x.StarDateTime).ToList();
-                            break;
-                        case 5:
-                            products = products.OrderBy(x => x.StarDateTime).ToList();
-                            break;
-                        default:
-                            products = products.OrderByDescending(x => x.Id).ToList();
-                            break;
-                    }
-                }
-
-                return products.Count;
-            }
-        }
 
         public bool BidNow(Bidder model)
         {
@@ -300,7 +264,7 @@ namespace Auction.Services.User
             {
                 var productId = context.Bidders.Where(x => x.UserId == userId).ToList();
 
-                return context.Products.Where(x => x.Bidders.Any(i => i.UserId == userId)).Include(x=>x.Bidders).ToList();
+                return context.Products.Where(x => x.Bidders.Any(i => i.UserId == userId)).Include(x=>x.User).Include(x=>x.Bidders).ToList();
             }
         }
     }
