@@ -141,10 +141,10 @@
     <Compile Include="Areas\Admin\Models\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RegistrationViewModel.cs" />
     <Compile Include="Code\Enums.cs" />
-    <Compile Include="Controllers\EndingTodayController.cs" />
+    <Compile Include="Controllers\WinnerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\AdController.cs" />
+    <Compile Include="Controllers\AllAdController.cs" />
     <Compile Include="Controllers\TestimonialController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserSharedController.cs" />
@@ -451,13 +451,13 @@
     <Content Include="Views\User\NewAd.cshtml" />
     <Content Include="Views\User\MyAds.cshtml" />
     <Content Include="Views\Widget\_Products.cshtml" />
-    <Content Include="Views\Product\ProductDetails.cshtml" />
-    <Content Include="Views\Shop\FilterProduct.cshtml" />
-    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Ad\AdDetails.cshtml" />
+    <Content Include="Views\AllAd\FilterProduct.cshtml" />
+    <Content Include="Views\AllAd\Index.cshtml" />
     <Content Include="Views\Testimonial\Index.cshtml" />
     <Content Include="Views\User\_TermAndCondition.cshtml" />
-    <Content Include="Views\EndingToday\FilterProduct.cshtml" />
-    <Content Include="Views\EndingToday\Index.cshtml" />
+    <Content Include="Views\Winner\FilterProduct.cshtml" />
+    <Content Include="Views\Winner\Index.cshtml" />
     <Content Include="Views\User\MyCredit.cshtml" />
     <Content Include="Views\User\BiddingHistory.cshtml" />
   </ItemGroup>

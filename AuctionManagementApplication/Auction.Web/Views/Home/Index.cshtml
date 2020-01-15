@@ -17,17 +17,17 @@
                 <p class="text-justify">Register, Bid and Win.Auction your electronics device/gadget Buy and sell electronics device/gadget <strong>in Bangladesh!</strong></p>*@
                 
                 <div class="row">
-                    <div class="col-md-7">
-                        <h5 class="text-justify">Welcome to AuctionHouse.com - first online auction marketplace in Bangladesh!</h5>
-                        <p class="text-justify">Register, Bid and Win.Auction your electronics device/gadget Buy and sell electronics device/gadget <strong>in Bangladesh!</strong></p>
+                    <div class="col-md-8">
+                        <h5 class="text-justify">Welcome to AuctionHouse.com - first online auction marketplace for electronics devices/gadgets <strong>in Bangladesh.</strong></h5>
+                        <p class="text-justify">Register, Bid and Win. Sell your electronics device or gadget <strong>by auction</strong>. Buy electronics device or gadget <strong>by bidding.</strong></p>
 
-                    </div><div class="col-md-5"></div>
+                    </div><div class="col-md-4"></div>
                     <div class="col-md-4">
                         <h3 class="mt-5">Top Categories</h3>
                         <ul>
                             @foreach (var category in Model.Categories)
                             {
-                                <li><i class="@category.Icon mr-2"></i><a href="@Url.Action("Index", "Shop", new {categoryID = @category.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@category.Name</a></li>
+                                <li><i class="@category.Icon mr-2"></i><a href="@Url.Action("Index", "AllAd", new {categoryID = @category.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@category.Name</a></li>
 
                             }
                         </ul>
@@ -41,9 +41,7 @@
                     </div>
 
                 </div>
-               
 
-               
             </div>
             <div class="col-md-3 float-right">
                 <div class="row">
@@ -61,7 +59,7 @@
 
                                 @foreach (var cities in Model.Districts)
                                 {
-                                    <li><i class="@location"></i><a href="@Url.Action("Index", "Shop", new {districtId = @cities.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@cities.Name</a></li>
+                                    <li><i class="@location"></i><a href="@Url.Action("Index", "AllAd", new {districtId = @cities.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@cities.Name</a></li>
 
                                 }
                             </ul>
@@ -73,7 +71,7 @@
 
                                 @foreach (var cities in Model.Districts)
                                 {
-                                    <li><i class="@location"></i><a href="@Url.Action("Index", "Shop", new {districtId = @cities.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@cities.Name</a></li>
+                                    <li><i class="@location"></i><a href="@Url.Action("Index", "AllAd", new {districtId = @cities.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@cities.Name</a></li>
 
                                 }
                             </ul>
@@ -104,7 +102,7 @@
 
                     @*<img src="@category.ImageUrl" height="100" width="100" alt="Image"><br />*@
 
-                    <a href="@Url.Action("Index","Shop",new { categoryID=category.Id})" class="btn btn-secondary @category.Icon p-3 mt-2 mb-5"><i class="mr-2"></i>@category.Name</a>
+                    <a href="@Url.Action("Index","AllAd",new { categoryID=category.Id})" class="btn btn-secondary @category.Icon p-3 mt-2 mb-5"><i class="mr-2"></i>@category.Name</a>
 
                 </div>
             }

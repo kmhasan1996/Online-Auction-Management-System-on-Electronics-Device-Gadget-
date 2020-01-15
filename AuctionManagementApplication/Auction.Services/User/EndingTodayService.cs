@@ -32,6 +32,7 @@ namespace Auction.Services.User
 
 
         private DateTime dateTimeNow = DateTime.Now;
+        private DateTime dateTimeNow1 = DateTime.Today;
 
         //public List<Product> GetLatestProductPosts(int numberOfProducts)
         //{
@@ -110,7 +111,7 @@ namespace Auction.Services.User
         }
 
         [Obsolete]
-        public List<Product> SearchProduct(string searchTxt, int? districtId, int? thanaId, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int pageNo, int pageSize)
+        public List<Product> SearchProduct(string searchTxt, DateTime? todayDateTime, int? districtId, int? thanaId, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int pageNo, int pageSize)
         {
             using (var context = new AuctionDbContext())
             {
@@ -147,6 +148,10 @@ namespace Auction.Services.User
                 if (thanaId.HasValue && thanaId != 0)
                 {
                     products = products.Where(x => x.User.Thana.Id == thanaId).ToList();
+                }
+                if (todayDateTime.HasValue)
+                {
+                    products = products.Where(x => x.EndDateTime < todayDateTime && x.EndDateTime>dateTimeNow1).ToList();
                 }
 
                 if (sortBy.HasValue)

@@ -66,8 +66,8 @@
                     <div class="top-bar-inner-wrap">
                         <div class="top-bar-content">
                             <span class="content">Register | Bid | Win</span>
-                            <a href="@Url.Action("Contact","Home")" class="ml-5">Contact</a>
-                             <a href="@Url.Action("About","Home")" class="ml-2">About</a>
+                            @*<a href="@Url.Action("Contact","Home")" class="ml-5">Contact</a>
+                             <a href="@Url.Action("About","Home")" class="ml-2">About</a>*@
                         </div>
                         <div class="top-bar-nav">
                             <div class="inner">
@@ -88,24 +88,24 @@
                         </a>
 
                     </div>
-                    <div class="nav-wrap" id="nav">
+                    <div class="nav-wrap " id="nav">
                         <nav id="mainnav" class="mainnav ">
                             <ul class="menu ">
                                 <li>
                                     <a href="@Url.Action("Index","Home")">Home</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index","Shop")">All Ads</a>
+                                    <a href="@Url.Action("Index","AllAd")">All Ads</a>
 
                                 </li>
                                 @*<li>
                                     <a href="@Url.Action("Index","EndingToday")">Ending Today</a>
                                 </li>*@
                                 <li>
-                                    <a href="@Url.Action("Index","EndingToday")">Winners</a>
+                                    <a href="@Url.Action("Index","Winner")">Winners</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index","Testimonial")">Testimonial</a>
+                                    <a href="@Url.Action("Index","Testimonial")">Testimonials</a>
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Contact","Home")">Contact</a>

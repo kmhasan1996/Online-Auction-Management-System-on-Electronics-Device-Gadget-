@@ -22,7 +22,7 @@
                     <div class="text-center margin-top-30">
                         <h3>You haven't bid on any ads yet.</h3>
                         <h4 class="mt-2">Click the "View All Ad" button to view all ad.</h4>
-                        <a href="@Url.Action("Index", "Shop")" class="btn btn-primary text-white text-capitalize mt-4">View All Ad</a>
+                        <a href="@Url.Action("Index", "AllAd")" class="btn btn-primary text-white text-capitalize mt-4">Browse All Ad</a>
                     </div>
                 }
 
@@ -92,13 +92,13 @@
                                                     if (ad.CurrentBidPrice == 0)
                                                     {
                                                         <th>
-                                                            <b>Highest Bid Amount:</b> No Bid Yet
+                                                            <b>Highest Bid:</b> [No Bid]
                                                         </th>
                                                     }
                                                     else
                                                     {
                                                         <th>
-                                                            <b>Highest Bid Amount:</b> BDT @ad.CurrentBidPrice
+                                                            <b>Highest Bid:</b> BDT @ad.CurrentBidPrice
                                                         </th>
                                                     }
                                                 }
@@ -147,7 +147,7 @@
 
                                     </div>
                                     <div class="col-md-3">
-                                        <a class="btn  btn-danger text-center" href="@Url.Action("ProductDetails", "Product", new {postId = ad.Id})">See Details</a>
+                                        <a class="btn  btn-danger text-center" href="@Url.Action("AdDetails", "Ad", new {postId = ad.Id})">See Details</a>
                                     </div>
 
                                 </div>
