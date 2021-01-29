@@ -31,8 +31,8 @@ namespace Auction.Services.User
         #endregion
 
 
-        private DateTime dateTimeNow = DateTime.Now;
-        private DateTime dateTimeNow1 = DateTime.Today;
+        //private DateTime dateTimeNow = DateTime.Now;
+        //private DateTime dateTimeNow1 = DateTime.Today;
 
         //public List<Product> GetLatestProductPosts(int numberOfProducts)
         //{
@@ -83,6 +83,8 @@ namespace Auction.Services.User
         [Obsolete]
         public List<Category> GetFeaturedNotNullItemCategory()
         {
+
+            DateTime dateTimeNow = DateTime.Now;
             using (var context = new AuctionDbContext())
             {
 
@@ -95,6 +97,7 @@ namespace Auction.Services.User
         [Obsolete]
         public int GetMaximumPrice()
         {
+            DateTime dateTimeNow = DateTime.Now;
             using (var context = new AuctionDbContext())
             {
                 return (int)(context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && x.EndDateTime < dateTimeNow).Max(x =>(double?) x.BasePrice) ?? 0);
@@ -104,6 +107,7 @@ namespace Auction.Services.User
         [Obsolete]
         public int GetMinimumPrice()
         {
+            DateTime dateTimeNow = DateTime.Now;
             using (var context = new AuctionDbContext())
             {
                 return (int)(context.Products.Where(x => x.Category.IsActive && x.IsActive && x.User.IsActive && x.EndDateTime < dateTimeNow).Min(x =>(double?) x.BasePrice) ?? 0);
@@ -113,6 +117,8 @@ namespace Auction.Services.User
         [Obsolete]
         public List<Product> SearchProduct(string searchTxt, DateTime? todayDateTime, int? districtId, int? thanaId, int? minimumPrice, int? maximumPrice, int? categoryId, int? sortBy, int pageNo, int pageSize)
         {
+            DateTime dateTimeNow = DateTime.Now;
+            DateTime dateTimeNow1 = DateTime.Today;
             using (var context = new AuctionDbContext())
             {
                 var products = context.Products.

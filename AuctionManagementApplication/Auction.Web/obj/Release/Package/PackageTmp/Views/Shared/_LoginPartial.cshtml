@@ -1,0 +1,35 @@
+﻿@*<ul>
+    <li style="display: inline; padding-right: 10px;">@Html.ActionLink("Sign Up", "Register", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li style="display: inline;">@Html.ActionLink("Login", "Login", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>*@
+
+<!--font awesome 5.1.2-->
+<link href="~/Contents/fontawesome/css/all.min.css" rel="stylesheet" />
+
+
+@if (Session["UserData"] == null)
+{
+    <ul>
+        <li style="display: inline;  padding-right: 10px;">
+            <i class="fas fa-user"></i> @Html.ActionLink("SignUp", "Register", "User", null, null)
+        </li>
+        <li style="display: inline;">
+            <i class="fas fa-sign-in-alt"></i> @Html.ActionLink("Login", "Login", "User", null, null)
+        </li>
+
+    </ul>
+
+}
+else
+{
+    <ul>
+        <li style="display: inline; padding-right: 10px;">
+            <i class="fas fa-user"></i> @Html.ActionLink("My Account"@*+Session["FirstName"]*@, "MyAds", "User", null, null)
+        </li>
+        <li style="display: inline;">
+            <i class="fas fa-sign-out-alt"></i>@Html.ActionLink("Logout", "Logout", "User", null, null)
+        </li>
+
+    </ul>
+
+}

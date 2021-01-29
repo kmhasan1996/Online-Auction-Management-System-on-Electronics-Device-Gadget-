@@ -392,6 +392,7 @@
     <Content Include="Areas\Admin\Views\PostedAd\RejectedAds.cshtml" />
     <Content Include="Areas\Admin\Views\PostedAd\_RejectedAdList.cshtml" />
     <Content Include="Areas\Admin\Views\PostedAd\_PendingAdList.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.min.css" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -480,7 +481,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Auction.Database\Auction.Database.csproj">
-      <Project>{BC6CB0A3-6632-41CD-B3EE-6BCD92E4E5E3}</Project>
+      <Project>{bc6cb0a3-6632-41cd-b3ee-6bcd92e4e5e3}</Project>
       <Name>Auction.Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\Auction.Entities\Auction.Entities.csproj">

@@ -1,0 +1,89 @@
+﻿@model List<Auction.Entities.District>
+
+<link href="~/Contents/DataTables/DataTables-1.10.18/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Contents/DataTables/DataTables-1.10.18/js/jquery.dataTables.js"></script>
+<script src="~/Contents/DataTables/DataTables-1.10.18/js/Bootstrap-3-Typeahead.js"></script>
+
+@if (Model.Count > 0)
+{
+    <div class="table-responsive">
+        <table id="districtTable" class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var i = 0;
+                    foreach (var district in Model)
+                    {
+                        i++;
+
+                        <tr>
+                            <td>@i</td>
+                            <td>@district.Name</td>
+                            <td>
+                                <button type="button" class="editButton btn btn-primary" data-id="@district.Id" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen mr-2"></i>Edit</button>
+                                <button type="button" class="deleteButton btn btn-danger" data-id="@district.Id"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <hr />
+    <div class="alert alert-warning" role="alert">
+        Sorry! No record found.
+    </div>
+}
+
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var dataSrc = [];
+
+        var table = $('#districtTable').DataTable({
+            'initComplete': function () {
+                var api = this.api();
+
+                // Populate a dataset for autocomplete functionality
+                // using data from first, second and third columns // api.cells('tr', [0, 1, 2])
+                api.cells('tr', [1]).every(function () {
+                    // Get cell data as plain text
+                    var data = $('<div>').html(this.data()).text();
+                    if (dataSrc.indexOf(data) === -1) { dataSrc.push(data); }
+                });
+
+                // Sort dataset alphabetically
+                dataSrc.sort();
+
+                // Initialize Typeahead plug-in
+                $('.dataTables_filter input[type="search"]', api.table().container())
+                    .typeahead({
+                        source: dataSrc,
+                        afterSelect: function (value) {
+                            api.search(value).draw();
+                        }
+                    }
+                    );
+            }
+        });
+    });
+</script>

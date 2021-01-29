@@ -1,0 +1,45 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "MyCredit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"><h2>Your Credit</h2><hr /> </div>
+        <div class="col-md-8">
+            <h4>My Credit: BDT @Model.credit </h4>
+            <form method="post" class="mt-3" action="@Url.Action("MyCredit","User")">
+                <div class="form-group row">
+                    <label class="col-sm-12 col-form-label ">Credit Amount</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="Credit" name="Credit" placeholder="Enter Credit Amount">
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="submit" class="btn btn-primary text-capitalize" value="Add" />
+                    </div>
+                  
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $('input[name="Credit"]').keyup(function(e) {
+            //input field accept numeric value
+            if (/\D/g.test(this.value)) {
+                // Filter non-digits from input value.
+                this.value = this.value.replace(/\D/g, '');
+            }
+        });
+    });
+</script>
+
+

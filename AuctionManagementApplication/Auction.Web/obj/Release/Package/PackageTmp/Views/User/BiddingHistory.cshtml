@@ -1,0 +1,168 @@
+﻿@model Auction.Web.ViewModels.BiddingHistoryViewModel
+
+@{
+    ViewBag.Title = "BiddingHistory";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    DateTime dateTime = DateTime.Now;
+    var i = 0;
+}
+
+<script src="~/Contents/javascript/jquery.countdown.js"></script>
+
+<div class="container">
+
+       
+        <h2>My Biding History</h2>
+
+        <div class="row">
+            <div class="col-md-12">
+                @if (Model.Products.Count == 0)
+                {
+                    <div class="text-center margin-top-30">
+                        <h3>You haven't bid on any ads yet.</h3>
+                        <h4 class="mt-2">Click the "View All Ad" button to view all ad.</h4>
+                        <a href="@Url.Action("Index", "AllAd")" class="btn btn-primary text-white text-capitalize mt-4">Browse All Ad</a>
+                    </div>
+                }
+
+                @if (Model.Products.Count != 0)
+                {
+                    <hr />
+                    <div class="alert alert-secondary" role="alert">
+                        <h5>Bid Ads <span class="badge badge-pill badge-primary ml-2">@Model.Products.Count</span></h5>
+                    </div>
+
+                    <div class="row">
+
+                        @foreach (var ad in Model.Products)
+                        {
+
+                            <div class="product-item col-md-12 mb-3">
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-3">
+
+                                        <img src="@ad.ImageUrl1" alt="image">
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <table>
+                                            <tr>
+                                                <th>
+                                                    @if (ad.EndDateTime < dateTime)
+                                                    {
+                                                        <h3 class="text-danger">[Auction Ended]</h3>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        i++;
+
+                                                        <h3 class="text-danger hh-@i"></h3>
+                                                        <input type="hidden" class="endDateTime-@i" value="@ad.EndDateTime" />
+                                                        <script>
+
+                                                            var tt = '@ad.EndDateTime';
+
+                                                            $(".hh-@i").countdown(tt,
+                                                                function(event) {
+                                                                    $(this).text(
+                                                                        event.strftime('[%D:%H:%M:%S]')
+                                                                    );
+                                                                });
+
+                                                        </script>
+
+                                                    }
+                                                </th>
+
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h2>@ad.Name</h2>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th><b>Start Price:</b> BDT @ad.BasePrice</th>
+                                            </tr>
+                                            <tr>
+                                                @{
+                                                    if (ad.CurrentBidPrice == 0)
+                                                    {
+                                                        <th>
+                                                            <b>Highest Bid:</b> [No Bid]
+                                                        </th>
+                                                    }
+                                                    else
+                                                    {
+                                                        <th>
+                                                            <b>Highest Bid:</b> BDT @ad.CurrentBidPrice
+                                                        </th>
+                                                    }
+                                                }
+
+                                            </tr>
+                                            <tr>
+                                                @{
+                                                    var userId = Model.User.Id;
+                                                    var postId = ad.Id;
+                                                    var bidAmount = ad.Bidders.FirstOrDefault(x => x.UserId == userId && x.ProductId == postId).BidPrice;
+                                                    var positionList = ad.Bidders.Where(x => x.ProductId == postId).OrderByDescending(x => x.BidPrice).Select(x => x.BidPrice).ToList();
+
+                                                    var position = positionList.IndexOf(bidAmount);
+                                                    position += 1;
+                                                }
+                                                <th><b>Your Bid Amount: </b>BDT @bidAmount (<strong>Position:</strong> @position) </th>
+                                            </tr>
+                                            @if (ad.EndDateTime<dateTime && position==1)
+                                            {
+                                                <tr>
+                                                    <th>
+                                                        <h2 class="text-danger">Congratulation ! You win the Bid </h2>
+                                                       
+                                                        <p>
+                                                            <button class="btn btn-primary mt-1" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                                View Auctioneer Contact
+                                                            </button>
+                                                        </p>
+                                                        <div class="collapse" id="collapseExample">
+                                                            <div class="card card-body">
+                                                                <table>
+                                                                    <tr>
+                                                                        <th><strong>Name:</strong> @ad.User.FirstName @ad.User.LastName</th>
+                                                                    </tr> 
+                                                                    <tr>
+                                                                        <th><strong>Email:</strong> @ad.User.Email</th>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            }
+
+                                        </table>
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a class="btn  btn-danger text-center" href="@Url.Action("AdDetails", "Ad", new {postId = ad.Id})">See Details</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+

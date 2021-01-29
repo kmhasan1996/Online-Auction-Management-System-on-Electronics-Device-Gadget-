@@ -1,0 +1,266 @@
+﻿@model List<Auction.Entities.Product>
+
+
+<link href="~/Contents/DataTables/DataTables-1.10.18/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Contents/DataTables/DataTables-1.10.18/js/jquery.dataTables.js"></script>
+<script src="~/Contents/DataTables/DataTables-1.10.18/js/Bootstrap-3-Typeahead.js"></script>
+
+
+@if (Model.Count > 0)
+{
+    <div class="table-responsive">
+        <table id="allPostedAdTable" class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var i = 0;
+                    foreach (var postedAd in Model)
+                    {
+                        i++;
+
+                        <tr>
+                            <td>@i</td>
+                            <td>@postedAd.Category.Name</td>
+                            <td>@postedAd.Name</td>
+                           
+                            <td >
+                                @if (postedAd.User.IsActive)
+                                {
+                                    <a class="userName btn btn-info text-white" data-id="@postedAd.UserId" data-toggle="modal" data-target="#userDetailModal">@postedAd.User.FirstName @postedAd.User.LastName</a>
+                                }
+                                else
+                                {
+                                    <a class="userName btn btn-danger text-white" data-id="@postedAd.UserId" data-toggle="modal" data-target="#userDetailModal">@postedAd.User.FirstName @postedAd.User.LastName</a>
+                                }
+
+                            </td>
+                            @*<td>
+                                <a class="userName btn btn-info text-white" data-id="@postedAd.UserId" data-toggle="modal" data-target="#userDetailModal">@postedAd.User.FirstName @postedAd.User.LastName</a>
+                            </td>*@
+                            <td>@postedAd.StarDateTime</td>
+                            <td>@postedAd.EndDateTime</td>
+                            @*<td>@postedAd.User.FirstName @postedAd.User.LastName</td>*@
+                            @{
+                                String show = postedAd.IsActive == true ?  "Activate" : "Deactivate";
+                            }
+                            <td >
+                                @if (postedAd.IsActive)
+                                {
+                                <span class="badge badge-primary"> @show</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger"> @show</span>
+                                }
+
+                            </td>
+                            <td>
+                                <button type="button" class="viewAndUpdate btn btn-primary" data-id="@postedAd.Id" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen mr-2"></i>Details</button>
+                                @if (postedAd.IsActive)
+                                {
+                                    <button type="button" class="PostDeactivateButton btn btn-danger" data-id="@postedAd.Id"><i class="fas fa-check-circle mr-2"></i>Deactivate</button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="PostActivateButton btn btn-primary" data-id="@postedAd.Id"><i class="fas fa-check-circle mr-2"></i>Activate</button>
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <hr />
+    <div class="alert alert-warning" role="alert">
+        Sorry! No record found.
+    </div>
+}
+<!--User detail modal-->
+<div class="modal fade" id="userDetailModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+
+    </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+
+        var dataSrc = [];
+        var table = $('#allPostedAdTable').DataTable({
+            'initComplete': function () {
+                var api = this.api();
+
+                // Populate a dataset for autocomplete functionality
+                // using data from first, second and third columns // api.cells('tr', [0, 1, 2])
+                api.cells('tr', [1, 2, 3]).every(function () {
+                    // Get cell data as plain text
+                    var data = $('<div>').html(this.data()).text();
+                    if (dataSrc.indexOf(data) === -1) { dataSrc.push(data); }
+                });
+
+                // Sort dataset alphabetically
+                dataSrc.sort();
+
+                // Initialize Typeahead plug-in
+                $('.dataTables_filter input[type="search"]', api.table().container())
+                    .typeahead({
+                        source: dataSrc,
+                        afterSelect: function (value) {
+                            api.search(value).draw();
+                        }
+                    }
+                    );
+            }
+        });
+
+
+        $(".PostActivateButton").click(function () {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, activate it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/PostedAd/ActivateDeactivatePostedAd",
+                        data: {
+                            postId: $(this).attr("data-id")
+                        }
+
+                    })
+                        .done(function (response) {
+                            Swal.fire({
+                                title: 'Activated Successful',
+                                icon: 'success',
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+                        })
+                        .fail(function (xmlHttpRequest, textStatus, errorThrown) {
+                            alert("Fail");
+                        });
+
+                }
+            });
+
+        });
+
+        $(".PostDeactivateButton").click(function () {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, deactivate it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/PostedAd/ActivateDeactivatePostedAd",
+                        data: {
+                            postId: $(this).attr("data-id")
+                        }
+
+                    })
+                        .done(function (response) {
+                            Swal.fire({
+                                title: 'Deactivated Successfully',
+                                icon: 'success',
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.reload();
+                                }
+                            });
+                        })
+                        .fail(function (xmlHttpRequest, textStatus, errorThrown) {
+                            alert("Fail");
+                        });
+
+                }
+            });
+
+        });
+
+
+        $(".viewAndUpdate").click(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "/Admin/PostedAd/GetPostedAdById",
+                data: {
+                    productId: $(this).attr('data-id')
+                }
+
+            })
+                .done(function (response) {
+                    $("#editModal .modal-dialog").html(response);
+                })
+                .fail(function (xmlHttpRequest, textStatus, errorThrown) {
+                    alert("Fail");
+                });
+
+        });
+
+
+
+        $(".userName").click(function() {
+            $.ajax({
+                    type: "GET",
+                    url: "/Admin/PostedAd/UserDetails",
+                    data: {
+                        userId: $(this).attr('data-id')
+                    }
+
+                })
+                .done(function (response) {
+                    $("#userDetailModal .modal-dialog").html(response);
+                })
+                .fail(function (xmlHttpRequest, textStatus, errorThrown) {
+                    alert("Fail");
+                });
+        });
+    });
+</script>
+

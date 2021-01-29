@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     const string imageUrl = "/Areas/Admin/Contents/Images/System/placeholder-image.png";
+    DateTime dateTime = DateTime.Now;
 }
 
 
@@ -129,7 +130,7 @@
                                     {
 
 
-                                        <a href="@Url.Action("Index","Shop",new { categoryID=category.Id})" >@category.Name <span>(@category.Products.Count(x=>x.IsActive))</span></a>
+                                        <a href="@Url.Action("Index","AllAd",new { categoryID=category.Id})" >@category.Name <span>(@category.Products.Where(x=>x.EndDateTime > dateTime).Count(x=>x.IsActive))</span></a>
 
 
                                     }

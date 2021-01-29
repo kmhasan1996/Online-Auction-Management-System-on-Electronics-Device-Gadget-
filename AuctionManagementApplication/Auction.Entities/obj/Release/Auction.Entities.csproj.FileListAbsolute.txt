@@ -1,0 +1,16 @@
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Release\Auction.Entities.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Release\Auction.Entities.pdb
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.dll
+E:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.pdb
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Release\Auction.Entities.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Release\Auction.Entities.pdb
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.csprojAssemblyReference.cache
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.csproj.CoreCompileInputs.cache
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.pdb
+D:\Running Project\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Release\Auction.Entities.dll
+D:\Running Project\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Release\Auction.Entities.pdb
+D:\Running Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.csprojAssemblyReference.cache
+D:\Running Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.csproj.CoreCompileInputs.cache
+D:\Running Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.dll
+D:\Running Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Release\Auction.Entities.pdb

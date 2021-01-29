@@ -1,0 +1,124 @@
+﻿@model Auction.Web.ViewModels.HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+    var str = "fas fa-desktop mr-2";
+    var location = "fas fa-map-marker-alt mr-2";
+}
+
+<script src="~/Contents/map/countrymap.js"></script>
+<script src="~/Contents/map/mapdata.js"></script>
+
+<section class="flat-row" style="background: white">
+    <div class="container" style="margin-top: -85px; ">
+        <div class="row" style="padding-top: 20px">
+            <div class="col-md-9">
+                @*<h5 class="text-justify">Welcome to ElectricAuction.com - first online auction marketplace in Bangladesh!</h5>
+                <p class="text-justify">Register, Bid and Win.Auction your electronics device/gadget Buy and sell electronics device/gadget <strong>in Bangladesh!</strong></p>*@
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <h5 class="text-justify">Welcome to AuctionHouse.com - first online auction marketplace for electronics devices/gadgets <strong>in Bangladesh.</strong></h5>
+                        <p class="text-justify">Register, Bid and Win. Sell your electronics device or gadget <strong>by auction</strong>. Buy electronics device or gadget <strong>by bidding.</strong></p>
+
+                    </div><div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h3 class="mt-5">Top Categories</h3>
+                        <ul>
+                            @foreach (var category in Model.Categories)
+                            {
+                                <li><i class="@category.Icon mr-2"></i><a href="@Url.Action("Index", "AllAd", new {categoryID = @category.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@category.Name</a></li>
+
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="text-center p-5" style="background: rgb(231, 237, 238); margin-top: 65px;  ">
+                            <h3>Do you have any electronic devices or gadgets for auction?</h3>
+                            <h4 class="mt-2">Click the "Post an ad now!" button to post your ad.</h4>
+                            <a href="@Url.Action("NewAd", "User")" class="btn btn-primary text-white text-capitalize mt-4">Post an ad now!</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-3 float-right">
+                <div class="row">
+                    @*<div class="col-md-6 float-right">
+                        <div class="float-right" style="background: black;">
+                            <img src="~/Contents/Images/System/BDMap.jpg" height="200" width="200" />
+                            <div id="map"></div>
+                        </div>
+                    </div>*@
+                    <div class="col-md-12">
+                        <div class="float-right">
+
+                            <h3>Cities</h3>
+                            <ul>
+
+                                @foreach (var cities in Model.Districts)
+                                {
+                                    <li><i class="@location"></i><a href="@Url.Action("Index", "AllAd", new {districtId = @cities.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@cities.Name</a></li>
+
+                                }
+                            </ul>
+                            @*</div>
+
+                                <div class="float-right">*@
+                            <h3 class="mt-5">Divisions</h3>
+                            <ul>
+
+                                @foreach (var cities in Model.Districts)
+                                {
+                                    <li><i class="@location"></i><a href="@Url.Action("Index", "AllAd", new {districtId = @cities.Id})" class="text-primary" @*class="btn btn-primary mt-2"*@>@cities.Name</a></li>
+
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- IMAGE BOX -->
+<section class="flat-row row-image-box style2" style="margin-top: -20px">
+    <div class="container " style="background: white;">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="title-section margin-bottom-42 mt-4">
+                    <h3>All Category</h3>
+                </div>
+            </div>
+            @foreach (var category in Model.Categories)
+            {
+                <div class="col-md-2">
+
+                    @*<img src="@category.ImageUrl" height="100" width="100" alt="Image"><br />*@
+
+                    <a href="@Url.Action("Index","AllAd",new { categoryID=category.Id})" class="btn btn-secondary @category.Icon p-3 mt-2 mb-5"><i class="mr-2"></i>@category.Name</a>
+
+                </div>
+            }
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+</section>
+<!-- END IMAGE BOX -->
+
+@*<section class="flat-row" style="margin-top: -100px">
+    <div class="container" >
+        <div class="text-center margin-top-30">
+            <h3>Do you have any electronic device or gadget to auction?</h3>
+            <h4 class="mt-2">Click the "Post an ad now!" button to post your ad.</h4>
+            <a href="@Url.Action("NewAd", "User")" class="btn btn-primary text-white text-capitalize mt-4">Post your ad now!</a>
+        </div>
+    </div>
+
+</section>*@

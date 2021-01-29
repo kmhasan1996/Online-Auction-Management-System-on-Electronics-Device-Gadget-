@@ -73,9 +73,10 @@ namespace Auction.Services.Admin
         }
         public int GetActivePostedAdCount()
         {
+            DateTime dateTime=DateTime.Now;
             using (var context = new AuctionDbContext())
             {
-                return context.Products.Count(x=>x.IsActive);
+                return context.Products.Count(x=>x.IsActive && x.EndDateTime>dateTime);
             }
         }
         public int GetPendingPostedAdCount()

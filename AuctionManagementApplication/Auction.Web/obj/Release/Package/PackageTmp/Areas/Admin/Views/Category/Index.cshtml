@@ -1,0 +1,39 @@
+﻿@model List<Auction.Entities.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col col-lg-12">
+        <h2>Category</h2>
+        <hr />
+    </div>
+
+
+    <div class="col col-lg-6 mb-3">
+        <form>
+            <div class="input-group">
+               
+                <div class="input-group-append" id="button-addon4">
+                    <button id="createButton" class="btn btn-success" type="button" data-toggle="modal" data-target="#createCategoryModal"><i class="fas fa-plus mr-2"></i>New Category</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col col-lg-12">
+        @{Html.RenderPartial("_Listing", Model);}
+    </div>
+
+    <!-- Modal Create -->
+    <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog " role="document">
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Areas/Admin/Contents/Script/Validation/Category.js"></script>
+

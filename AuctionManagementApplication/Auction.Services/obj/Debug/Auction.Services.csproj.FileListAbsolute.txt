@@ -14,3 +14,53 @@ E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CopyComplete
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.dll
 E:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.pdb
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.dll.config
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.dll
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.pdb
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.dll
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Entities.dll
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.dll
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.dll
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.pdb
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.dll.config
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Entities.pdb
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.xml
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.xml
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csprojAssemblyReference.cache
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CopyComplete
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.dll
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.pdb
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.dll.config
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.dll
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.pdb
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.dll
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Entities.dll
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.dll
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.dll
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.pdb
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.dll.config
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Entities.pdb
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.xml
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.xml
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csprojAssemblyReference.cache
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CopyComplete
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.dll
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.pdb
+D:\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CoreCompileInputs.cache
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.dll.config
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Services.pdb
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Entities.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.pdb
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Database.dll.config
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\Auction.Entities.pdb
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.xml
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csprojAssemblyReference.cache
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CoreCompileInputs.cache
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.csproj.CopyComplete
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Services\obj\Debug\Auction.Services.pdb

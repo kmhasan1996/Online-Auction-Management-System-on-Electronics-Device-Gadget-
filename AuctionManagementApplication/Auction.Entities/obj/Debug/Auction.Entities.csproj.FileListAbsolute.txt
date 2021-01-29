@@ -3,3 +3,20 @@ E:\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug
 E:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.dll
 E:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.pdb
 E:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.csprojAssemblyReference.cache
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug\Auction.Entities.dll
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug\Auction.Entities.pdb
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.csprojAssemblyReference.cache
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.dll
+D:\New folder\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.pdb
+D:\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug\Auction.Entities.dll
+D:\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug\Auction.Entities.pdb
+D:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.csprojAssemblyReference.cache
+D:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.dll
+D:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.pdb
+D:\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.csproj.CoreCompileInputs.cache
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug\Auction.Entities.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\bin\Debug\Auction.Entities.pdb
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.csprojAssemblyReference.cache
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.csproj.CoreCompileInputs.cache
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.dll
+D:\Project\Completed Project\Online Auction System\AuctionManagementApplication\Auction.Entities\obj\Debug\Auction.Entities.pdb

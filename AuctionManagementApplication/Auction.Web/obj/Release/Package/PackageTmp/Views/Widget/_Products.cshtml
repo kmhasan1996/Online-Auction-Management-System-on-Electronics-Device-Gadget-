@@ -1,0 +1,184 @@
+﻿@model Auction.Web.ViewModels.ProductWidgetViewmodel
+
+@{
+    DateTime dateTime = DateTime.Now;
+    var i = 0;
+}
+
+@if (Model != null && Model.Products != null)
+{
+    if (Model.IsLatestProduct == true && Model.ByCategory == false)
+    {
+
+        <div class="product-content product-fivecolumn clearfix">
+            <ul class="product style3">
+                @foreach (var product in Model.Products)
+                {
+                    <li class="product-item">
+                        <div class="product-thumb clearfix">
+                            <a href="@Url.Action("AdDetails", "Ad", new {postId = product.Id})" class="product-thumb">
+                                <img src="@product.ImageUrl1" width="500" height="333" style="padding-bottom: 15px;" alt="image">
+                            </a>
+                            <span class="new">New</span>
+                        </div>
+                        <div class="product-info text-center clearfix">
+
+                            <span class="product-title">@product.Name</span>
+
+                            <div class="price">
+                                <ins>
+                                    <span class="amount">BDT @product.BasePrice</span>
+                                </ins>
+                            </div>
+                            <span class="product-title">End Date: @product.EndDateTime</span>
+                        </div>
+                        <div class="add-to-cart text-center" data-id="@product.Id">
+                            <a class="add-to-cart text-center" href="@Url.Action("AdDetails", "Ad", new {postId = product.Id})">Bid Now</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    }
+    else if (Model.ByCategory)
+    {
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <div title="@product.Name" onclick="window.location = '@Url.Action("AdDetails", "Ad", new {postId = product.Id})'" class="product-item col-md-5 mb-3 mr-3 ml-5 pr-5 p-1" style="border: 1px solid gray; cursor: pointer;">
+                   
+                    <div class="row">
+                        <div class="col-md-3">
+                            
+                            <img src="@product.ImageUrl1" alt="image">
+                           
+                        </div>
+
+                        <div class="col-md-6">
+                            <table>
+                                <tr>
+                                    <th>
+                                        @if (product.EndDateTime < dateTime)
+                                        {
+                                            <h5 class="text-danger">[Auction Ended]</h5>
+
+                                        }
+                                        else
+                                        {
+                                            i++;
+                                            <span class="ml-4">Time Left</span>
+                                            <h3 class="text-danger hh-@i" id="hh"></h3>
+                                            <input type="hidden" class="endDateTime-@i" value="@product.EndDateTime" />
+                                            <script>
+
+                                                var tt = '@product.EndDateTime';
+
+                                                $(".hh-@i").countdown(tt,
+                                                    function(event) {
+                                                        $(this).text(
+                                                            event.strftime('[%D:%H:%M:%S]')
+                                                        );
+                                                    });
+
+                                            </script>
+
+                                        }
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <h4>@product.Name</h4>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <i class="fas fa-map-marker-alt"></i> @product.User.Thana.Name, @product.User.Thana.District.Name
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th><b>Start Price:</b> BDT @product.BasePrice</th>
+                                </tr>
+                                <tr>
+                                    @{
+                                        if (product.CurrentBidPrice == 0)
+                                        {
+                                            <th>
+                                                <b>Highest Bid:</b> [No Bid]
+                                            </th>
+                                        }
+                                        else
+                                        {
+                                            <th>
+                                                <b>Highest Bid:</b> BDT @product.CurrentBidPrice
+                                            </th>
+                                        }
+                                    }
+                                </tr>
+
+                            </table>
+
+                        </div>
+                       
+                    </div>
+
+                </div>
+
+            }
+        </div>
+
+    }
+    else
+    {
+        <ul class="flat-filter style-1 text-center max-width-682 clearfix">
+            <li class="active"><a href="#" data-filter="*">All Product</a></li>
+            @foreach (var category in Model.Products.Select(x => x.Category).ToList().Distinct())
+            {
+                <li><a href="#" data-filter=".@category.Name">@category.Name</a></li>
+            }
+
+
+        </ul>
+        <div class="product-content product-fourcolumn clearfix">
+            <ul class="product style2 isotope-product clearfix">
+
+                @foreach (var catProduct in Model.Products)
+                {
+                    <li class="product-item @catProduct.Category.Name" style="padding-left:10px;">
+                        <div class="product-thumb clearfix">
+                            <a href="@Url.Action("AdDetails", "Ad", new { postId = catProduct.Id })" class="product-thumb">
+                                <img src="@catProduct.ImageUrl1" width="500" height="333" style="padding-bottom: 15px;" alt="image">
+                            </a>
+                            @if (Model.IsLatestProduct)
+                            {
+                                <span class="new">New</span>
+                            }
+
+                        </div>
+                        <div class="product-info text-center clearfix">
+
+                            <span class="product-title">@catProduct.Name</span>
+                            <div class="price">
+                                <ins>
+                                    <span class="amount">BDT @catProduct.BasePrice</span>
+                                </ins>
+                            </div>
+                        </div>
+                        <div class="add-to-cart text-center productAddTocart" data-id="@catProduct.Id">
+                            <a class="add-to-cart text-center" href="@Url.Action("AdDetails", "Ad", new { postId = catProduct.Id })">Bid Now</a>
+                        </div>
+                        @*<a href="#" class="like"><i class="fa fa-heart-o"></i></a>*@
+                    </li>
+                }
+
+
+
+            </ul>
+        </div>
+    }
+
+}
+
+
+
+

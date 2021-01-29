@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SMS-Dashboard</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/Contents/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Contents/css/simple-sidebar.css" rel="stylesheet" />
+    
+    <link href="~/Contents/stylesheets/style.css" rel="stylesheet" />
+
+    <script src="~/Contents/js/jquery.min.js"></script>
+
+    <!--font awesome 5.1.2-->
+    <link href="~/Contents/fontawesome/css/all.min.css" rel="stylesheet" />
+
+    <!--sweet alert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+    <!-- jQuery date tim piker-->
+    <link href="~/Contents/jQueryDateTime/jquery-ui.min.css" rel="stylesheet" />
+
+    <link href="~/Contents/jQueryDateTime/jquery-ui.theme.min.css" rel="stylesheet" />
+
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body >
+    <div class="d-flex container padding-top-33" id="wrapper" style="background: white;">
+        <div class=" border-right" id="sidebar-wrapper" style="background: rgb(0, 31, 63); margin-left: -14px;">
+            <div class="sidebar-heading" style="background: rgb(0, 31, 63);color: white"><i class="fas fa-bars mr-3"></i>User Menu </div>
+            <div class="list-group list-group-flush">
+                <a href="@Url.Action("MyAds","User")" class="list-group-item list-group-item-action" ><i class="fas fa-user-alt mr-2"></i>My Account</a>
+                @*<a href="@Url.Action("MyAds","User")" class="list-group-item list-group-item-action" ><i class="fas fa-folder mr-2"></i>My Ads</a>*@
+
+                <a href="@Url.Action("NewAd","User")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Post New Ad</a>
+                <a href="@Url.Action("MyCredit","User")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>My Credit</a>
+                <a href="@Url.Action("BiddingHistory","User")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Bidding History</a>
+                <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Update Information</a>
+                <a href="@Url.Action("","")" class="list-group-item list-group-item-action  "><i class="fas fa-folder mr-2"></i>Change Password</a>
+
+
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper navbar-dark bg-dark -->
+        <!-- Page Content -->
+
+        @RenderBody()
+       
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+
+
+    <script src="~/Contents/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!--jQuery Validation-->
+    @*<script src="~/Scripts/jquery-1.8.0.min.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/Contents/jQueryDateTime/jquery-ui.min.js"></script>
+
+    @*<script src="~/Contents/jQueryDateTime/jquery.js"></script>*@
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        var pathname = window.location.pathname;
+
+        //window.alert(pathname);
+        $('.list-group > a[href="' + pathname + '"]').addClass('active');
+
+    </script>
+
+</body>
+</html>

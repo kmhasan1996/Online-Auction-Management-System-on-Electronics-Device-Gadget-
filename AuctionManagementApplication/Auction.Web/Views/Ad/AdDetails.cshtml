@@ -41,30 +41,45 @@
                             <div class="flexslider style-1 has-relative">
                                
                                 <ul class="slides mt-3">
-                                    <li data-thumb="@Model.Product.ImageUrl1">
-                                        <img src="@Model.Product.ImageUrl1" alt="Image">
-                                        <div class="flat-icon style-1">
-                                            <a href="@Model.Product.ImageUrl1" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
-                                        </div>
-                                    </li>
-                                    <li data-thumb="@Model.Product.ImageUrl2">
-                                        <img src="@Model.Product.ImageUrl2" alt="Image">
-                                        <div class="flat-icon style-1">
-                                            <a href="@Model.Product.ImageUrl2" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
-                                        </div>
-                                    </li>
-                                    <li data-thumb="@Model.Product.ImageUrl3">
-                                        <img src="@Model.Product.ImageUrl3" alt="Image">
-                                        <div class="flat-icon style-1">
-                                            <a href="@Model.Product.ImageUrl3" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
-                                        </div>
-                                    </li>
-                                    <li data-thumb="@Model.Product.ImageUrl4">
-                                        <img src="@Model.Product.ImageUrl4" alt="Image">
-                                        <div class="flat-icon style-1">
-                                            <a href="@Model.Product.ImageUrl4" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
-                                        </div>
-                                    </li>
+                                    @if (!string.IsNullOrEmpty(Model.Product.ImageUrl1))
+                                    {
+                                        <li data-thumb="@Model.Product.ImageUrl1">
+                                            <img src="@Model.Product.ImageUrl1" alt="Image">
+                                            <div class="flat-icon style-1">
+                                                <a href="@Model.Product.ImageUrl1" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
+                                            </div>
+                                        </li>
+                                    }
+                                    @if (!string.IsNullOrEmpty(Model.Product.ImageUrl3))
+                                    {
+                                        <li data-thumb="@Model.Product.ImageUrl2">
+                                            <img src="@Model.Product.ImageUrl2" alt="Image">
+                                            <div class="flat-icon style-1">
+                                                <a href="@Model.Product.ImageUrl2" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
+                                            </div>
+                                        </li>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.Product.ImageUrl3))
+                                    {
+                                        <li data-thumb="@Model.Product.ImageUrl3">
+                                            <img src="@Model.Product.ImageUrl3" alt="Image">
+                                            <div class="flat-icon style-1">
+                                                <a href="@Model.Product.ImageUrl3" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
+                                            </div>
+                                        </li>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.Product.ImageUrl4))
+                                    {
+                                        <li data-thumb="@Model.Product.ImageUrl4">
+                                            <img src="@Model.Product.ImageUrl4" alt="Image">
+                                            <div class="flat-icon style-1">
+                                                <a href="@Model.Product.ImageUrl4" class="zoom-popup"><span class="fas fa-search-plus"></span></a>
+                                            </div>
+                                        </li>
+                                    }
+
                                 </ul>
                             </div>
                         </div>
@@ -453,7 +468,7 @@
                         if (result.value) {
                             $.ajax({
                                     type: "POST",
-                                    url: "/Shop/BidNow",
+                                    url: "/AllAd/BidNow",
                                     data: {
                                         ProductId: $("#ProductId").val(),
                                         bidPrice: $("#BidPrice").val(),
@@ -509,7 +524,7 @@
                         if (result.value) {
                             $.ajax({
                                     type: "POST",
-                                    url: "/Shop/BidNow",
+                                    url: "/AllAd/BidNow",
                                     data: {
                                         ProductId: $("#ProductId").val(),
                                         bidPrice: $("#BidPrice").val(),
